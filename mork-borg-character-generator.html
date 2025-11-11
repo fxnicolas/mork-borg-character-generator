@@ -1,0 +1,1567 @@
+<!doctype html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <title>MÖRK BORG - Générateur de Personnages</title>
+    <meta name="description" content="MÖRK BORG - Générateur de Personnages">
+    <meta name="author" content="FX Nicolas">
+    <meta name="keywords"
+        content="Mork Borg, MÖRK BORG, MorkBorg, MÖRKBORG, RPG, Role Playing Game, Generator, Générateur, Character, Personnage">
+    <meta name="license" content="MÖRK BORG Third Party License">
+    <meta name="lang" content="fr">
+    <style type="text/css">
+        @media print {
+
+            header,
+            footer {
+                display: none;
+            }
+
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+
+        }
+
+        body {
+            font-family: "Alegreya", serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-size: clamp(0.5rem, calc(0.5rem + 0.5vw), 2.5rem);
+
+        }
+
+        #character {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)), url('mork-borg-character-sheet-background.png');
+            background-position: center top;
+            background-repeat: no-repeat;
+            aspect-ratio: 297 / 210;
+            background-size: contain;
+            position: relative;
+        }
+
+        #character .print {
+            display: block;
+            position: absolute;
+        }
+
+        #character_notes {
+            margin: 40px;
+        }
+
+        #character_notes>h2 {
+            margin-bottom: 5px;
+        }
+
+        #character_notes>div {
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+
+        ol,
+        ul {
+            margin-top: 0px;
+            margin-bottom: 0px;
+
+        }
+
+        /* Name and Class */
+
+        #name {
+            transform: translate(0%, -50%);
+            left: 10%;
+            top: 10.8%;
+            width: 23.5%;
+            height: 5%;
+            font-weight: bold;
+            border: 0px solid black;
+            font-size: clamp(20%, 200%, 300%);
+            /* shrinks naturally on small screens */
+            text-wrap: nowrap;
+            /* font-size: 250%; */
+        }
+
+        #class_name {
+            font-size: 140%;
+            transform: translate(0%, -50%);
+            left: 11%;
+            top: 45.75%;
+            width: 22.5%;
+            font-weight: bold;
+            text-align: left;
+            border: 0px solid black;
+        }
+
+        /* attributes */
+
+        .attribute {
+            font-size: 300%;
+            transform: translate(-50%, -50%);
+            font-weight: 800;
+        }
+
+        #force {
+            left: 53%;
+            top: 36%;
+        }
+
+        #agilité {
+            left: 52%;
+            top: 47%;
+        }
+
+        #présence {
+            left: 52.5%;
+            top: 62%;
+        }
+
+        #endurance {
+            left: 43%;
+            top: 77%;
+        }
+
+        /* HP, Omens and powers */
+
+        #max_hp {
+            transform: translate(-50%, -50%);
+            font-size: 300%;
+            font-weight: 800;
+            left: 52%;
+            top: 12%;
+        }
+
+        #omens_dice {
+            transform: translate(-50%, -50%);
+            font-size: 300%;
+            left: 58%;
+            top: 90%;
+            color: white;
+        }
+
+        /* Description and Class Features */
+
+        #description {
+            font-size: 80%;
+            margin: 0px;
+            padding: 0px;
+            left: 5.3%;
+            top: 19%;
+            width: 28%;
+            height: 20%;
+            border: 0px solid black;
+            text-align: left;
+        }
+
+        #description>p {
+            margin-bottom: 1% !important;
+        }
+
+        #skills_short {
+            margin: 0px;
+            padding: 0px;
+            left: 5.7%;
+            top: 47%;
+            width: 28%;
+            height: 13%;
+            border: 0px solid black;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            line-clamp: 3;
+            /* number of visible lines */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            /* responsive width */
+        }
+
+        #skills {
+            display: block !important;
+        }
+
+        #description>p,
+        #skills>p,
+        #skills_short>p,
+        #traits>p {
+            margin: 0px;
+            padding: 0px;
+            font-size: 110%
+        }
+
+        /* Weapon and Armor */
+
+        #weapon {
+            font-size: 120%;
+            margin: 0px;
+            padding: 0px;
+            left: 64%;
+            top: 5.3%;
+            width: 25%;
+            height: 5%;
+            border: 0px solid black;
+            columns: 1;
+            column-gap: 0.5rem;
+            list-style: none;
+        }
+
+        #weapon_2 {
+            font-size: 120%;
+            margin: 0px;
+            padding: 0px;
+            left: 67%;
+            top: 14.5%;
+            width: 27%;
+            height: 4%;
+            border: 0px solid black;
+            columns: 1;
+            column-gap: 0.5rem;
+            list-style: none;
+        }
+
+        #armor {
+            font-size: 120%;
+            margin: 0px;
+            padding: 0px;
+            left: 67%;
+            top: 23.8%;
+            width: 20%;
+            height: 5%;
+            border: 0px solid black;
+            columns: 1;
+            column-gap: 0.5rem;
+            list-style: none;
+        }
+
+        #weapon>.small,
+        #weapon_2>.small,
+        #armor>.small {
+            font-size: 80%;
+            line-height: 70%;
+        }
+
+        /* Equipment & scrolls */
+
+        #scrolls {
+            font-size: 110%;
+            margin: 0px;
+            padding: 0px;
+            left: 5.3%;
+            top: 66.6%;
+            width: 26%;
+            height: 25%;
+            columns: 1;
+            column-gap: 0.5rem;
+            list-style: none;
+            border: 0px solid black;
+        }
+
+        #scrolls>li {
+            border: 0px solid red;
+            height: 26%;
+            line-height: 100%;
+            padding-bottom: 1%;
+        }
+
+        #scrolls>li>.small {
+            font-size: 70%;
+            line-height: 70%;
+        }
+
+        .small>ol,
+        .small>ul {
+            line-height: 100%;
+            padding-left: 20px;
+        }
+
+        #equipment {
+            font-size: 110%;
+            margin: 0px;
+            padding: 0px;
+            left: 62.8%;
+            top: 35.3%;
+            width: 14.7%;
+            height: 53.5%;
+            border: 0px solid black;
+            columns: 1;
+            column-gap: 0.5rem;
+            list-style: none;
+        }
+
+
+        #equipment>li {
+            border: 0px solid red;
+            height: 11.3%;
+            line-height: 100%;
+            padding-top: 1%;
+            margin-bottom: 2%;
+        }
+
+        #equipment>li>.small {
+            font-size: 80%;
+            line-height: 70%;
+        }
+
+        #money {
+            transform: translate(-50%, -50%);
+            font-size: 150%;
+            left: 73.5%;
+            top: 91.5%;
+        }
+
+        /* hidden elements */
+
+        #omens {
+            display: none !important;
+        }
+
+        #powers {
+            display: none !important;
+        }
+
+        /* Menu */
+
+
+        button,
+        select {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border-style: solid;
+            overflow: hidden;
+            font-family: inherit;
+            text-transform: inherit;
+            font-weight: inherit;
+            font-style: inherit;
+            text-decoration: inherit;
+            color: inherit;
+            font-size: inherit;
+            letter-spacing: inherit;
+        }
+
+        button:hover,
+        select:hover {
+            cursor: pointer;
+            background-color: rgb(255, 233, 000);
+        }
+
+        button:disabled,
+        select:disabled {
+            opacity: 0.5;
+        }
+
+        /* Original CSS */
+
+        ul {
+            padding-left: 15px
+        }
+
+
+        body>footer {
+            position: sticky;
+            top: 100vh;
+        }
+
+        footer>pre {
+            white-space: pre-wrap;
+        }
+
+
+        #menu>button {
+            margin: 3px;
+        }
+
+        .top {
+            width: 500px
+        }
+
+        @media only screen and (max-width: 500px) {
+            .top {
+                width: auto;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            #logo {
+                display: none;
+            }
+        }
+
+        /* #picker_label:hover {
+            color: white;
+            background: #181818;
+        } */
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 style="text-align: center">
+            Générateur de Personnage
+            <br>
+            <img id='logo' src="compatible-with-mork-borg-horizontal.svg" alt="Compatible with Mörk Borg Logo"
+                width=150 />
+        </h1>
+        <div id="menu">
+            <span id="klass">
+                <label for="klass_selector">Classe</label>
+                <select id="klass_selector">
+                    <option id="random" value="-1">&lt;Aléatoire&gt;</option>
+                    <option id="ws" value="0">Racaille &lt;Aucune&gt;</option>
+                    <option id="fd" value="1">Déserteur à Crocs</option>
+                    <option id="gs" value="2">Rat des Égouts</option>
+                    <option id="eh" value="3">Ermite Ésotérique</option>
+                    <option id="wr" value="4">Noble Misérable</option>
+                    <option id="he" value="5">Prêtre Hérétique</option>
+                    <option id="oh" value="6">Herboriste Occulte</option>
+                    <option id="fo" value="7">Philosophe Désolé</option>
+                    <option id="dgp" value="8">Prophète d'un Dieu Mort</option>
+                    <option id="po" value="9">Pâle</option>
+                    <option id="cs" value="10">Métamorphe Maudit</option>
+                    <option id="ss" value="11">Oiseau Chanteur Sacrilège</option>
+                </select>
+                <button id="generate">🤞 Générer</button>
+            </span>
+            |
+            <button id="edit" title="Editer le personnage manuellement.">✏️ Mode Edition</button>
+            <button id="stop" title="Sortir du mode édition." style="display: none;">🤞 Mode Génération</button>
+            <button id="save_edits" title="Sauvegarder personnage" style="display: none;">💾 Sauvegarder</button>
+            <button id="restore" title="Restaurer la sauvegarde" style="display: none;">📦 Restaurer</button>
+            <button id="share" title="Partager">👍 Partager</button>
+            <button id="delete" title="Supprimer le personage sauvegardé" style="display: none;">🗑️ Supprimer</button>
+            <span style='display: none; background: #FF3EB5; color: white; padding: 1px 5px;' id='status'></span>
+
+        </div>
+        <div id=attributes style="display: none;">
+            <hr>
+            Attributs d'Excellence (2 Max):
+            <form>
+                <div style="display: inline-block;">
+                    <input type="checkbox" id="agi" name="agilité" value=0>
+                    <label for="agi">
+                        <b>AGILITÉ</b>
+                        <span>Défense, équilibre, nager, fuir</span>
+                    </label>
+                    <br>
+                    <input type="checkbox" id="pre" name="présence" value=1>
+                    <label for="pre">
+                        <b>PRÉSENCE</b>
+                        <span>Percevoir, viser, charmer, manierles Pouvoirs</span>
+                    </label>
+                </div>
+                <div style="display: inline-block;">
+                    <input type="checkbox" id="for" name="force" value=2>
+                    <label for="for">
+                        <b>FORCE</b>
+                        <span>Écraser, soulever, frapper, agripper</span>
+                    </label>
+                    <br>
+                    <input type="checkbox" id="end" name="endurance" value=3>
+                    <label for="end">
+                        <b>ENDURANCE</b>
+                        <span>Résister au poison/froid/chaud, aux chutes</span>
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <div id="saved_souls">
+            <hr>
+            Personnages Sauvegardés<br>
+            <span id="souls"></span>
+        </div>
+        <hr style="margin: 0px;">
+    </header>
+    <div id=character>
+        <span id="name" class="edit print"></span>
+        <span id="class_name" class="print"></span>
+        <span id="agilité" class="edit print attribute"></span>
+        <span id="présence" class="edit print attribute"></span>
+        <span id="force" class="edit print attribute"></span>
+        <span id="endurance" class="edit print attribute"></span>
+        <span id="max_hp" class="edit print"></span>
+        <span id="omens" class="edit print"></span>
+        <span id="omens_dice" class="edit print"></span>
+        <span id="powers" class="edit"></span>
+        <ul id="equipment" class="edit print"></ul>
+        <ul id="scrolls" class="edit print"></ul>
+        <div id="weapon" class="edit print"></div>
+        <div id="weapon_2" class="edit print"></div>
+        <div id="money" class="edit print"></div>
+        <div id="armor" class="edit print"></div>
+        <span id="description" class="edit print"></span>
+        <div id="skills_short" class="edit print"></div>
+    </div>
+    <div id="character_notes">
+        <hr>
+        <h2>Notes</h2>
+        <div id="skills" class="edit print"></div>
+        <h2>Traits</h2>
+        <div id="traits" class="edit print"></div>
+    </div>
+    <footer style="text-align: center; font-size: 65%; opacity: 75%;">
+        <hr>
+        <pre style="margin: 0px 15px;">
+            This character generation for MÖRK BORG is an independent production by FX Nicolas and is not affiliated with Ockult Örtmästare Games or Stockholm Kartell. It is published under the MÖRK BORG Third Party License.
+            MÖRK BORG is copyright Ockult Örtmästare Games and Stockholm Kartell. <br>
+            This tools is based on (forked from) the <b>Waste of Skin</b> generator by <a href="https://github.com/AlessandroMinali/mork-borg-gen" target="_blank">Alessandro Minali</a>, available under the MIT license..
+        </pre>
+    </footer>
+    <script>
+        function search() {
+            if (window.location.hash) {
+                return window.location.hash.slice(1,);
+            } else {
+                return window.location.search.slice(1,);
+            }
+        }
+
+        function d(max) {
+            return Math.floor(Math.random() * max) + 1;
+        }
+
+        function roll(max, n = 1, mod = 0) {
+            r = []
+            let m;
+            for (let i = 0; i < n; ++i) {
+                r.push(Math.floor(Math.random() * max) + 1);
+            }
+            total = (r.reduce((a, b) => a + b, 0) + mod)
+
+            s = "Rolling ";
+            if (n > 1) { s += n };
+            s += `d${max}`
+            if (mod != 0) {
+                m = mod > 0 ? `+${mod}` : mod
+                s += m
+            } else {
+                m = ''
+            }
+
+            confirm(`${s}\n<${r.join(' + ')}>${m}= ${total}`)
+        }
+
+        function save_edits(tag) {
+            var editElem = document.getElementsByClassName("edit");
+            var edits = [];
+            for (var i = 0; i < editElem.length; i++) {
+                edits.push(editElem[i].innerHTML);
+            }
+            localStorage.setItem(tag, edits.join('&666&'));
+            show_status("Personnage Sauvegardé");
+        }
+        function load_edits(tag) {
+            const edits = localStorage.getItem(tag).split('&666&');
+            var editElem = document.getElementsByClassName("edit");
+            console.log(edits, edits.length, editElem.length);
+            for (var i = 0; i < edits.length; i++) {
+                editElem[i].innerHTML = edits[i];
+            }
+            show_status("Personnage Restauré");
+        }
+        function delete_edits(tag) {
+            localStorage.removeItem(tag);
+            show_status('Personnage Supprimé');
+
+            window.location.reload();
+        }
+        function check_edits(tag) {
+            return localStorage.getItem(tag) != null;
+        }
+        function enable_edits() {
+            var editElem = document.getElementsByClassName("edit");
+            for (var i = 0; i < editElem.length; i++) {
+                editElem[i].contentEditable = "true";
+            }
+        }
+        function disable_edits() {
+            var editElem = document.getElementsByClassName("edit");
+            for (var i = 0; i < editElem.length; i++) {
+                editElem[i].contentEditable = "false";
+            }
+        }
+
+        function show_status(msg) {
+            var el = document.getElementById("status");
+            el.innerHTML = msg;
+            el.style.display = 'inline';
+            hide_status();
+        }
+        var timers = [];
+        function hide_status() {
+            for (var i = 0; i < timers.length; i++) {
+                clearTimeout(timers[i]);
+            }
+            var el = document.getElementById("status");
+            el.style.opacity = 1;
+            for (var i = 0; i < 50; i++) {
+                timers.push(setTimeout(function () { el.style.opacity -= 0.02; }, i * 60));
+            }
+        }
+
+        function cyrb128(str) {
+            let h1 = 1779033703, h2 = 3144134277,
+                h3 = 1013904242, h4 = 2773480762;
+            for (let i = 0, k; i < str.length; i++) {
+                k = str.charCodeAt(i);
+                h1 = h2 ^ Math.imul(h1 ^ k, 597399067);
+                h2 = h3 ^ Math.imul(h2 ^ k, 2869860233);
+                h3 = h4 ^ Math.imul(h3 ^ k, 951274213);
+                h4 = h1 ^ Math.imul(h4 ^ k, 2716044179);
+            }
+            h1 = Math.imul(h3 ^ (h1 >>> 18), 597399067);
+            h2 = Math.imul(h4 ^ (h2 >>> 22), 2869860233);
+            h3 = Math.imul(h1 ^ (h3 >>> 17), 951274213);
+            h4 = Math.imul(h2 ^ (h4 >>> 19), 2716044179);
+            return [(h1 ^ h2 ^ h3 ^ h4) >>> 0, (h2 ^ h1) >>> 0, (h3 ^ h1) >>> 0, (h4 ^ h1) >>> 0];
+        }
+        function sfc32(a, b, c, d) {
+            return function () {
+                a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0;
+                var t = (a + b) | 0;
+                a = b ^ b >>> 9;
+                b = c + (c << 3) | 0;
+                c = (c << 21 | c >>> 11);
+                d = d + 1 | 0;
+                t = t + d | 0;
+                c = c + t | 0;
+                return (t >>> 0) / 4294967296;
+            }
+        }
+        var _seed;
+        var _r;
+        function seed() {
+            var _s = cyrb128(_seed);
+            _r = sfc32(_s[0], _s[1], _s[2], _s[3]);
+        }
+        function reseed() {
+            _seed = Math.random().toString().slice(2,);
+            seed();
+        }
+        function fd(max) {
+            return Math.floor(_r() * max) + 1;
+        }
+        function frandom_item_from(array) {
+            return array[Math.floor(_r() * array.length)];
+        }
+
+        var total_checks = 0;
+        var klass;
+        var selected;
+
+        // Class & Class Descriptions
+
+
+        var classes = ['Racaille', 'Déserteur à Crocs', 'Rat des Égouts', 'Ermite Ésotérique', 'Noble Misérable', 'Prêtre Hérétique', 'Herboriste Occulte', 'Philosophe Désolé', "Prophète d'un Dieu Mort", 'Pâle', 'Métamorphe Maudit', 'Oiseau Chanteur Sacrilège'];
+
+        var descriptions = [
+            "Origines inconnues.",
+            "Vous avez une trentaine d'amies qui ne vous lâchent jamais : VOS DENTS. Déloyal, dérangé ou simplement incontrôlable, tout groupe qui ne vous a pas viré, vous l'avez quitté. Mais votre parlement de dents—énormes, saillantes, épaisses et acérées ont toujours été vos alliées.",
+            "Une mauvaise étoile viys a souri à la naissance. La pauvreté, le crime et de mauvais parents n'ont pas aidé non plus. Dans votre communauté, un jour de travail honnête n'a jamais été une option. Non pas que vous ayez jamais essayé, vous êtes quoi, un pigeon? Une lame de rasoir et une nuit sans lune valent bien une semaine de travail d'idiot.",
+            "La pierre de votre caverne ne fait qu'un avec les étoiles. Silence et perfection. Maintenant, le chaos d'un monde déchu perturbe vos rituels et l'enveloppe de la nuit s'assombrit plus que la tristesse de votre caverne. Irritant!",
+            "Courbé par les souvenirs de votre propre gloire perdue, vous ne pourriez jamais vous soumettre à quelqu'un d'autre. Pas vous, de noble sang! (Non pas que vous vous attendiez à ce que ces vauriens comprennent la profondeur de votre chagrin.)",
+            "Chassé par les basilics à deux têtes de la Seule Vraie Foi, l'hérétique peut être trouvé en train de délirer dans les ruines, arpentant sans fin les routes poussiéreuses et profanant les cathédrales la nuit.",
+            "Né du champignon, élevé dans la clairière, veillé par l'œil de la lune dans une mare noir argenté.",
+            "La route, un labyrinthe déraisonnable, chaque temple trempé de sang, chaque destination baignée de mélancolie; vous avez cru un jour que l'analyse froide pourrait dompter le Destin lui-même, maintenant ce rêve de raison s'est décomposé en une folie changeante et seul le froid demeure.",
+            "Des voix dans votre tête vous disent quoi faire — du moins, vous le pensez. Vous êtes le prophète d'un dieu assassiné par le Basilic ELLE au sein des misérables sommets de Bergen Chrypt. Maintenant, personne ne veut entendre les paroles de votre dieu, mais vous, vous le pouvez toujours. Jour et nuit. Comme des fils brûlants dans votre cerveau.",
+            "Vous rôdez aux abords des colonies observant, peut-être jugeant, mais interagissant rarement. Vous êtes fondamentalement autre et n'appartenez à nulle part. Vous éprouvez des accès de folie incohérente et des rages autodestructrices mais, la plupart du temps, vous attendez l'inévitable dans une résignation solitaire.",
+            "Vous auriez dû mourir, mais quelque chose a saisi votre âme alors qu'elle s'écoulait dans le fleuve de la Mort et vous a scellé une fois de plus dans une chair mortelle. Seulement, cette fois, la cage n'est pas à vous seul — dans les courants de l'au-delà, votre âme s'est mêlée à celle d'une autre créature mourante, vous laissant divisé en deux. Maintenant, vous vivez une existence partagée, enfermé dans une lutte éternelle entre l'homme et le monstre. Vous auriez dû mourir.", "Toujours porteur de sons indésirables, votre vocation de barde vous a laissé démuni et discrédité... jusqu'au jour funeste où un être de caractère impie vous a proposé l'affaire de votre vie. Votre âme a beau crier, votre gorge chante doucement, et votre bourse encore plus doucement. Un petit prix à payer."];
+
+        var base_skills = [["Agile", "3 meilleurs de 4d6 en Agilité"], ["Spirituel", "3 meilleurs de 4d6 en Présence"], ["Bien nourri", "3 meilleurs de 4d6 en Force"], ["Indomptable", "3 meilleurs de 4d6 en Endurance"]];
+
+
+        // Fanged Deserter (VALIDATED)
+
+        var fanged_deserter_memory = ["un bâtiment noirci par le feu à Sarkash. Votre maison?", "un navire délabré et pourri roulant sans fin sur une mer grise.", "un bordel à Schleswig. Un environnement plutôt amical.", "dormir avec des chiens dans le coin d'une auberge, attendant que quelqu'un revienne.", "suivre une armée dans l'est du Wästland.", "téter une louve dans la nature de Bergen Chrypt."];
+
+        var fanged_deserter_features = [
+            ["Masque de Monstre Froissé", "Inspire une peur primitive aux créatures moindres comme les gobelins, les gnomes et les enfants. Tant qu'il est porté, ils vérifient leur Moral à chaque round."],
+            ["Le Cimeterre Brun de Galgenbeck", "Une épée puante que vous avez tirée d'un fossé à merde militaire. d6 dégâts Attaque DR10 et Défense pendant que vous la maniez. 1 chance sur 6 qu'un ennemi blessé soit frappé d'une septicémie puissante, mourant en 10 minutes."],
+            ["Dents de Sorcier", "Quatre dents étranges cliquettent dans une pochette noircie. Avant la bataille, lancez un d6 pour chacune. Pour chaque 6, une de vos attaques inflige le maximum de dégâts."],
+            ["Fronde du Vieux Sigûrd", "Sigûrd était l'homme le plus fort dont vous ayez jamais rongé la gorge. Tissée à partir de ses longs cheveux gris, cette fronde ne vous a jamais manqué. 2d4 dégâts, nécessite des pierres de la taille d'un poing qui, peut-être malheureusement, sont partout."],
+            ["Ancien Chien de Sang", "Asthmatique, délirant et à bout de souffle, cette créature ridée a toujours un nez superbe et peut renifler des trésors dans les débris les plus dégoûtants. Attaque avec DR10 (morsure d6 dégâts). Défend avec DR12, 10 PV. Devient frénétique autour des gobelins et des berserkers."],
+            ["Le Fer à Cheval de la Mort", "Il a l'air normal mais depuis que vous l'avez trouvé dans une crypte obscure, vous êtes convaincu que ce fer à cheval provient du cheval de la Mort lui-même. Dans vos mains, il frappe avec DR10, d4 dégâts. 1 chance sur 6 que le fer à cheval écrase le crâne, tuant instantanément les créatures de petite à moyenne taille. Le fer à cheval revient dans votre main comme un boomerang."]
+        ];
+
+        var fanged_deserter_abilites = [
+            ["Bâti Comme un Taureau", "3d6+1 Force"],
+            ["Pas une Lumière", "Les tests d'AGILITÉ normaux sont DR14 au lieu de DR12, à l'exception de la Défense."],
+            ["Analphabète", "Vous êtes incapable de comprendre les parchemins. Si vous commencez avec un, relancez, mangez-le ou utilisez-le comme papier toilette."],
+            ["Morsure", "DR10 pour Attaquer, d6 dégâts. Vous devez être proche de votre cible. 1-2 sur d6 chance que l'ennemi obtienne une attaque gratuite."]
+        ];
+
+        // Gutterborn Scum (VALIDATED)
+
+        var gutterborn_memory = ["vous avez été jeté sur une charrette à merde en mouvement toujours dans votre coiffe de naissance.", "votre mère pendait à un arbre à l'extérieur de Galgenbeck, vous êtes tombé du cadavre", "vous avez été élevé par des rats dans les gouttières de Grift.", "vous avez été botté et battu sous la table d'un boulanger à Schleswig.", "vous vous êtes échappé de l'orphelinat Tvelandien.", "vous avez été éduqué par des hors-la-loi dans une masure au sud d'Alliáns."];
+
+        var gutterborn_abilities = [
+            ["Petit", "3d6-2 Force"],
+            ["Furtif", "Tous les tests de PRÉSENCE et d'AGILITÉ voient leur DR réduit de 2 (les tests normaux sont DR10 au lieu de DR12)."],
+            ["Wunderkind (Enfant Prodige)", "La première fois que la Racaille s'améliore, une autre spécialité est tirée. À partir de la deuxième fois que la Racaille s'améliore, il est possible de relancer ces deux spécialités ou seulement une."]
+        ];
+
+        var gutterborn_features = [
+            ["Coup de Jarnac du Lâche", "Lorsque vous attaquez par surprise, testez AGILITÉ DR10. En cas de succès, vous frappez automatiquement une fois avec une arme légère à une main, infligeant des dégâts normaux +3."],
+            ["Doigts Crades", "Vos petits doigts de serpent se glissent dans les poches et ouvrent les serrures avec un test d'AGILITÉ DR8. Vous commencez également avec des crochets de serrurier!"],
+            ["Cracheur de Glu Abominable", "Votre flegme est visqueux, grumeleux et ignoble et d'une précision balistique à courte portée. Vous pouvez cracher d2 fois pendant un combat. Lancez un test de PRÉSENCE DR8 pour la précision. Les cibles sont aveuglées, bâillonnant et vomissant pendant d4 rounds. Quiconque en est témoin—ami et ennemi—doit faire un test de ENDURANCE pour ne pas vomir également. Les PJ testent DR10 et les ennemis DR12."],
+            ["Discrétion d'Évasion", "Chaque fois que vous utilisez un Présage, il y a 50% de chances qu'il ne soit pas dépensé."],
+            ["Discrétion Excrémentielle", "Vous avez une capacité étonnante, presque surnaturelle, à vous cacher dans la boue, les débris et la crasse. Lorsqu'ils sont cachés dans ces conditions, un test de PRÉSENCE DR16 est requis pour vous remarquer."],
+            ["Esquiver la Mort", "Vous êtes si désagréable, insignifiant, dégoûtant et ignoble que même la Mort préfère vous éviter si elle le peut. À la Mort, s'il y a la moindre possibilité que vous ayez survécu, il y a 50% de chances que vous l'ayez fait. Si cela réussit, après 10 rounds, vous réapparaissez avec d4 PV et une explication improbable de votre évasion."]
+        ];
+
+        // Esoteric Hermit (VALIDATED)
+
+        var esoteric_hermit_memory = ["vous êtes réveillé dans un cercle rituel sous le pont nord de Grift.", "erriez, sans mémoire, de l'embouchure d'une caverne aux falaises de Terion.", "étiez le seul enfant survivant d'un incident dans la Vallée des Morts-Vivants Malheureux.", "mourriez de la peste dans une masure de Bergen Chrypt, et avez touché quelque chose de l'extérieur.", "étiez un individu moyen jusqu'à ce que vous rencontriez quelque chose dans une clairière sombre à Sarkash.", "avez été élevé sur une île solitaire du lac Onda. Personne d'autre n'a jamais entendu parler de cette île et vous ne pouvez pas y retourner."];
+
+        var esoteric_hermit_abilities = [
+            ["Sage", "3d6+2 Présence."],
+            ["Fragile", "3d6-2 Force."]
+        ];
+        var esoteric_hermit_features = [
+            ["Maître du Destin", "À quoi servent les cartes lorsque la substance de la causalité elle-même vous est ouverte? Vous connaissez le bon chemin avec un test de PRÉSENCE DR8."],
+            ["Livre du Sang Bouillant", "Vous pouvez ouvrir et lire ce livre une fois par jour. Votre ennemi doit faire un test DR12 pour empêcher cela. S'il échoue, d2 tueurs Berserker (page 59) apparaissent des profondeurs d'une dimension oubliée de sang. Lancez un d6. Sur un 1-4, ces créatures se battent à vos côtés. Sur un 5-6, elles se retournent contre vous, tentant de vous tuer et de détruire le livre. Après la bataille, elles retournent à leur emprisonnement."],
+            ["Orateur de Vérités", "Deux fois par jour, utilisez votre sagesse, vos connaissances, vos conseils et votre calme intérieur pour apporter de la clarté à une créature de votre choix. Le DR du prochain test qu'elle entreprend est abaissé de 4."],
+            ["Initié du Collège Invisible", "Une fois par jour, vous pouvez invoquer d2 parchemins, dont le Pouvoir ne peut être utilisé qu'une seule fois. Lancez un d4, sur un 1-2 les parchemins sont sacrés, sur un 3-4, impurs. Si les parchemins ne sont pas utilisés avant le lever du soleil, ils se transforment en cendres."],
+            ["Barde de l'Immortel", "Vous apprenez vos mélodies dans l'Autre-Monde. La musique de votre Harpe donne +d4 sur les jets de réaction."],
+            ["Faucon comme Arme", "Votre faucon astucieux presque intelligent n'est fidèle qu'à vous. Même sans langage partagé, vous comprenez ses cris alors qu'il surveille, explore et plonge pour attaquer les ennemis. (8 PV Attaques/Défense DR10 griffes/morsure d4 dégâts)"]
+        ];
+
+        // Wretched Royalty (VALIDATED)
+
+        var wretched_royalty_memory = ["votre palais du Wästland a été réduit en ruines.", "votre royaume caravane de Tveland est tombé dans la misère.", "le frère du roi Fathmu IX, Zigmund, votre père, a été assassiné.", "l'empire du sud de Südglans a sombré dans la mer.", "Anthelia a exigé un cadeau de sang noble.", "deux jeunes princes ont été enlevés à l'ouest de Bergen Chrypt et ont disparu dans la crevasse noire des pentes orientales."];
+
+        var wretched_royalty_abilities = [
+            ["Douloureusement moyen", "Aucun ajustement d'attribut."]
+        ];
+
+        var wretched_royalty_features = [
+            ["La Lame de vos Ancêtres", "Cette magnifique épée parlante clairement magique est précieuse, peu fiable et vous méprise secrètement. Elle se moque de vos échecs et, si elle est continuellement déçue, développe une chance sur 6 d'attaquer 'accidentellement' vous ou vos compagnons. Inflige d6+1 dégâts. Attaque/Défense DR10."],
+            ["'Poltron' le Bouffon de Cour", "Bien que pratiquement inutile, personnellement irritant et une source de drainage émotionnel, les cabrioles de Poltron font en réalité perdre leur concentration aux ennemis en combat. Pendant les deux premiers rounds, vous et vos alliés obtenez +2 en Attaque/Défense."],
+            ["Barbarister le Cheval Incroyable", "Barbarister est magique, intelligent, arrogant et vain. Il peut aussi parler. Si vous pouvez le persuader de s'en soucier, Barbarister ajoute occasionnellement +2 aux tests de PRÉSENCE impliquant la logique et l'intellect. Le cheval est peut-être plus intelligent que vous et en est tout à fait conscient."],
+            ["Hamfund l'Écuyer", "Ce serviteur intensément lâche n'agit que comme gardien du fourreau de l'épée maudite Eurekia. Une fois par combat, si Ham peut être trouvé, Eurekia peut être tirée. L'épée fait 2d6 dégâts, et pour chaque coup d'Eurekia, lancez un d6. Sur un 1, l'écuyer est tué et Eurekia disparaît pour toujours."],
+            ["Le Cadeau de Peau de Serpent", "Une boîte en bois de santal coûteuse liée en peau de serpent. Elle contient un poignard apparemment ordinaire, enveloppé dans de la soie. Le poignard fait d4 dégâts mais sur un 1, la cible meurt immédiatement d'un poison mortel pleurant de la lame."],
+            ["Corne des Seigneurs de Schleswig!", "Une fois par jour, faites retentir cette vieille trompette bosselée et testez PRÉSENCE DR12. Une créature peut faire de son prochain test non-combat un succès automatique."]
+        ];
+        // Apparently not in the base ruleset and seems interesting.
+        var wretched_royalty_features_2 = [
+            ["Écrit de Compagnon de Lit", "Avec ce parchemin, vous êtes sous immunité aristocratique et ne pouvez être persécuté pour aucun crime contre ceux qui vous sont inférieurs. Seuls les nobles et autres aristocrates respecteront ce décret sauf si vous réussissez un test de PRÉSENCE DR14."],
+            ["SANG Bleu", "Des générations de complots menés avec du poison et des lames de miséreux ont rendu votre sang particulièrement résistant à l'infection. Vous ne subissez aucune perte quotidienne de PV en cas d'infection."],
+            ["Buste d'un Fou", "La plupart de vos parents morts rêvent dans le mausolée familial, mais l'esprit de ce grand-grand-oncle a décidé à la place de hanter un buste en pierre antique. Nourrissez-le d'une journée de nourriture et ses yeux brilleront d'une lumière fantomatique bleu pâle pendant d4 heures, illuminant la zone. La lumière révèle également les choses invisibles."],
+            ["Bijou de Famille", "Autrefois la couronne de la collection de votre famille, cette pierre précieuse de saphir vous rend une cible alléchante. Lorsqu'elle est tenue en l'air, toutes les créatures ennemies ayant un penchant pour les richesses vous attaqueront avant toutes les autres."],
+            ["Collier en Branchies de Verre", "Ce magnifique collier en argent emboîte six perles irisées. En avaler une vous permet de respirer sous l'eau jusqu'à ce que la perle passe. Réutilisable."],
+            ["Sceau d'Opulence", "Les dettes et les indettes de la noblesse ne sont pas vite oubliées. Montrez ce sceau de famille antique à un marchand, et il y a 50% de chances que leurs prix soient réduits de moitié pour vous et votre groupe. Sinon, les prix sont doublés."]
+        ];
+
+
+        // Heretical Priest (VALIDATED)
+
+        var heretical_priest_memory = ["de Galgenbeck, près de la cathédrale des Basilics à Deux Têtes.", "d'un culte massacré d'Alliáns, seul survivant.", "des cryptes de Grift.", "des ruines de temple dans la Vallée des Morts-Vivants Malheureux.", "de l'un des nombreux tunnels de voleurs de Graven-Tosk.", "d'une église secrète de Bergen Chrypt."];
+
+        var heretical_priest_abilities = [
+            ["Perspicace", "3d6+2 Présence"],
+            ["Frêle", "3d6-2 Force"],
+            ["Prêtrise", "Peut utiliser des Pouvoirs en portant une armure moyenne"]
+        ];
+        var heretical_priest_features = [
+            ["Crosse de Berger Sacré", "Sa tête, un crochet en os humain inscrit d'anti-prières qui se chevauchent. Cette crosse s'accroche à travers d'autres mondes. Le bâton fait 2d4 dégâts sauf aux humains sans foi."],
+            ["Mitre Volée", "En portant ce chapeau sacré, le corps ignoble du prêtre s'estompe, devenant difficile à toucher en combat (Défense DR10). Si tiré sur les oreilles en dehors de la bataille, le prêtre devient presque invisible, testant la discrétion contre DR8."],
+            ["Liste des Péchés", "Un document long et précis recoupé avec la réalité pour découvrir les malfaiteurs invisibles. PRÉSENCE DR10 réussie: Une lumière étrange entoure les créatures maléfiques. Le propriétaire de la liste défend avec +2 contre tout être découvert de cette manière."],
+            ["La Bible Blasphematoire de Nechrubel", "Si intensément blasphématoire que même les Prêtres eux-mêmes ne peuvent la parcourir qu'une fois par jour. Lors de la lecture, lancez un dé. Résultat pair: Pour le reste de la journée, les PJ récupèrent d4 PV après seulement cinq minutes de repos. Résultat impair: Le prêtre est en proie à des hallucinations démoniaques. Le MJ peut inventer d3 choses que seul le Prêtre peut voir et les décrire au joueur comme si elles étaient vraies. Cet effet prend fin au lever du soleil."],
+            ["Pierres Prises au Temple Perdu des Thel-Emas", "Jetez les pierres au sol. Leur motif révèle si un danger se cache dans une pièce adjacente. Les pierres peuvent mentir. Le prêtre teste PRÉSENCE DR10 pour voir si elles sont vraies mais après avoir échoué, il ne peut plus tester avant le coucher du soleil."],
+            ["(ʍɹouƃ ɾǝsns) Crucifix", "Le crucifix peut être utilisé dans des rencontres avec les morts-vivants ainsi qu'avec des trolls et des gobelins moindres. Vérifiez le moral (ajoutez ou soustrayez le modificateur de PRÉSENCE du prêtre) pour voir si les créatures s'inclinent et s'éloignent gentiment."]
+        ];
+
+        // Occult Herbmaster (VALIDATED)
+
+        var occult_herbmaster_memory = ["l'isolement calme dans l'obscurité de Sarkash.", "l'isolement calme dans l'obscurité de Sarkash.", "l'isolement calme dans l'obscurité de Sarkash.", "les marchés nocturnes illégaux de Schleswig", "l'île hérétique de Crëlut, deux milles marins à l'est de Grift.", "les vieilles ruines gelées non loin d'Alliáns.", "une petite chaumière de sorcière à Galgenbeck.", "les ruines du manoir du Roi des Ombres, épaisses de souvenirs de champignons et de fumée."];
+
+        var occult_herbmaster_abilities = [
+            ["Dur comme du Bois", "3d6+2 Endurance."],
+            ["Faible en Protéines", "3d6-2 Force"],
+            ["Laboratoire Portable", "Vous transportez un laboratoire portable et recherchez continuellement des ingrédients fréquemment dépensés. Quotidiennement, vous avez le matériel pour créer deux décoctions déterminées au hasard et pouvez brasser un total de d4 doses. Si elles ne sont pas utilisées, elles perdent de leur vitalité après 24 heures."],
+            ["Liste des Décoctions", "<ol><li><b>Poison Rouge</b> ENDURANCE DR12 ou -d10 PV.</li><li><b>Vapeur d'Ezumiel</b> Réussissez un test DR14 ou des hallucinations sévères pendant d4 heures.</li><li><b>Ragoût de Grenouille du Sud</b> Vomissements pendant d4 heures, réussissez un test DR14 ou vous ne pouvez rien faire d'autre.</li><li><b>Élixir Vitalis</b> Soigne d6 PV et arrête l'infection. Peut créer une accoutumance.</li><li><b>Soupe de Chouette-Araignée</b> Voir dans l'obscurité, grimper sur les murs pendant 30 minutes.</li><li><b>Philtre de Fernor</b> Huile translucide, doit être tamponnée directement dans l'œil. Soigne l'infection et donne +2 aux tests de PRÉSENCE pendant d4 heures.</li><li><b>Tabac à Priser Énervant d'Hyphos</b> Berserk! Deux attaques par round mais défendez avec DR14. Dure un combat. Doit être sniffé, provoque des éternuements.</li><li><b>Poison Noir</b> ENDURANCE DR14 ou -d6 PV et aveuglé pendant une heure.</li></ol>"]
+        ];
+
+        // Pale One (VALIDATED)
+
+        var pale_one_name_1 = ["Abhorré", "Sous", "Revêtu", "Errant", "Familier", "Géant", "Caché", "Lyrique", "Maniaque", "Sans Nom", "Obscène", "Douloureux", "Reposé", "Squelettique", "Fort", "Soudain", "Inconscient", "Ignorant", "Vitriolique", "Vers l'Ouest"];
+        var pale_one_name_2 = ["Attaque", "Attire", "Attend", "Noircit", "Carillonne", "Couvre", "Danse", "Nie", "Descend", "Noyade", "Écho", "Offre", "Tremble", "Ploie", "Reflète", "Revient", "Scelle", "Se Soumet", "Tisse", "Se Flétrit"];
+        var pale_one_name_3 = ["l'Éther", "le Damné", "la Décomposition", "la Poussière", "l'Œil", "le Visage", "la Chair", "les Mouches", "la Fleur", "les Couteaux", "la Lune", "la Montagne", "la Peste", "la Prière", "les Rats", "le Saint", "la Mer", "l'Étranger", "la Vérité", "le Vide"];
+
+        var pale_one_memory = ["avez été attrapé par des pêcheurs sur la mer Sans Fin.", "avez été accidentellement invoqué par des cultistes à Graven-Tosk.", "avez été vomi par une bête répugnante à Bergen Chrypt.", "êtes tombé du Ciel près d'Alliáns.", "avez éclos d'un œuf de Sorcière des Marais pondu dans un marais du Wästland.", "avez rampé hors d'une fissure dans le sol près de Grift."];
+
+        var pale_one_abilities = [
+            ['Alien', '3d6+1 Agilité et Présence'],
+            ['Os Creux et Fragiles', '3d6-2 Endurance.'],
+            ['Philologue', "Vous êtes lettré, mais seulement dans les langues mortes et ne pouvez pas utiliser de parchemins. Cependant, vous pouvez utiliser intuitivement un Pouvoir tiré au hasard (d6) quotidiennement, à l'aube ou au crépuscule.<ol><li><b>Les Étoiles Avaient Raison</b>: Lancez d4+2 pour les présages. Dites quelque chose de cryptique lorsque vous en utilisez un.</li><li><b>Ailes Membraneuses</b>: Vous pouvez voler sur de courtes distances mais ne pouvez pas porter d'armure. Les oiseaux vous détestent.</li><li><b>Argile Peu Commune</b>: Vous pouvez tirer votre nourriture du sol mais la nourriture normale vous rend malade. Vous sentez les champignons.</li><li><b>Mana de Quelque Part</b>: Dépensez une utilisation de vos Pouvoirs pour créer de la nourriture étrangement délicieuse (mais déconcertante) pour d6 personnes.</li><li><b>Membres Digitigrades</b>: Vous échappez à toute entrave et vous vous faufilez dans de petits espaces. -4 DR aux tests impliquant la flexibilité.</li><li><b>Trop d'Yeux</b>: Juste beaucoup trop. Vous ne pouvez pas être attaqué par surprise. Vous pouvez dépenser une utilisation de vos Pouvoirs pour laisser un œil derrière vous et espionner à distance (vous subissez d2 dégâts si l'œil est écrasé)</li></ol>"]
+        ];
+
+        // Songbird Sacrilege (VALIDATED)
+
+        var songbird_memory = ["dans des latrines juste à l'extérieur de Grift.", "en se cachant des gardes à Galgenbeck.", "dans la chambre d'un noble de Wästland.", "en rêvant dans un fossé oublié.", "dans une cellule de prison de Schleswig.", "à quelques minutes de mourir de froid en route vers Alliáns."];
+
+        var songbird_abilities = [
+            ['Personnalité Amplifiée', '3d6+2 Présence.'],
+            ['Vie Dure', '3d6-2 Endurance.'],
+            ['Personne à Personne', 'Vous portez une aura de charme surnaturel partout où vous allez, capable de déstabiliser les ennemis et de calmer les amis, dépensez une utilisation de vos Pouvoirs quotidiens pour ajouter ou soustraire d6 à tout test de Moral.']
+        ];
+        var songbird_features = [
+            ["Cornemuse du Destin", "Cet amalgame de sacs intestinaux velus et cousus présente des tuyaux en os extrudés sur lesquels vous devez souffler. En le faisant, les auditeurs de votre choix sont remplis d'une faim surnaturelle, comme s'ils n'avaient pas mangé depuis une semaine."],
+            ["Vielle-à-Râle", "Tourner la manivelle de cette chose à cordes faite de bois et de gore émet un son lancinant qui blesse les oreilles des créatures qui échouent un test de PRÉSENCE contre DR12. Le premier round joué, elle inflige d2 dégâts, augmentant à d4 et au-delà lors des rounds suivants."],
+            ["Carcasse Spinale", "En battant ce tambour fait d'une carapace de démoniaque, lancez 2d6:<ul><li>6+ Tout le monde sauf vous teste AGILITÉ contre DR14 ou tombe à terre.</li><li>11 Choisissez d4 créatures qui peuvent entendre votre tambourinage. Leurs épines se brisent comme des brindilles. Vous ne pouvez plus utiliser le tambour aujourd'hui.</li><li>12 Vos oreilles n'arrêtent pas de sonner; vous êtes sourd pour les prochaines 24 heures.</li></ul> Sert également de bouclier."],
+            ["L'Aquifère du Diable", "La corne d'une créature beelzébubonique des profondeurs de la Mer Sans Fin. Quand on souffle dedans, les poumons de vos ennemis se remplissent d'eau de mer, s'ils échouent un test de ENDURANCE contre DR14; un round doit être passé à l'expulser avant de faire quoi que ce soit d'autre."],
+            ["Orgue Bouche-à-Bouche", "Jouez de cet harmonica en os pour qu'un auditeur brisé récupère instantanément d4 PV. Il ne peut pas parler tant que ses PV ne sont pas entièrement récupérés."],
+            ["Luth du Brute Aiguë", "Lorsque l'on gratte cet instrument en forme de hache (d8 dégâts), le son fait que le score de FORCE et de PRÉSENCE de quiconque l'entend échange les scores pour les d6 prochains jours. Une écoute répétée n'a aucun effet."]
+        ];
+
+
+        // Cursed Skinwalker (VALIDATED)
+
+        var cursed_skinwalker_memory = ["serrant le corps d'un amant.", "par une flèche dans le cerveau.", "quelques minutes après la naissance.", "par la main d'un ami.", "assassiné dans votre lit.", "à l'arrière d'une charrette de peste."];
+
+        var cursed_skinwalker_abilities = [
+            ['Esprit Affaibli', '3d6-2 Présence.'],
+            ['Instincts Bestiaux', '3d6+1 Force et Endurance.'],
+            ['Métamorphe', "Vous pouvez céder aux avances de votre autre antagoniste en remodelant votre anatomie à son image. Déplacer vos os nécessite un seul round douloureux. L'armure et les armes sont probablement inutilisables sous votre nouvelle forme."]
+        ];
+        var cursed_skinwalker_features = [
+            ["Rat Ensorcelé par le Meurtre", "<ul><li>Minuscule: Les tests d'AGILITÉ, y compris la Défense, sont DR8.</li><li>Votre morsure (d4) porte la maladie—Test de PRÉSENCE DR14 ou ils attaquent leur allié le plus proche jusqu'à ce que l'un des deux meure.</li></ul>"],
+            ["Loup Écorché et Poisseux", "<ul><li>Féroce, les Attaques sont DR10.</li><li>Vos crocs critiquent en plus sur un 19 naturel, déclenchant un test de Moral.</li><li>Glissant de sang, -d2 dégâts entrants.</li></ul>"],
+            ["Corbeau à Crâne d'Os", "<ul><li>Rapide et volant, la Défense est DR10. Faites deux attaques de griffes (d4) par round.</li><li>Votre cuir chevelu osseux agit comme une arme et un bouclier: -1 dégât et vous pouvez choisir d'ignorer tous les dégâts d'une attaque. Le crâne guérit en d6 jours.</li></ul>"],
+            ["Ours de Bergen Chrypt", "<ul><li>Massif et imposant: les tests de FORCE, de ENDURANCE et les Attaques sont DR10. La Défense est DR14.</li><li>Fourrure épaisse: -d4 dégâts entrants.</li><li>Vos griffes et morsures infligent d8 dégâts.</li></ul>"],
+            ["Lézard de Vie-et-Mort", "<ul><li>Régénère d4 PV par round.</li><li>Morsure (d6) ou crache de l'acide (d4, 1 chance sur 4 que l'armure baisse d'un niveau).</li><li>Peau écailleuse, -d2 dégâts entrants.</li></ul>"],
+            ["Singe Prophète du Malheur", "<ul><li>Dextre: Les tests d'AGILITÉ, y compris la Défense, sont DR10.</li><li>Les armures légères et les armes restent utilisables.</li><li>Votre troisième œil vous permet de lire des parchemins impurs à DR10</li></ul>"]
+        ];
+
+        // Dead Gods Prophet (VALIDATED)
+
+        var dead_gods_prophet_memory_1 = ["Acrophoe", "Elioch", "Ekk", "Ghzat", "Gnost", "Kvera", "Malais", "Varkka", "Ääel", "Öde"];
+        var dead_gods_prophet_memory_2 = ["Phare", "Porteur", "Épouse", "Enfant", "Héraut", "Roi", "Dame", "Prince", "Reine", "Chant"];
+        var dead_gods_prophet_memory_3 = ["de Sang", "de la Mort", "de la Décomposition", "des Mouches", "de l'Impuissance", "de la Panique", "de la Pourriture", "de la Rouille", "du Malaise", "de la Chair"];
+
+        var dead_gods_prophet_abilities = [
+            ['Obsédé', '3D6+2 Présence.'],
+            ['Faible par Négligence', '3d6-2 Endurance.'],
+            ['Fondamentaliste', "Vous êtes lettré et pouvez utiliser des parchemins mais devez réussir un test de PRÉSENCE DR12 ou tenter immédiatement de détruire les mots des faux dieux."]
+        ];
+
+        var dead_gods_prophet_features = [
+            ["Le Sang Parle", "Flagellant, vous vous battez régulièrement pour réveiller votre dieu perdu. Si vous vous infligez d3 dégâts avant le combat, gagnez +2 aux jets égaux aux PV perdus."],
+            ["Seigneur de Rien", "Vous portez un arrangement bizarre de vêtements et de chiffons comme une parodie de roi ou de reine. Pourtant, vous gagnez +2 aux jets pour impressionner ceux qui sont facilement dupés."],
+            ["Odeur de Décomposition", "Non seulement votre dieu est mort, mais son odeur de décomposition vous imprègne. Bonus de +2 au jet de Défense en raison de la puanteur nauséabonde."],
+            ["Bavardage Sophiste Incohérent", "Concentrez-vous pour babiller une litanie déconcertante dont les auditeurs doivent réussir un test de PRÉSENCE DR10 ou perdre leur prochaine action."],
+            ["Ichor de Pourriture", "Les fluides nauséabonds de votre dieu en putréfaction suintent de vos mains—un stigmate noir. En tant qu'Attaque DR12, vous pouvez essuyer vos mains sur la peau nue d'un assaillant, qui doit réussir un test de ENDURANCE DR12 ou sombrer dans des spasmes écumeux pendant deux tours."],
+            ["Mon Corps, Un Vaisseau", "Votre dieu est peut-être mort, mais qu'est-ce que la mort pour un dieu? Une fois par jour, vous pouvez permettre au fantôme de votre dieu d'entrer dans votre chair et de révéler une vérité—une question par oui/non au MJ qui doit être répondue sincèrement. Le dieu part vous laissant affaibli et fragile."],
+            ["Dans la Mort Je Vis", "Lorsque vous mourez, faites un test de PRÉSENCE DR14. Si vous réussissez, votre dieu refuse votre passage dans l'au-delà et vous récupérez avec 1PV. Sinon, votre corps est consumé par des flammes sacrées."],
+            ["Yeux de Feu Sacré", "Vos pupilles brûlent de l'âme de votre seigneur. Une fois par combat, vous pouvez attaquer (DR10) en jaillissant du feu de vos yeux (d6 dégâts); vous aveuglant pour la durée du combat."]
+        ];
+
+        // Forlorn Philosopher (VALIDATED)
+
+        var forlorn_philosopher_memory_1 = ["Votre mère alternait louanges et humiliation menant à une image de soi grandiose et à une haine de soi brûlante.", "Vous vouliez être un guerrier ou un grand chef mais vous ne pouvez pas! Arrêtez! DE PENSER! ARRÊTEZ LES PENSÉES!!", "La stupidité ambiante et les lumières vives provoquent l'INFLAMMATION de vos tissus mentaux hypersensibles.", "Vous pourriez sauver ce monde condamné! Si seulement les masses non lavées comprenaient votre GÉNIE!", "Vous avez été victime du virus mental de «l'amour», puis l'objet de votre affection est parti vivre dans un trou.", "Vous avez encodé votre philosophie omnivalente dans un seul tome pour la conserver en lieu sûr et l'avez vu brûler en fuyant. Tout est perdu.", "Les cultistes Udok ont capturé votre famille et vous ont forcé à débattre avec eux pendant qu'ils dévoraient vos parents vivants.", "Vous étiez le philosophe le plus vénéré de Südglans—qui a sombré dans la mer et maintenant tout le monde se moque de vous sans pitié."];
+
+        var forlorn_philosopher_memory_2 = ["Élevé par des Théistes fanatiques dans un temple sous les ponts de Grift.", "Né d'une mère sans nom dans un sanatorium de Galgenbeck.", "Élevé par des rustres ignorants et analphabètes dans une forêt paisible du Wästland.", "Élevé par des cultistes honteux de la vie du désert gelé de Kergüs qui pensent que personne ne devrait naître dans ce monde mourant.", "Abandonné dans les catacombes de Bergen Chrypt.", "Éduqué par les damnés au milieu des fosses de boue de la Vallée des Morts-Vivants Malheureux."];
+
+        var forlorn_philosopher_abilities = [
+            ['Concentration Mentale', '3d6+2 Présence.'],
+            ['Trop de Lecture!', '3d6-2 Force'],
+            ['Inquisition Impitoyable', "Testez PRÉSENCE DR14 pour déchiffrer les mensonges et les illusions des autres. Assez de ces MENSONGES!"]
+        ];
+        var forlorn_philosopher_features = [
+            ['Épines de la Compréhension', "Lorsqu'elles sont portées, des épines percent votre chair (d2 dégâts) et vous Percez Tout (-4DR à votre prochain test et ignorez les deux prochaines attaques au toucher alors que vous vous faufilez). Pour retrouver l'effet, vous devez vous couronner à nouveau. Les dégâts augmentent d'un pas à chaque fois (d2 à d4 à d6 etc), jusqu'à après une nuit de repos"],
+            ['Hibou Hégélien', 'Cette bête philosophique est un assistant amer, réticent et hypersensible—persuadé avec un test de PRÉSENCE DR12. Après deux actes d\'aide, il vous considère avec un mépris muet. Il peut aller chercher de petits objets, attaquer des ennemis et trouver des pièges. La nuit, le hibou délivre dans les rêves la compréhension de ce que vous auriez dû faire aujourd\'hui.<br>(Trop rapide à toucher. Griffes/morsure d4. Les attaques sont DR8).'],
+            ['Prisme d\'Ambigüité', 'Une source de lumière externe et un test de PRÉSENCE DR10 sont nécessaires pour activer le prisme. Sa lumière peut briller sur jusqu\'à deux créatures soignant d6 PV. Pendant la prochaine heure, l\'une d\'elles abaisse tous les DR des tests de -2. Si le test est raté, elle subit d4 dégâts et son armure ou une arme est détruite. Vous pouvez utiliser le prisme deux fois par jour.'],
+            ['Flûte de Tosk', "Une fois par combat, lorsqu'une créature meurt, vous pouvez jouer la Fugue Écho de cette flûte en os. Cela inflige un «écho» des dégâts mortels à un ennemi aléatoire dans les environs."],
+            ['Écharpe du Stylite', "L'ESPRIT contrôle le corps! Rien n'est bon ou mauvais, mais penser le rend tel, y compris les calories et les protéines. Porter cette ceinture signifie que vous ne ressentez pas la faim et n'avez besoin que de boire de l'eau pour récupérer des PV au repos. La porter pendant plus de d4 jours vous fait vous effondrer. Il faut une journée pour retrouver son pouvoir."],
+            ['Marqué par l\'Obscurité', "Une Tablette d'Ocre Obscurité en constante évolution est tatouée sur votre chair. Lancez chaque matin quelle tablette elle est. La tablette ne peut être utilisée qu'une fois par jour mais réussit automatiquement."]
+        ];
+
+        var tablets = [
+            ["Théorie du Rêve (tablette ocre)", "La cible commence à douter d'être réelle. L'attaquer et se défendre contre elle est -2 DR (+2 DR pour les PJ affectés)."],
+            ["Compréhension Totale de la Matière (tablette ocre)", "Répare ou casse un objet de taille normale, banal ou autre, y compris l'armure (augmente/diminue d'un niveau) et les armes."],
+            ["Ping le Subconscient Partagé (tablette ocre)", "Vous sentez la présence de créatures vivantes à moins de 70 pieds même dans les pièces adjacentes."],
+            ["Pronostic Logique (tablette ocre)", "En utilisant la Logique Pure, vous pouvez déduire la nature de tout piège ou mécanisme à moins de 30 pieds ou de tout Pouvoir utilisé à moins de 60 pieds."],
+            ["Spéléophagie Carno-Organique (tablette ocre)", "Transmue une roche de la taille d'un enfant en viande brûlée et mâchue. Nourrit d4 personnes affamées."],
+            ["Pneumotoxine Verrouillée dans le Temps (Lune Gelante) (tablette ocre)", "Cette tablette fissurée peut être écrasée en une poudre grossière. Si elle est éparpillée sur une créature, elle subit d6 dégâts—sur un 6, elle s'étouffe et meurt. La tablette réapparaît chaque matin en possession de son propriétaire. Le test de PRÉSENCE de ce Pouvoir est inoffensif pour le porteur, déterminant si la poudre trouve la cible ou non."],
+            ["Irrelevance Induite (tablette ocre)", "Le code de cette tablette supprime littéralement la signification essentielle d'une créature pendant d4 rounds. Pendant ce temps, les ennemis ne l'attaqueront pas, même si elle les attaque en premier."],
+            ["Cryo-Condensation Structurelle (Lune Gelante) (tablette ocre)", "L'eau gèle de l'air formant un pont de 15 pieds de long ou toute l'eau à moins de 150 pieds (malheureusement à l'exclusion de celle des créatures vivantes) gèle."],
+            ["Méta-Alchimie (tablette ocre)", "L'utilisateur peut transformer un récipient de liquide de l'une des manières suivantes:<ol><li>Le transmuter en deux doses de Poison Rouge ou Noir.</li><li>Créer la Répugnance de Vulark. Le buveur lance un test de ENDURANCE DC16 ou saute de grandes hauteurs.</li><li>Transformer le poison en eau ou en vin.</li></ol>"],
+            ["Palpitation Cognitive Mémétique (tablette ocre)", "Des changements corporels presque imperceptibles transmettent une simple peste mentale qui fait danser follement une créature pendant d4 rounds. Elle ne peut ni attaquer ni se défendre pendant cette choréomanie."]
+        ];
+
+
+        //FIXME: I do not know this this comes from
+        /*         var WTF_IS_THIS = [
+                    ["Lance Apostate", "Avec la lance qui a autrefois trempé dans le sang de <em>ʍɹouƃ ɾǝsns</em>, vous effectuez un coup critique sur un 19 naturel en plus d'un 20. d6 dégâts et Attaque DR10."],
+                    ["Couronne de Matière Grise", "Ce cercle toujours collant a vu le cerveau de nombreux rois-érudits se répandre sur son bord épineux. Le porter accorde +1 PRÉSENCE et permet la compréhension des parchemins."],
+                    ["Bouclier Tour de Taille Humaine", "On dit que ce targe aux proportions massives était autrefois le plateau à thé d'un tavernier demi-géant. En le maniant, la Défense est DR10 et utilise la FORCE au lieu de l'AGILITÉ."],
+                    ["Crocs Pathogènes", "Vos dents sordides contiennent des années de saleté et de crasse accumulées. Lors d'une morsure réussie, l'ennemi doit tester ENDURANCE DR12 ou son système immunitaire SE BRISERA, subissant d10 dégâts et le laissant infecté."],
+                    ["Chopine d'Esprit Rouillé", "Un tankard taché de crachat trouvé après une nuit de beuverie non rappelée. Buvez n'importe quel liquide et testez ENDURANCE DR12. Récupérez d6 PV en cas de succès ou subissez la même quantité de dégâts en cas d'échec."],
+                    ["Tatouages de Guerre du Culte Berserker", "Uniquement gravés sur les maniaques les plus féroces et assoiffés de sang. Après avoir tué un ennemi, vous pouvez entrer dans une rage de sang et faire une attaque à DR14 contre un autre ennemi à portée. Tant que vous continuez à tuer à chaque attaque, vous pouvez continuer à attaquer, augmentant à chaque fois le DR de +2."]
+                ]; */
+
+        // Named
+
+        var names = ["Aerg-Tval", "Agn", "Arvant", "Belsum", "Belum", "Brinta", "Börda", "Daeru", "Eldar", "Felban", "Gotven", "Graft", "Grin", "Grittr", "Haerü", "Hargha", "Harmug", "Jotna", "Karg", "Karva", "Katla", "Keftar", "Klort", "Kratar", "Kutz", "Kvetin", "Lygan", "Margar", "Merkari", "Nagl", "Niduk", "Nifehl", "Prügl", "Qillnach", "Risten", "Svind", "Theras", "Therg", "Torvul", "Törn", "Urm", "Urvarg", "Vagal", "Vatan", "Von", "Vrakh", "Vresi", "Wemut"];
+
+        // Traits, Bodies, Bad Habits
+
+        var traits = ["Sans fin aggravé", "Complexe d'infériorité", "Problèmes avec l'autorité", "Grande gueule", "Cruel", "Égocentrique", "Nihiliste", "Enclin à l'abus de substances", "Conflit", "Ruse", "Vindicatif", "Lâche", "Paresseux", "Suspicieux", "Impitoyable", "Inquiet", "Amer", "Trompeur", "Gaspilleur", "Arrogant", "Abrasif", "Sans manières", "Sûr de lui", "Fanatique", "Hypocrite", "Excentrique", "Morbide", "Unilatéral", "Énigmatique", "Hésitant", "Peur de l'engagement", "Agressif", "Moyope", "Têtu", "Malicieux", "Sinistre", "Ritualiste", "Brutal", "Imprévisible", "Préjudiciable", "Vulgaire", "Négligent", "Impulsif", "Calculateur", "Pédant", "Crédule", "Exigeant", "Plaintif", "Ingrat", "Hédoniste", "Superficiel", "Intrépide", "Intrigant", "Harcèlement", "Fataliste", "Défensif", "Haineux", "Argumentatif", "Tourmenteur", "Gêné", "Irresponsable", "Mélancolique", "Arbitraire", "Inconstant", "Imitatif", "Sarcastique", "Impoli", "Vain", "Mesquin", "Rancunier", "Déloyal", "Strict", "Anarchiste", "Dépendant", "Snob", "Méfiance", "Assertif", "Sans charme", "Pompier", "Avare", "Sans tact", "Inutile", "Anxieux", "Morose", "Indiscipliné", "Négligent", "Curieux", "Autoritaire", "Ennuyeux", "Rebelle"];
+
+        var bodies = ["Regard maniaque fixe.", "Couvert de tatouages (pour certains) blasphématoires.", "Visage en putréfaction. Porte un masque.", "A perdu trois orteils, boite.", "Affamé: maigre et pâle.", "Une main remplacée par un crochet rouillé (d6 dégâts).", "Dents en décomposition.", "Étrangement beau, étrangement propre.", "Mains croûtées de plaies.", "Cataractes se propageant lentement mais sûrement dans les deux yeux.", "Cheveux longs et emmêlés, au moins un cafard en résidence.", "Oreilles cassées, écrasées.", "Tremblant et bégayant à cause de lésions nerveuses ou de stress.", "Corpulent, vorace, bavant.", "Une main manque de pouce et d'index, agrippe comme un homard.", "Nez rouge, enflé d'alcoolique.", "Visage maniaco-reposant, se faire des amis est difficile.", "Pied d'athlète chronique. Pique.", "Œil récemment tailladé et puant couvert d'un cache-œil.", "Ongles fissurés et noirs, peut-être sur le point de tomber.", "Nez qui coule constamment.", "Manque de nombril.", "Excroissance bulbeuse sur le cou. Elle bouge quand personne ne regarde.", "Lèvres gercées et fendillées.", "Douloureusment Moyen.", "Visage couvert de pustules.", "De petite taille.", "Os qui craquent à chaque mouvement.", "Plus grand que la plupart.", "Sourcils perdus par le feu et la mémoire.", "Nez cassé, tordu pour toujours.", "Ventre racontant des histoires de trop de bières.", "Complètement et absolument chauve.", "Langue fourchue. Un signe?", "Paupières marquées au fusain, toujours.", "Méga cicatrice où un poumon se trouvait autrefois.", "Né avec six doigts à chaque main.", "Petits yeux, rendant n'importe qui suspect.", "Cheveux rêches comme des soies de cochon.", "Mauvais dos et pire posture."];
+
+        var bad_habits = ["Collectionne obsessionnellement les petites pierres pointues.", "N'utilisera pas de lame sans la tester sur votre propre chair. Bras tricotés de cicatrices.", "Ne peut pas s'arrêter de boire une fois commencé.", "Accro au jeu. Doit parier tous les jours. Si vous perdez, augmentez et pariez à nouveau.", "Ne peut tolérer aucune critique. Entraîne rage et pleurs.", "Incapable d'aller droit au but. N'a jamais vraiment terminé une histoire.", "Le meilleur ami est un crâne. Portez-le avec vous, dites-lui tout, vous ne faites confiance à personne de plus.", "Vous vous curez le nez si profondément qu'il saigne.", "Riez hystériquement à vos propres blagues que vous expliquez ensuite en détail.", "Nihiliste. Vous insistez pour dire à tout le monde que vous êtes nihiliste et expliquer pourquoi.", "Mangeur d'insectes invétéré.", "La réponse au stress est l'affichage esthétique. Plus les choses empirent, plus vous devez être chic.", "Dépôt permanent de flegme dans la gorge. Tousse, renifle, crache et avale continuellement.", "Pyromane.", "Perd constamment des objets importants et oublie des faits vitaux.", "Agitateur de merde insecure. Parlera de quiconque vient de quitter la pièce.", "Vous bégayez en mentant.", "Vous gloussez follement aux pires moments possibles.", "Vous sifflez en essayant de vous cacher. Vous le nierez. Sifflez lorsque 5, 7, 9, 11 ou 13 est lancé sur un d20.", "Vous fabriquez des bijoux à partir des dents des morts.", "Impossible de se souvenir d'un nom pour sauver votre vie. Très bon pour les visages, cependant.", "Compulsé à lécher les choses propres.", "Bâille constamment.", "Ronfle comme un troll rêveur. Les autres doivent tester ENDURANCE pour dormir.", "Ne mange que des choses avec des noms propres.", "Vole obsessionnellement ceux qui ont moins. Craint ceux qui ont plus.", "N'a jamais appris à partager.", "Ressent le besoin de signaler toutes les erreurs des autres. En détail.", "Vous vous rongez les ongles et les gardez pour plus tard.", "Terrifié d'être seul.", "Ne fait jamais confiance à rien avec 4 jambes.", "Vous marchez dans votre sommeil, 1 fois sur 12 vous vous réveillez quelque part de très malheureux.", "Convaincu d'être un chanteur talentueux. Ce n'est pas le cas.", "Un terrible gagnant et un perdant encore pire. Tout est une compétition.", "Convaincu que vous ne pouvez pas mourir.", "Mythomane, vous aimez créer vos propres vérités.", "Le travail stupide est en dessous de vous.", "Avalle compulsivement des pièces d'argent, pour les garder en sécurité pour l'au-delà. Jingle-jangle quand vous courez.", "Peut parler aux chevaux. Ou du moins le pensez-vous.", "Vous êtes un philosophe. Mais êtes-vous vraiment un philosophe?"];
+
+        // Tales
+
+        var tales = ["Poursuivi pour homicide involontaire. Il y a une prime.", "Endetté massivement. La dette est échangée à des groupes successivement plus impitoyables.", "Possède un objet rare et recherché.", "A une blessure maudite qui ne guérit jamais.", "A eu une liaison illégale, immorale et secrète avec un membre de la famille royale. A des preuves.", "Ancien membre de culte échappé. Terrifié et paranoïaque. D'autres cultistes sont partout.", "Un voleur d'identité qui a récemment tué et remplacé cette personne.", "Banni et désavoué pour des actes non spécifiés. Ne peut jamais rentrer à la maison.", "A déserté l'armée après avoir été témoin d'un massacre, prime sur la tête. Chassé par d'anciens amis.", "A très récemment assassiné un proche parent. Très récemment.", "Un cube de puzzle a été mal calibré (ou l'a-t-il été?), réveillant une abomination endormie.", "Les créatures maléfiques aiment l'odeur de votre trace et y sont attirées, apportant le désastre dans votre sillage.", "Une blessure de bataille a laissé un éclat de métal se rapprochant lentement de votre cœur. Chaque jour, il y a 2% de chances qu'il l'atteigne.", "La violence vous a forcé à vous réfugier dans la nature. Vous pensez que les arbres qui bougent chuchotent. Vous parlez à, criez sur, attaquez les arbres.", "Maudit de partager les cauchemars des autres, vous dormez très, très loin.", "En guerre permanente avec tous les corvidés. Aucun contact sans violence. Vous portez une fronde.", "Après avoir rêvé d'un temple souterrain à un dieu oublié, vous comprenez les chants des insectes et des vers.", "Être suivi et observé par un golem après un accord que vous savez avoir été effacé de votre esprit.", "\'Brûler ou être brûlé\' est le destin que vous acceptez.", "Votre chair guérit deux fois plus vite, mais vos compagnons deux fois plus lentement. Vous voyez un \'ange gardien\' à plusieurs yeux."];
+
+        // Scrolls
+
+        var unclean_scrolls = [
+            ["Paumes Ouvrent la Porte du Sud (impur)", "Une boule de feu frappe d2 créatures infligeant d8 dégâts par créature"],
+            ["Langue d'Eris (impur)", "Une créature de votre choix est confuse pendant 10 minutes"],
+            ["Te-Le-Kin-Esis (impur)", "Déplace un objet jusqu'à d10*10 pieds pendant d6 minutes"],
+            ["Lévitation de Lucy-Fires (impur)", "Planez pendant PRÉSENCE+d10 rounds"],
+            ["Démon des Capillaires (impur)", "Une créature suffoque pendant d6 rounds, perdant d4 PV par round"],
+            ["Metzhuotl Aveugle Ton Œil (impur)", "Une créature devient invisible pendant d6 rounds ou jusqu'à ce qu'elle soit endommagée, attaquant/défendant avec DR6"],
+            ["Psychopompe Répugnant (impur)", "Invoque (d6): 1-3 d4 squelettes, 4-6 d4 zombies"],
+            ["Paupière Aveugle l'Esprit (impur)", "d4 créatures s'endorment pendant une heure sauf si elles réussissent un test DR14"],
+            ["Mort (impur)", "Toutes les Créatures à moins de 30 pieds perdent un total de 4d10 PV"]
+        ];
+        var sacred_scrolls = [
+            ["Grâce d'un Saint Mort (sacré)", "d2 créatures récupèrent d10 PV chacune"],
+            ["Grâce pour un Pécheur (sacré)", "Une créature de votre choix obtient +d6 sur un jet (dégâts, tests, etc.)"],
+            ["Chuchotements Passent la Porte (sacré)", "Posez trois questions à une créature décédée"],
+            ["Égide de la Douleur (sacré)", "Une créature de votre choix gagne 2d6 PV supplémentaires pendant 10 rounds"],
+            ["Destin Non Réalisé (sacré)", "Une créature, morte depuis pas plus d'une semaine, est réveillée avec de terribles souvenirs"],
+            ["Parole Bestiale (sacré)", "Vous pouvez parler avec les animaux pendant d20 minutes"],
+            ["Fausse Aube/Chariot de Nuit (sacré)", "Lumière ou noir absolu pendant 3d10 minutes"],
+            ["Pas Hermétique (sacré)", "Vous trouvez tous les pièges sur votre chemin de 2d10 minutes"],
+            ["Regard Consumant de Roskoe (sacré)", "d4 créatures perdent d8 chacune"],
+            ["Syntaxe Énochienne (sacré)", "Une créature obéit aveuglément à un seul commandement"]
+        ];
+
+        // Unholy Feats
+
+        var feats = [
+            ["Coup de Grâce de l'Assassin", "Une prise ferme. Un couteau bien aiguisé. C'est tout ce qu'il faut pour que quelqu'un disparaisse dans les ruelles de Galgenbeck. Vous êtes devenu adepte de cela au fil des ans.", "Réussir un test de FORCE DR12 vous permet d'agripper un ennemi inconscient et de critiquer automatiquement avec une arme blanche à une main."],
+            ["Maître de Guerre Sanguinaire", "Vous avez été appelé au combat, non pas pour votre prouesse avec la lame et le bouclier. Pas pour votre vitesse et votre puissance. Mais parce que les mots que vous prononciez apportaient la mort à vos ennemis.", "Vous pouvez lancer des Pouvoirs en portant une armure moyenne. Vous pouvez prendre cette prouesse une deuxième fois pour inclure également l'armure lourde."],
+            ["Érudit Bestial", "Vous étudiez les bêtes de la terre. Les éventrant et répandant les viscères pour découvrir les secrets du monde.", "Vous pouvez scruter et voir l'avenir avec les entrailles d'un animal. Gagnez un présage pour chaque 10PV que la bête avait, mais jamais plus que votre maximum de présages. Utilisable une fois par espèce animale.<br>Les entrailles des bêtes peuvent également fournir des informations éclairantes."],
+            ["Jointures Ensanglantées", "Des années de combats à mains nues ont transformé vos mains en armes contondantes mortelles. Elles sont lourdes de cicatrices des coupables et des innocents.", "Vos attaques à mains nues infligent d6 dégâts et ignorent l'armure légère. Vous pouvez prendre cette prouesse une deuxième fois pour l'augmenter à d8 dégâts et à l'armure moyenne. Vous pouvez prendre cette prouesse une troisième fois pour l'augmenter à d10 dégâts et les faire ignorer toute armure.<br>Gâcher une attaque à mains nues signifie que vous vous cassez une main en vous infligeant les dégâts. Vous devez chercher l'aide d'un spécialiste pour vous faire remettre les os."],
+            ["Pacte de Sang", "C'est un monde cruel pour être tout seul. Mais vous avez trouvé un moyen d'éviter ce destin.", "Formez un pacte de sang avec un participant volontaire. Vous pouvez communiquer par la pensée quelle que soit la distance, cela ne disparaît jamais. Tout ce que l'un éprouve, l'autre l'éprouve aussi. Cela inclut les blessures et la mort."],
+            ["Rage Sanguinaire", "La ruée du combat est addictive. Vous êtes toujours à la recherche de cette sensation. C'est tuer ou être tué. Vous ne pouvez pas vous arrêter pour poser des questions.", "Lorsque vous portez un coup qui tue une créature, vous devez vous déplacer et attaquer une autre (cela peut inclure des alliés), ajoutant d6 dégâts pour chaque créature tuée. Votre assaut s'arrête lorsque vous ne parvenez pas à tuer et vous tombez au sol épuisé, perdant votre prochain tour."],
+            ["Artisan d'Os", "Vous ne croyez pas qu'il faille laisser les choses se perdre. Y compris les cadavres des morts", "Vous pouvez fabriquer un équipement d'une qualité étrangement élevée en utilisant un certain nombre de cadavres humanoïdes.<ul><li>Une arme d6, 1 cadavre en os.</li><li>Un bouclier, 5 cadavres en os.</li><li>Armure légère, 10 cadavres en os.</li></ul>"],
+            ["Boucher", "Vous avez haché du bétail et de la volaille en petits morceaux auparavant. Vous savez ce qui les fait fonctionner et comment ils sont faits. Les humains ne sont pas si différents.", "Lors d'un test d'AGILITÉ DR12, tout allié qui meurt près de vous devient brisé à la place, alors que vous tentez une chirurgie de sauvetage rapide. Si la personne meurt toujours, vous pouvez faire d4 rations à partir du cadavre."],
+            ["Tueur Calme", "Le couteau ou la flèche le plus prudent est le plus mortel. Vous avez un œil vif pour les lacunes et les plis dans l'armure.", "Une fois par tour lors d'une attaque à distance ou au corps à corps, vous pouvez relancer les dégâts infligés et conserver le résultat le plus élevé."],
+            ["Yeux de Chat", "Vous avez levé les yeux vers les oiseaux pour un signe. Os dispersés, entrailles répandues. En vain. Mais un jour, vous avez vu votre destin dans les yeux d'un chat rôdant dans l'ombre.", "Vision parfaite dans l'obscurité, mais la lumière du soleil brûle vos yeux. −2DR présence dans l'obscurité, +2DR en plein jour.<br>Regarder dans les yeux d'une bête sauvage vous permet de ressentir tout ce qu'elle ressent."],
+            ["Double Manieur", "Vous n'êtes pas un soldat entraîné. Mais vous pensez que deux armes devraient vous aider à tuer deux fois plus vite. Cela ne vous a pas encore manqué.", "Vous ne subissez aucune pénalité lorsque vous attaquez avec deux armes, vous lancez les deux dés de dégâts et combinez les résultats."],
+            ["Visions Fatidiques", "Les destins dirigent votre voyage à travers le monde mourant. On ne peut qu'espérer qu'ils vous guident vers la rédemption et non vers la destruction.", "Consommez un présage et passez quelques instants en méditation tranquille. Posez une question au Maître de Jeu concernant la situation actuelle.<br>Une vision bizarre vous sera accordée et fournira des informations éclairantes. Le MJ lance un d4 en secret, sur un 1 la vision est trompeuse."],
+            ["Estomac de Fer", "Lorsque les cultures échouent, et que le bétail donne naissance à des abominations non comestibles. On apprend à ne pas être difficile en matière de nourriture.", "Vous pouvez consommer de la chair pourrie, putride avec un test de ENDURANCE DR6. D'autres témoins peuvent trouver cela dégoûtant. Les parias lancent un test de moral."],
+            ["Première Frappe", "Vous croyez que les Champs Chatoyants sont pour ceux qui se lancent au combat, ceux qui sont les premiers à récolter la gloire.", "Que votre camp réussisse ou échoue le jet d'initiative, vous pouvez toujours agir en premier si votre action implique d'infliger des dégâts."],
+            ["Coup de Guts", "Vous avez vu un homme décapiter un cheval avec une épée géante. C'était moins une épée qu'une grande dalle de fer. Vous ne pouvez pas vous empêcher de penser aux yeux vides de la bête chaque fois que vous balancez votre propre épée.", "En maniant des zweihand (armes à deux mains), vous pouvez frapper avec +2 à votre DR. Si l'attaque touche, vous ajoutez d6 à vos dégâts. Manquer permet à votre adversaire de frapper avec une attaque que vous pouvez défendre à +2DR"],
+            ["Héraut de la Misère", "Vous sentez une sombre bénédiction couler dans vos veines. Vous vous êtes dédié au disque noir qui bloquera le soleil.", "Gagnez 4 présages Maximum au lieu de 2. Tant que vous vivez, le MJ lance deux dés de misère chaque jour."],
+            ["Guérisseur Herboriste", "Vous avez passé ce qui semblait être une éternité sous l'apprentissage brumeux d'un maître herboriste. Vous êtes parti avec une nouvelle perspective sur la vie, et quelques compétences supplémentaires.", "Une fois par jour, vous pouvez fouiller pour trouver les herbes et la flore nécessaires pour créer un élixir guérissant l'infection qui soigne également d4 PV.<br>PRÉSENCE DR12 pour tenter ce traitement, échouer crée à la place une toxine infligeant d4 dégâts."],
+            ["Croissance Horrible", "Peut-être que c'est quelque chose que vous avez mangé, ou qu'un Pouvoir est devenu malveillant. Quoi qu'il en soit, vous ne pouvez pas vous en débarrasser.", "Vous faites pousser violemment un bras et une main supplémentaires. Il fonctionne comme vos autres bras et peut très bien saisir les choses. Les autres le voient comme un signe du mal."],
+            ["Hyper Conscience", "Vous êtes paranoïaque. Voir le danger dans chaque ombre. Tout veut vous tuer. Vous êtes nerveux avec des mouvements d'oiseau.", "Vous ne pouvez jamais être victime d'une attaque surprise. De plus, votre camp prend l'initiative sur un 3+."],
+            ["Mémoire Immortelle", "Vous êtes hanté par les souvenirs de ceux qui sont tombés. Même si leurs esprits sont partis, et que les corps sont poussière, leurs souvenirs persistent pour l'éternité.", "Chaque fois que vous rencontrez un lieu de grande souffrance. Vous pouvez revivre la tragédie à travers un souvenir qui persiste.<br>Il y a 1 chance sur 20 que les choses deviennent trop réelles. Vous subissez le même sort dans la réalité. Cela pourrait faire réapparaître des créatures et des Pouvoirs."],
+            ["Conteur Inspiré", "Vos contes apportent joie et sourires à tout le monde autour de vous, même dans les moments les plus sombres. Tout cela est un mensonge bien sûr, mais qu'importe?", "Test de PRÉSENCE DR9 au repos pour tisser un conte convaincant. augmentez le DR+1 pour chaque auditeur supplémentaire. Le succès permet à tout le monde de gagner un présage. Vous ne pouvez pas dépasser votre nombre maximum de présages."],
+            ["Sangsue", "Un goût acquis. Ou peut-être une maladie. Peut-être une malédiction. Une soif éternelle.", "Le sang vous soigne et vous nourrit. Une pinte de sang vous soigne pour d4 PV. Vous pouvez toujours manger de la nourriture normale, mais vous subissez les effets de la famine après un jour."],
+            ["Sympathique", "Il y a quelque chose dans votre sourire. La façon dont vous vous composez. La façon dont vous parlez. Vous êtes mieux décrit comme accessible. C'est bizarre.", "Chaque fois qu'un jet de réaction est effectué, lancez 3d6 et conservez les deux dés les plus élevés."],
+            ["Armure Vivante", "Vous avez survécu à la guerre. Vous avez survécu grâce à l'acier froid qui a été cicatrisé pour que vous puissiez vivre. C'est devenu une partie de vous et vous avez appris à porter son fardeau.", "Supprimez la pénalité d'AGILITÉ pour l'armure que vous portez actuellement. Cela n'affecte pas vos jets de Défense.<br>Vous ne pouvez pas retirer votre armure sans mourir douloureusement. Cela se produit également si elle se brise. La réparer est possible, mais très douloureux."],
+            ["Chanceux", "Destin? Cela semble de mauvais augure. Vous préférez la chance. De bonnes choses semblent toujours vous arriver. Cela vous a bercé dans un faux sentiment de sécurité. Combien de temps cela durera-t-il?", "Vous n'avez pas de présages. Et aucun présage ne peut être dépensé pour influencer votre jet. Au lieu de cela, vous lancez toujours 2d20 pour vos tests et choisissez le résultat le plus élevé.<br>Cependant, vous gâchez toujours si l'un d'eux donne 1. Votre chance doit finir par s'épuiser."],
+            ["Tir Mortel", "Votre lame a faim. Le sang est la seule chose qui puisse la rassasier. Une fois tirée, elle l'exige, et vous punira si vous échouez.", "Votre première attaque en combat inflige toujours le maximum de dégâts en supposant que l'attaque touche. Si vous manquez, votre adversaire peut vous attaquer. Cela peut être défendu à +2DR"],
+            ["Négociateur", "Vous abhorrez les conflits. Pacifiste par nature, il est parfois préférable d'essayer de désamorcer la situation. Certains vous traitent de lâche.", "Lancez un test de PRÉSENCE, DR6+ moral le plus élevé de l'adversaire. Le succès signifie que le combat s'arrête. Pour l'instant."],
+            ["Survivaliste de l'Outback", "Le temps passé dans la nature hostile vous a appris à prospérer. De petits conforts peuvent être créés même dans ce monde sombre.", "Test de PRÉSENCE DR9 pour créer un camping confortable. DR+1 pour chaque personne supplémentaire qu'il abrite. Au repos dans ce camp, tout le monde récupère 2d6 PV au lieu de d6"],
+            ["Chef de Partie", "Vous avez maîtrisé l'art de cuisiner de la bouillie. Capable de rendre la nourriture la plus horrible quelque peu agréable.", "PRÉSENCE DR9 pour cuisiner un repas au repos. DR+1 pour chaque portion supplémentaire. En cas de succès, vous pouvez étirer une seule ration pour nourrir toute l'équipe, échouer signifie que la ration est gâtée."],
+            ["Flûtiste", "Vous pouvez parler avec les rats, siffler vous permet d'en attirer d4. Ils n'ont peut-être pas d'informations fiables mais sont toujours heureux de converser avec vous.", undefined],
+            ["Mot de Pouvoir", "Les puissances en place murmurent de sombres secrets à vos oreilles partout où vous marchez. Leur jacassement incessant ne vous donne jamais la paix.", "Vous connaissez de manière innée un Pouvoir sacré ou impur aléatoire. De plus, une fois que vous avez lu un parchemin, vous pouvez graver ses glyphes ésotériques dans votre chair et n'avez plus besoin du parchemin lui-même pour le lancer.<br> Chaque nuit, il y a 1 chance sur 20 que vous lanciez accidentellement un Pouvoir dans votre sommeil. Ce Pouvoir a également 1 chance sur 6 de gâcher."],
+            ["Sens Prédateur", "Quelque part le long de votre lignée, la méchanceté a été introduite. Son influence est mince dans votre sang mais toujours présente.", "Vous avez un odorat aiguisé en ce qui concerne les humains. Vous pouvez renifler des individus d'une pièce à l'autre, identifier quelqu'un, et même les suivre facilement avec un test de PRÉSENCE DR12."],
+            ["Attaquant Imprudent", "Trop zélé, faisant constamment de mauvais choix, un sens du jugement extrêmement médiocre. Mais vous avez vécu tout ce temps, vous devez donc faire quelque chose de bien.", "Vous pouvez attaquer la même cible deux fois à votre tour. Manquer la deuxième attaque permet à votre adversaire de porter un coup que vous pouvez défendre à +2DR."],
+            ["Brise-Bouclier", "Vous savez que le moment où un adversaire est le plus vulnérable est juste après qu'il ait attaqué.", "Chaque fois que vous utilisez votre bouclier pour bloquer tous les dégâts entrants, vous pouvez tenter une contre-attaque avec +3 dégâts."],
+            ["Écorcheur", "Votre peau rampe et démange constamment. Toujours en train de former des croûtes et ignoble. La peau des autres vous apporte un réconfort momentané.", "Vous pouvez porter la peau d'une créature que vous avez récemment tuée pour vous déguiser. Vous ressemblez, sonnez et sentez même comme eux.<br>La peau se décompose après d4 heures et vous revenez à votre forme normale et misérable."],
+            ["Sang Vil", "Quelque chose ne va pas avec votre sang. Il ressemble plus à l'ichor putride d'un cadavre.", "Chaque fois qu'une créature vous attaque avec une morsure et vous blesse, elle est empoisonnée. Elle subit d4 dégâts pendant d6 rounds. De plus, si vous souffrez d'une infection, lancez un d2. Sur un 2, vous n'avez pas d'infection."]
+        ];
+        var abilities = ["-3", "-3", "-3", "-3", "-2", "-2", "-1", "-1", "0", "0", "0", "0", "+1", "+1", "+2", "+2", "+3", "+3", "+3", "+3"]
+
+        function update_souls() {
+            document.getElementById("souls").innerHTML = '';
+            for (var i = 0, len = localStorage.length; i < len; i++) {
+                if (localStorage.key(i).slice(0, 2) == 'CY') { continue; }
+                var item = localStorage.getItem(localStorage.key(i)).split('&666&', 2);
+                if (item.length < 2) { continue; }
+                document.getElementById("souls").innerHTML +=
+                    `<a style='padding-right: 10px;' href='${window.location.pathname}?${localStorage.key(i)} '>${item[0]}</a>`;
+            }
+            if (localStorage.length == 0) { document.getElementById("saved_souls").style.display = "none"; return }
+        }
+
+        function removeSmallest(arr) {
+            return arr.sort().filter((_, i) => i)
+        }
+
+        function two_unique(array) {
+            var x = frandom_item_from(array);
+            var y;
+            do {
+                y = frandom_item_from(array);
+            } while (x == y);
+
+            return [x, y]
+        }
+        function fallbackCopyTextToClipboard(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+
+            // Avoid scrolling to bottom
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                if (document.execCommand('copy')) { show_status('Copié dans le presse-papier'); }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+
+            document.body.removeChild(textArea);
+        }
+        function copyTextToClipboard(text) {
+            if (!navigator.clipboard) {
+                fallbackCopyTextToClipboard(text);
+                return;
+            }
+            navigator.clipboard.writeText(text).then(function () {
+                show_status('Copié dans le presse-papier');
+            }, function (err) {
+                console.error('Async: Could not copy text: ', err);
+                fallbackCopyTextToClipboard(text);
+            });
+        }
+
+        function load_char() {
+            if (!window.location.hash && !window.location.search) { reseed(); klass = (d(classes.length) - 1).toString(); return; }
+
+            var tag;
+            if (window.location.hash) {
+                tag = window.location.hash.split('&');
+            } else if (window.location.search) {
+                tag = window.location.search.split('&');
+            }
+            if (tag.length < 2) { return; }
+            if (tag[1].length != 2) { return; }
+            if (tag[2]) {
+                if (tag[2].length != 2) { return; }
+                total_checks = 2;
+                document.querySelectorAll('input[type=checkbox]')[tag[2][0]].checked = true;
+                document.querySelectorAll('input[type=checkbox]')[tag[2][1]].checked = true;
+                selected = tag[2].split('');
+            }
+
+            _seed = tag[0].slice(1,);
+            seed();
+            klass = tag[1];
+        }
+        load_char();
+        generate();
+        if (check_edits(search())) {
+            load_edits(search());
+            document.getElementById("delete").style.display = "inline";
+        }
+        update_souls();
+
+
+        // Number of Attributes checked smaller than or equal to 2.
+        // If 2 or more, disable unchecked boxes.
+        var checkboxes = document.querySelectorAll('input[type=checkbox]');
+        for (var i = 0, len = checkboxes.length; i < len; i++) {
+            checkboxes[i].addEventListener('change', function () {
+                if (this.checked) {
+                    total_checks += 1;
+                } else {
+                    total_checks -= 1;
+                }
+                if (total_checks >= 2) {
+                    for (var i = 0, len = checkboxes.length; i < len; i++) {
+                        if (!checkboxes[i].checked) {
+                            checkboxes[i].disabled = true;
+                        }
+                    }
+                } else {
+                    for (var i = 0, len = checkboxes.length; i < len; i++) {
+                        checkboxes[i].disabled = false;
+                    }
+                }
+            })
+        }
+
+        document.getElementById("share").addEventListener('click', function () {
+            const tag = [_seed, klass.padStart(2, '0'), selected.join('')].join('&');
+            if (history.pushState) {
+                var newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${tag}`;
+                window.history.pushState({ path: newurl }, '', newurl);
+            }
+            copyTextToClipboard(`${window.location.origin}${window.location.pathname}?${tag}`);
+        })
+        document.getElementById("edit").addEventListener('click', function () {
+            const tag = [_seed, klass.padStart(2, '0'), selected.join('')].join('&');
+            if (history.pushState) {
+                var newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${tag}`;
+                window.history.pushState({ path: newurl }, '', newurl);
+            }
+            enable_edits();
+            // document.getElementById("klass").style.display = "none";
+            document.getElementById("klass_selector").disabled = true;
+            document.getElementById("attributes").style.display = "none";
+            document.getElementById("generate").disabled = true;
+            document.getElementById("share").style.display = "none";
+            document.getElementById("edit").style.display = "none";
+            document.getElementById("save_edits").style.display = "inline";
+            document.getElementById("restore").style.display = "inline";
+            document.getElementById("delete").style.display = "inline";
+            document.getElementById("stop").style.display = "inline";
+        })
+
+        document.getElementById("save_edits").addEventListener('click', function () {
+            save_edits(search());
+            update_souls();
+        })
+        document.getElementById("restore").addEventListener('click', function () {
+            load_edits(search());
+            update_souls();
+        })
+        document.getElementById("delete").addEventListener('click', function () {
+            delete_edits(search());
+            update_souls();
+        })
+        document.getElementById("stop").addEventListener('click', function () {
+            disable_edits();
+            // document.getElementById("klass").style.display = "block";
+            document.getElementById("klass_selector").disabled = false;
+            if (document.getElementById("klass_selector").value == 0) {
+                document.getElementById("attributes").style.display = "block";
+            }
+            document.getElementById("generate").disabled = false;
+            document.getElementById("share").style.display = "inline";
+            document.getElementById("edit").style.display = "inline";
+            document.getElementById("save_edits").style.display = "none";
+            if (check_edits(search())) {
+                document.getElementById("restore").style.display = "inline";
+                document.getElementById("delete").style.display = "inline";
+            } else {
+                document.getElementById("restore").style.display = "none";
+                document.getElementById("delete").style.display = "none";
+            }
+            document.getElementById("stop").style.display = "none";
+        })
+
+        // Show/hide excellence attributes based on class selection
+        document.getElementById("klass_selector").addEventListener('change', function (e) {
+            if (e.target.value == 0) {
+                document.getElementById("attributes").style.display = "inline";
+            } else {
+                document.getElementById("attributes").style.display = "none";
+            }
+        })
+
+        // Generate button
+        document.getElementById("generate").addEventListener('click', function () {
+            if (document.getElementById("klass_selector").value == -1) {
+                klass = (Math.floor(Math.random() * 10) + 1).toString();;
+            } else {
+                klass = document.getElementById("klass_selector").value;
+            }
+            history.pushState("", document.title, window.location.pathname);
+            document.getElementById("restore").style.display = "none";
+            document.getElementById("delete").style.display = "none";
+            reseed();
+            generate();
+        })
+
+        // Character Generation
+        function generate() {
+            document.getElementById("equipment").innerHTML = "";
+            document.getElementById("scrolls").innerHTML = "";
+            document.getElementById("armor").innerHTML = "";
+            document.getElementById("weapon").innerHTML = "";
+            document.getElementById("weapon_2").innerHTML = "";
+            document.getElementById("money").innerHTML = "";
+            document.getElementById("description").innerHTML = "";
+            document.getElementById("skills").innerHTML = "";
+            document.getElementById("skills_short").innerHTML = "";
+            document.getElementById("traits").innerHTML = "";
+            document.getElementById("class_name").innerHTML = classes[parseInt(klass)];
+            if (klass == 9) {
+                document.getElementById("name").innerHTML =
+                    `${frandom_item_from(pale_one_name_1)} ${frandom_item_from(pale_one_name_2)} ${frandom_item_from(pale_one_name_3)}`;
+            } else {
+                document.getElementById("name").innerHTML = names[(fd(6) - 1) * 8 + fd(8) - 1];
+            }
+            selected = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(e => e.value);
+            if (klass == 0) {
+                if (selected.length == 0) {
+                    selected = two_unique(Array.from(document.querySelectorAll('input[type=checkbox]'))).map(e => e.value);
+                } else {
+                    two_unique(Array.from(document.querySelectorAll('input[type=checkbox]'))).map(e => e.value);
+                }
+            }
+
+            var memory;
+            if (klass == 0) {
+                story = fd(tales.length);
+                memory = tales[story - 1];
+            } else if (klass == 1) {
+                memory = `Vos premiers souvenirs: ${frandom_item_from(fanged_deserter_memory)}`;
+            } else if (klass == 2) {
+                memory = `Enfant, ${frandom_item_from(gutterborn_memory)}`;
+            } else if (klass == 3) {
+                memory = `Vous ${frandom_item_from(esoteric_hermit_memory)}`;
+            } else if (klass == 4) {
+                memory = `Les choses allaient bien, puis ${frandom_item_from(wretched_royalty_memory)}`;
+            } else if (klass == 5) {
+                memory = `Vous venez ${frandom_item_from(heretical_priest_memory)}`;
+            } else if (klass == 6) {
+                memory = `Vous avez connu ${frandom_item_from(occult_herbmaster_memory)}`;
+            } else if (klass == 7) {
+                if (fd(2) == 1) {
+                    memory = `Racines de votre abattement: ${frandom_item_from(forlorn_philosopher_memory_1)}`;
+                } else {
+                    memory = `Abattement de vos racines: ${frandom_item_from(forlorn_philosopher_memory_2)}`;
+                }
+            } else if (klass == 8) {
+                memory = `<b>Gloire à ${frandom_item_from(dead_gods_prophet_memory_1)}, ${frandom_item_from(dead_gods_prophet_memory_2)} ${frandom_item_from(dead_gods_prophet_memory_3)}!</b>`;
+            } else if (klass == 9) {
+                memory = `Vous ${frandom_item_from(pale_one_memory)}`;
+            } else if (klass == 10) {
+                memory = `Votre première mort: ${frandom_item_from(cursed_skinwalker_memory)}`;
+            } else if (klass == 11) {
+                memory = `Vous avez signé votre contrat ${frandom_item_from(songbird_memory)}`;
+            }
+            var trait1 = frandom_item_from(traits);
+            var trait2 = trait1;
+            while (trait2 == trait1) {
+                var trait2 = frandom_item_from(traits);
+            }
+            var habit = fd(bad_habits.length);
+            var story;
+            document.getElementById("description").innerHTML += `<p>${descriptions[parseInt(klass)]}</p>`;
+            document.getElementById("description").innerHTML += `<p>${memory}</p>`;
+            document.getElementById("traits").innerHTML +=
+                `<p><b>Mental</b>: ${trait1} et ${trait2.toLowerCase()}<br><b>Physique</b>: ${frandom_item_from(bodies)} <br><b>Mauvaise habitude</b>: ${bad_habits[habit - 1]}</p>`
+
+
+            var skills = [];
+            if (klass == 0) {
+                skills.push(base_skills[selected[0]]);
+                skills.push(base_skills[selected[1]]);
+                skills.push(frandom_item_from(feats));
+            } else if (klass == 1) {
+                fanged_deserter_abilites.forEach(x => skills.push(x));
+                skills.push(frandom_item_from(fanged_deserter_features));
+            } else if (klass == 2) {
+                gutterborn_abilities.forEach(x => skills.push(x));
+                skills.push(frandom_item_from(gutterborn_features));
+            } else if (klass == 3) {
+                esoteric_hermit_abilities.forEach(x => skills.push(x));
+                skills.push(frandom_item_from(esoteric_hermit_features));
+            } else if (klass == 4) {
+                wretched_royalty_abilities.forEach(x => skills.push(x));
+                var wr_skill1 = frandom_item_from(wretched_royalty_features);
+                var wr_skill2 = frandom_item_from(wretched_royalty_features_2);
+                skills.push(wr_skill1);
+                skills.push(wr_skill2);
+            } else if (klass == 5) {
+                heretical_priest_abilities.forEach(x => skills.push(x));
+                skills.push(frandom_item_from(heretical_priest_features));
+            } else if (klass == 6) {
+                occult_herbmaster_abilities.forEach(x => skills.push(x));
+            } else if (klass == 7) {
+                forlorn_philosopher_abilities.forEach(x => skills.push(x));
+                skills.push(frandom_item_from(forlorn_philosopher_features));
+            } else if (klass == 8) {
+                dead_gods_prophet_abilities.forEach(x => skills.push(x));
+                two_unique(dead_gods_prophet_features).forEach(el => skills.push(el));
+            } else if (klass == 9) {
+                pale_one_abilities.forEach(x => skills.push(x));
+                // pale_one_features.forEach(x => skills.push(x));
+                // skills.push(frandom_item_from(pale_one_features));
+            } else if (klass == 10) {
+                cursed_skinwalker_abilities.forEach(x => skills.push(x));
+                skills.push(frandom_item_from(cursed_skinwalker_features));
+            } else if (klass == 11) {
+                songbird_abilities.forEach(x => skills.push(x));
+                skills.push(frandom_item_from(songbird_features));
+            }
+            for (var i = 0; i < skills.length; i++) {
+                var tmp_text = `<p><strong>${skills[i][0]}</strong>`;
+                if (skills[i][1] != '') {
+                    tmp_text += `<br/>${skills[i][1]}`;
+                }
+                if (skills[i][2] != undefined) {
+                    tmp_text += `<br/>${skills[i][2]}`;
+                }
+                tmp_text += `</p>`;
+                document.getElementById("skills_short").innerHTML += `<p>${skills[i][0]}</p>`;
+                document.getElementById("skills").innerHTML += tmp_text
+            }
+
+            var stats = []
+            for (var i = 0; i < 4; i++) {
+                if (klass == 0) {
+                    stats.push(selected.includes(i.toString()) ? removeSmallest([fd(6), fd(6), fd(6), fd(6)]).reduce((partialSum, a) => partialSum + a, 0) : fd(6) + fd(6) + fd(6))
+                } else {
+                    stats.push(fd(6) + fd(6) + fd(6));
+                }
+            }
+            if (klass == 1) {
+                stats[0] -= 1;
+                stats[1] -= 1;
+                stats[2] += 2;
+            } else if (klass == 2) {
+                stats[2] -= 2;
+            } else if (klass == 3 || klass == 5 || klass == 7) {
+                stats[1] += 2;
+                stats[2] -= 2;
+            } else if (klass == 6) {
+                stats[2] -= 2;
+                stats[3] += 2;
+            } else if (klass == 8 || klass == 11) {
+                stats[1] += 2;
+                stats[3] -= 2;
+            } else if (klass == 9) {
+                stats[0] += 1;
+                stats[1] += 1;
+                stats[3] -= 2;
+            } else if (klass == 10) {
+                stats[1] -= 2;
+                stats[2] += 1;
+                stats[3] += 1;
+            }
+
+            for (var i = 0; i < 4; i++) {
+                stats[i] = abilities[stats[i] - 1];
+            }
+            function agilité() { return parseInt(stats[0]) || 0 }
+            function présence() { return parseInt(stats[1]) || 0 }
+            function force() { return parseInt(stats[2]) || 0 }
+            function endurance() { return parseInt(stats[3]) || 0 }
+
+            ['agilité', 'présence', 'force', 'endurance'].forEach((x, i) => {
+                document.getElementById(x).innerHTML = stats[i];
+                /* document.getElementById(x).parentNode.children[i * 2].innerHTML = `${x.toUpperCase()}` */
+            })
+
+            var hp_mod;
+            if (klass == 0 || klass == 5 || klass == 10) {
+                hp_mod = fd(8);
+            } else if (klass == 1) {
+                hp_mod = fd(10);
+            } else if (klass == 2 || klass == 4 || klass == 6 || klass == 9 || klass == 11) {
+                hp_mod = fd(6);
+            } else if (klass == 3 || klass == 7 || klass == 8) {
+                hp_mod = fd(4);
+            }
+            var hp = Math.max(1, endurance() + hp_mod);
+            document.getElementById("max_hp").innerHTML = `${hp}`;
+
+            var power = Math.max(0, présence() + fd(4));
+            document.getElementById("powers").innerHTML = power;
+
+            var omens;
+            if (klass == 3 || klass == 5 || klass == 7 || klass == 9) {
+                omens = [fd(4), 4];
+            } else if (klass == 8) {
+                omens = [fd(3), 3];
+            } else {
+                omens = [fd(2), 2];
+            }
+            document.getElementById("omens").innerHTML = omens[0];
+            document.getElementById("omens_dice").innerHTML = `(d${omens[1]})`;
+
+            var food = ["Outre d'eau", ` et ${fd(4)} jour(s) de nourriture`]
+            var silver;
+            if (klass == 0 || klass == 1 || klass == 6 || klass == 10) {
+                silver = (fd(6) + fd(6)) * 10;
+            } else if (klass == 2 || klass == 3 || klass == 7 || klass == 9) {
+                silver = fd(6) * 10;
+            } else if (klass == 4 || klass == 11) {
+                silver = (fd(6) + fd(6) + fd(6) + fd(6)) * 10;
+            } else if (klass == 5) {
+                silver = (fd(6) + fd(6) + fd(6)) * 10;
+            } else if (klass == 8) {
+                silver = fd(6) * 5;
+            }
+            var w_light = ['Bâton', 'Pieu en bois', 'Épée courte', 'Couteau', 'Faucille', 'Gourdin'];
+            var w_med = ['Marteau de guerre', 'Épée', 'Massue', 'Hachette', 'Masse', 'Lance', 'Faux'];
+            var w_heavy = ['Fléau', 'Hache de bataille', 'Godendard'];
+            var weapons = [
+                ["Fémur", "d4 dégats"],
+                [frandom_item_from(w_light), "d4 dégats"],
+                [frandom_item_from(w_light), "d4 dégats"],
+                [frandom_item_from(w_light), "d4 dégats"],
+                [frandom_item_from(w_med), "d6 dégats"],
+                [frandom_item_from(w_med), "d6 dégats"],
+                ["Arc", `d6 dégats, avec ${présence() + 10} flêches`],
+                [frandom_item_from(w_heavy), "d8 dégats"],
+                ["Arbalète", `d8 dégats, avec ${présence() + 10} carreaux`],
+                ["Zweihänder", "d10 dégats"]
+            ]
+            var light = ["de fourrure", "capitonnée", "de cuir"];
+            var medium = ["d'écailles", "de maille"];
+            var heavy = ["de lamelles", "de plaques"];
+            var armor = [
+                ["", ""],
+                [`Armure ${frandom_item_from(light)}`, "-d2, tiers 1"],
+                [`Armure ${frandom_item_from(medium)}`, "-d4, tiers 2, DR+2 pour les tests d'AGILITÉ incluant la Défense"],
+                [`Armure ${frandom_item_from(heavy)}`, "-d6, tiers 3, DR+4 pour les tests d'AGILITÉ, Défense à DR+2"],
+            ]
+            var equip1 = [
+                ["", ""],
+                ["", ""],
+                ["Sac à dos", "pour 7 objets de taille normale"],
+                ["Sac", "pour 10 objets de taille normale"],
+                ["Petite charrette", ""],
+                ["Âne", ""]
+            ]
+            var equip2 = [
+                ["Corde", "30 pieds"],
+                [`${présence() + 4} torches`, ""],
+                ["Lanterne", `avec de l'huile pour ${présence() + 6} heures`],
+                ["Bande de magnésium", ""],
+                frandom_item_from(unclean_scrolls),
+                ["Aiguille pointue", ""],
+                ["Trousse de médecine", `${présence() + 4} utilisations (stoppe saignements/infections, +d6 PV)`],
+                ["Lime en métal et crochets de serrurier", ""],
+                ["Piège à ours", "PRÉSENCE DR14 pour repérer, d8 dégâts"],
+                ["Bombe", "(bouteille scellée, d10 dégâts)"],
+                ["Une bouteille de poison rouge", `${fd(4)} doses (ENDURANCE DR12 ou d10 dégâts)`],
+                ["Crucifix en argent", ""],
+                ["Couverture", ""],
+                ["Pierre à feu", ""],
+                ["Tabac à chiquer", `${fd(6)} utilisations`],
+                ["Une bouteille de sel", ""],
+                ["Crucifix en bois", ""],
+                [`${fd(6)} bâtons de craie`, ""],
+                ["Menottes", ""],
+                ["Une bouteille de poison noir", `${fd(4)} doses (ENDURANCE DR14 ou d6 dégâts + aveugle pendant une heure)`],
+            ]
+            var equip3 = [
+                ["Élixir de vie", `${fd(4)} doses (soigne d6 PV et enlève l'infection)`],
+                frandom_item_from(sacred_scrolls),
+                ["Petit chien mais vicieux", `(${fd(6) + 2} PV, morsure d4, n'obéit qu'à vous)`],
+                [`${fd(4)} singe(s)`, ` qui vous ignore(nt) mais vous aime(nt) (${fd(4) + 2} PV, coup de poing/morsure d4)`],
+                ["Parfum exquis", "vaut 25s"],
+                ["Boîte à outils", "10 clous, pinces, marteau, petite scie, perceuse"],
+                ["Chaîne lourde", "15 pieds"],
+                ["Grappin", ""],
+                ["Bouclier", "(-1 dégât PV ou le bouclier se brise pour ignorer l'attaque)"],
+                ["Pied-de-biche", "d4 dégâts"],
+                ["Lard", "(peut servir de 5 repas en cas de besoin)"],
+                ["Tente", ""],
+                [`${fd(6)} rat(s)`, " modérément apprivoisé(s) (1 PV, morsure d2, n'obéit qu'à vous)"],
+                ["Miroir", "vaut 15s"],
+                ["Ciseaux", ""],
+                ["Hachoir à viande", "d4 dégâts"],
+                ["Chausse-trappes", "d4 dégâts + infection sur 1-sur-6"],
+                ["Marteau", "d4 dégâts"],
+                ["Pieu en bois", "d6 dégâts"],
+                ["Lacs", ""]
+            ]
+
+            document.getElementById("equipment").innerHTML += `<li>${food[0]}<br/><span class="small">${food[1]}</span></li>`;
+            var e1 = frandom_item_from(equip1);
+            var er2 = fd(20);
+            var er3 = fd(20);
+            var scroll = (er2 == 5 || er3 == 2);
+            e2 = equip2[er2 - 1];
+            e3 = equip3[er3 - 1];
+            var starting_weapon;
+            if (story == 16) {
+                starting_weapon = ["Fronde", "d4 dégats avec une quantité illimitée de pierres"];
+            } else {
+                if (klass == 3 || klass == 8) {
+                    starting_weapon = frandom_item_from(weapons.slice(0, 4));
+                } else if (klass == 4 || klass == 5) {
+                    starting_weapon = frandom_item_from(weapons.slice(0, 8));
+                } else if (scroll || klass == 2 || klass == 6 || klass == 7 || klass == 9 || klass == 10 || klass == 11) {
+                    starting_weapon = frandom_item_from(weapons.slice(0, 6));
+                } else {
+                    starting_weapon = frandom_item_from(weapons);
+                }
+            }
+            document.getElementById("weapon").innerHTML += `${starting_weapon[0]} <span class="small">(${starting_weapon[1]})</span>`;
+            // document.getElementById("weapon_2").innerHTML += `${starting_weapon[0]} (<span class="small">${starting_weapon[1]})</span>`;
+            var starting_armor;
+            if (klass == 4 || klass == 11) {
+                starting_armor = frandom_item_from(armor.slice(0, 3));
+            } else if (scroll || klass == 2 || klass == 3 || klass == 6 || klass == 7 || klass == 8 || klass == 9 || klass == 10) {
+                starting_armor = frandom_item_from(armor.slice(0, 2));
+            } else {
+                starting_armor = frandom_item_from(armor);
+            }
+            if (starting_armor[0] != "") {
+                document.getElementById("armor").innerHTML += `${starting_armor[0]} <span class="small">(${starting_armor[1]})</span>`;
+            }
+            var special_item;
+            if (habit == 1) {
+                special_item = ["Sac en toile", `et ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} petites pierres coupantes`]
+            } else if (habit == 7) {
+                special_item = ["Crâne", "Un ami de confiance."]
+            } else if (habit == 20) {
+                special_item = ["Collier de cuir", `avec ${fd(10) + fd(10) + fd(10) + fd(10) + fd(10)} dent disparates`]
+            } else if (habit == 29) {
+                special_item = ["Sac en toile", `et ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} ongles rongés`]
+            }
+            if (special_item) {
+                document.getElementById("equipment").innerHTML += `<li>${special_item[0]}<br/><span class="small">${special_item[1]}</span></li>`;
+            }
+            if (e1[0] != "") {
+                document.getElementById("equipment").innerHTML += `<li>${e1[0]}<br/><span class="small">${e1[1]}</span></li>`;
+            }
+            if (er2 == 5) {
+                document.getElementById("scrolls").innerHTML += `<li>${e2[0]}<br/><span class="small">${e2[1]}</span></li>`;
+            } else {
+                document.getElementById("equipment").innerHTML += `<li>${e2[0]}<br/><span class="small">${e2[1]}</span></li>`;
+            }
+            if (er3 == 2) {
+                document.getElementById("scrolls").innerHTML += `<li>${e3[0]}<br/><span class="small">${e3[1]}</span></li>`;
+            } else if ((er3 >= 16 && er3 <= 19) || er3 == 10) {
+                document.getElementById("weapon_2").innerHTML += `${e3[0]} <span class="small">(${e3[1]})</span>`;
+            }
+            else {
+                document.getElementById("equipment").innerHTML += `<li>${e3[0]}<br/><span class="small">${e3[1]}</span></li>`;
+            }
+            if (klass == 3) {
+                var eso_scroll = fd(2) == 1 ? frandom_item_from(sacred_scrolls) : frandom_item_from(unclean_scrolls);
+                document.getElementById("scrolls").innerHTML += `<li>${eso_scroll[0]}<br/><span class="small">${eso_scroll[1]}</span></li>`;
+            }
+            if (klass == 7) {
+                var for_tab = frandom_item_from(tablets);
+                document.getElementById("scrolls").innerHTML += `<li>${for_tab[0]}<br/><span class="small">${for_tab[1]}</span></li>`;
+            }
+            document.getElementById("money").innerHTML += `${silver}s`;
+        }
+
+        function hide(x) {
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
