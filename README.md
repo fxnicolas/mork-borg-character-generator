@@ -1,14 +1,14 @@
-# MÖRK BORG - Générateur de Personnage
+# MÖRK BORG - Character Generator
 
-Un générateur de personnage pour le Jeu de Rôle <a href="https://morkborg.com/" target="_blank">MÖRK BORG</a> en français.
-Ce générateur tourne dans un navigateur en pur HTML, CSS et Javascript.
+A character generator for the <a href="https://morkborg.com/" target="_blank">MÖRK BORG</a> tabletop RPG in English and French.
+This generator runs in a browser in pure HTML, CSS and Javascript.
 
-## Utilisation
+## Usage
 
-1. Lancez le <a href="https://fxnicolas.github.io/mork-borg-character-generator/mork-borg-character-generator.html" target="_blank">générateur</a>
-2. Sélectionnez une **Classe** de personnage, puis cliquez sur **Générer**. Vous pouvez également choisir choisir une classe aléatoire ou aucune classe (Racaille), en sélectionnant deux attributs d'excellence (tirés sur 3 meilleurs de 4d6 au lieu de 3d6).
-3. Le **Mode Edition** permet de modifier le contenu de la fiche (cliquez sur un élément pour l'éditer) et sauvegarder vos personnages localement. 
-4. Vous pouvez directement imprimer la fiche en PDF ou sur papier (A4, orientation Paysage/Landscape). <br>*Notez que l'en-tête et le pied de page seront automatiquement masqués à l'impression*.
+1. Launch the <a href="https://fxnicolas.github.io/mork-borg-character-generator/mork-borg-character-generator.html" target="_blank">generator</a>
+2. Select a character **Class**, then click **Generate**. You can also choose a random class or no class (Scum), by selecting two excellence attributes (rolled on the 3 best of 4d6 instead of 3d6).
+3. **Edit Mode** allows you to modify the content of the sheet (click on an element to edit it) and save your characters locally.
+4. You can directly print the sheet to PDF or on paper (A4, Landscape orientation). <br>*Note that the header and footer will automatically be hidden when printing*.
 
 <center><img src="./mork-borg-character-generator-screenshot.png" width="200px"></center>
 
