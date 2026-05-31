@@ -470,7 +470,7 @@
                     <br>
                     <input type="checkbox" id="end" name="endurance" value=3>
                     <label for="end">
-                        <b id="pa_endurance">Endurance</b>
+                        <b id="pa_endurance">Thoughness</b>
                         <span id="pa_endurance_details">Resist poison/cold/heat, survive falling</span>
                     </label>
                 </div>
@@ -716,8 +716,8 @@
         };
 
         var base_skills = {
-            en: [["Nimble", "3 best of 4d6 in Agility"], ["Witty", "3 best of 4d6 in Presence"], ["Well-fed", "3 best of 4d6 in Strength"], ["Indomptable", "3 best of 4d6 in Endurance"]],
-            fr: [["Agile", "3 meilleurs de 4d6 en Agilité"], ["Spirituel", "3 meilleurs de 4d6 en Présence"], ["Bien nourri", "3 meilleurs de 4d6 en Force"], ["Indomptable", "3 meilleurs de 4d6 en Endurance"]]
+            en: [["Nimble", "3 best of 4d6 in Agility"], ["Witty", "3 best of 4d6 in Presence"], ["Well-fed", "3 best of 4d6 in Strength"], ["Indomptable", "3 best of 4d6 in Thoughness"]],
+            fr: [["Agile", "3 meilleurs de 4d6 en Agilité"], ["Spirituel", "3 meilleurs de 4d6 en Présence"], ["Bien nourri", "3 meilleurs de 4d6 en Force"], ["Indomptable", "3 meilleurs de 4d6 en Thoughness"]]
         };
 
 
@@ -814,7 +814,7 @@
             fr: [
                 ["Coup de Jarnac du Lâche", "Lorsque vous attaquez par surprise, testez AGILITÉ DR10. En cas de succès, vous frappez automatiquement une fois avec une arme légère à une main, infligeant des dégâts normaux +3."],
                 ["Doigts Crades", "Vos petits doigts de serpent se glissent dans les poches et ouvrent les serrures avec un test d'AGILITÉ DR8. Vous commencez également avec des crochets de serrurier!"],
-                ["Cracheur de Glu Abominable", "Votre flegme est visqueux, grumeleux et ignoble et d'une précision balistique à courte portée. Vous pouvez cracher d2 fois pendant un combat. Lancez un test de PRÉSENCE DR8 pour la précision. Les cibles sont aveuglées, bâillonnant et vomissant pendant d4 rounds. Quiconque en est témoin—ami et ennemi—doit faire un test de ENDURANCE pour ne pas vomir également. Les PJ testent DR10 et les ennemis DR12."],
+                ["Cracheur de Glu Abominable", "Votre flegme est visqueux, grumeleux et ignoble et d'une précision balistique à courte portée. Vous pouvez cracher d2 fois pendant un combat. Lancez un test de PRÉSENCE DR8 pour la précision. Les cibles sont aveuglées, bâillonnant et vomissant pendant d4 rounds. Quiconque en est témoin—ami et ennemi—doit faire un test d'ENDURANCE pour ne pas vomir également. Les PJ testent DR10 et les ennemis DR12."],
                 ["Discrétion d'Évasion", "Chaque fois que vous utilisez un Présage, il y a 50% de chances qu'il ne soit pas dépensé."],
                 ["Discrétion Excrémentielle", "Vous avez une capacité étonnante, presque surnaturelle, à vous cacher dans la boue, les débris et la crasse. Lorsqu'ils sont cachés dans ces conditions, un test de PRÉSENCE DR16 est requis pour vous remarquer."],
                 ["Esquiver la Mort", "Vous êtes si désagréable, insignifiant, dégoûtant et ignoble que même la Mort préfère vous éviter si elle le peut. À la Mort, s'il y a la moindre possibilité que vous ayez survécu, il y a 50% de chances que vous l'ayez fait. Si cela réussit, après 10 rounds, vous réapparaissez avec d4 PV et une explication improbable de votre évasion."]
@@ -968,7 +968,7 @@
 
         var occult_herbmaster_abilities = {
             en: [
-                ["Tough as Wood", "3d6+2 Endurance."],
+                ["Tough as Wood", "3d6+2 Thoughness."],
                 ["Low in Protein", "3d6-2 Strength"],
                 ["Portable Laboratory", "You carry a portable laboratory and continually search for frequently expended ingredients. Daily you have the materials to create two randomly determined decoctions and can brew a total of d4 doses. If unused they lose vitality after 24 hours."],
                 ["List of Decoctions", "<ol><li><b>Red Poison</b> TOUGHNESS DR12 or -d10 HP.</li><li><b>Ezumiel's Vapor</b> Pass a DR14 test or severe hallucinations for d4 hours.</li><li><b>Southern Frog Stew</b> Vomit for d4 hours, pass a DR14 test or you can do nothing else.</li><li><b>Elixir Vitalis</b> Heals d6 HP and stops infection. Can be habit-forming.</li><li><b>Spider-Owl Soup</b> See in darkness, climb on walls for 30 minutes.</li><li><b>Fernor’s Philtre</b> Translucent oil, must be dabbed right into the eye. Heals infection and gives +2 on PRESENCE tests for d4 hours.</li><li><b>Hyphos’ Enervating Snuff</b> Berserk! Two attacks per round but defend with DR14. Lasts one fight. Must be snorted, causes sneezing.</li><li><b>Black Poison</b> TOUGHNESS DR14 or -d6 HP and blinded for one hour.</li></ul>"]
@@ -1011,7 +1011,7 @@
         var pale_one_abilities = {
             en: [
                 ['Alien', '3d6+1 Agility and Presence'],
-                ['Hollow and Fragile', '3d6-2 Endurance.'],
+                ['Hollow and Fragile', '3d6-2 Thoughness.'],
                 ['Philologist', "You are literate, but only in dead languages and cannot use scrolls. However, you can intuitively use one randomly rolled Power determined daily at dawn or dusk (pick one). <ol><li><b>The Stars Were Right</b> :Roll d4+2 for omens. Say something cryptic when you use one.</li><li><b>Membranous Wings</b>:You can fly short distances but cannot wear armor. Birds dislike you</li><li><b>Uncommon Clay</b>: You can draw nourishment from soil but normal food sickens you. You smell like mushrooms.</li><li><b>Mana From Somewhere</b>Spend a use of your Powers to create weirdly delicious (but unsettling) food for d6 people.</li><li><b>Digitgrade Limbs</b>: You escape any bindings and fit through tiny spaces. -4 DR to tests involving flexibility.</li><li><b>Too Many Eyes</b>: Just way too many. You cannot be attacked from surprise. You may spend a use of your Powers to leave an eye behind and spy remotely (you take d2 damage if the eye is squished).</li></ol>"]
             ],
             fr: [
@@ -1032,7 +1032,7 @@
         var songbird_abilities = {
             en: [
                 ['Amplified Personality', '3d6+2 Presence.'],
-                ['Hard Life', '3d6-2 Endurance.'],
+                ['Hard Life', '3d6-2 Thoughness.'],
                 ['People Person', 'You carry an aura of unnatural charm everywhere you go, capable of unsettling foes and calming friends, spend a use of your daily Powers to add or subtract d6 to any Morale check.']
             ]
             ,
@@ -1075,7 +1075,7 @@
         var cursed_skinwalker_abilities = {
             en: [
                 ['Weakned Mind', '3d6-2 Presence.'],
-                ['Bestial Instincts', '3d6+1 Strength and Endurance.'],
+                ['Bestial Instincts', '3d6+1 Strength and Thoughness.'],
                 ['Skinwalker', "You can give into your antithetical other’s advances reshaping your anatomy into its likeness. Shifting your bones requires a single painful round. Armor and weapons are likely unusable in your new form."]
             ]
             ,
@@ -1127,7 +1127,7 @@
         var dead_gods_prophet_abilities = {
             en: [
                 ['Obsessed', '3D6+2 Presence.'],
-                ['Weak From Neglect', '3d6-2 Endurance.'],
+                ['Weak From Neglect', '3d6-2 Thoughness.'],
                 ['Fundamentalist', "You are literate and can use scrolls but must pass a DR12 PRESENCE test or immediately attempt to destroy false gods' words."]
             ]
             ,
@@ -1155,7 +1155,7 @@
                 ["Seigneur de Rien", "Vous portez un arrangement bizarre de vêtements et de chiffons comme une parodie de roi ou de reine. Pourtant, vous gagnez +2 aux jets pour impressionner ceux qui sont facilement dupés."],
                 ["Odeur de Décomposition", "Non seulement votre dieu est mort, mais son odeur de décomposition vous imprègne. Bonus de +2 au jet de Défense en raison de la puanteur nauséabonde."],
                 ["Bavardage Sophiste Incohérent", "Concentrez-vous pour babiller une litanie déconcertante dont les auditeurs doivent réussir un test de PRÉSENCE DR10 ou perdre leur prochaine action."],
-                ["Ichor de Pourriture", "Les fluides nauséabonds de votre dieu en putréfaction suintent de vos mains—un stigmate noir. En tant qu'Attaque DR12, vous pouvez essuyer vos mains sur la peau nue d'un assaillant, qui doit réussir un test de ENDURANCE DR12 ou sombrer dans des spasmes écumeux pendant deux tours."],
+                ["Ichor de Pourriture", "Les fluides nauséabonds de votre dieu en putréfaction suintent de vos mains—un stigmate noir. En tant qu'Attaque DR12, vous pouvez essuyer vos mains sur la peau nue d'un assaillant, qui doit réussir un test d'ENDURANCE DR12 ou sombrer dans des spasmes écumeux pendant deux tours."],
                 ["Mon Corps, Un Vaisseau", "Votre dieu est peut-être mort, mais qu'est-ce que la mort pour un dieu? Une fois par jour, vous pouvez permettre au fantôme de votre dieu d'entrer dans votre chair et de révéler une vérité—une question par oui/non au MJ qui doit être répondue sincèrement. Le dieu part vous laissant affaibli et fragile."],
                 ["Dans la Mort Je Vis", "Lorsque vous mourez, faites un test de PRÉSENCE DR14. Si vous réussissez, votre dieu refuse votre passage dans l'au-delà et vous récupérez avec 1PV. Sinon, votre corps est consumé par des flammes sacrées."],
                 ["Yeux de Feu Sacré", "Vos pupilles brûlent de l'âme de votre seigneur. Une fois par combat, vous pouvez attaquer (DR10) en jaillissant du feu de vos yeux (d6 dégâts); vous aveuglant pour la durée du combat."]
@@ -1611,7 +1611,7 @@
                 pa_presence_details: "Perceive, aim, charm, wield powers",
                 pa_strength: "Strength",
                 pa_strength_details: "Crush, lift, strike, grapple",
-                pa_endurance: "Endurance",
+                pa_endurance: "Thoughness",
                 pa_endurance_details: "Resist poison/cold/heat, survive falling",
                 saved_souls_label: "Saved Characters"
 
