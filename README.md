@@ -1,6 +1,6 @@
 # MÖRK BORG - Character Generator
 
-A character generator for the <a href="https://morkborg.com/" target="_blank">MÖRK BORG</a> tabletop RPG in English and French.
+A character generator for the <a href="https://morkborg.com/" target="_blank">MÖRK BORG</a> tabletop RPG in English, French and Portuguese (Brazil).
 This generator runs in a browser in pure HTML, CSS and Javascript.
 
 ## Usage
@@ -12,8 +12,11 @@ This generator runs in a browser in pure HTML, CSS and Javascript.
 
 <center><img src="./mork-borg-character-generator-screenshot.png" width="200px"></center>
 
-## Notice
+## Credits
 
+The Portuguese (Brazil) translation is provided by <a href="https://github.com/SoJaum" target="blank">Jaum</a>.
+
+## Notice
 
 This character generation for MÖRK BORG is an independent production by FX Nicolas and is not affiliated with Ockult Örtmästare Games or Stockholm Kartell. It is published under the MÖRK BORG Third Party License.
 MÖRK BORG is copyright Ockult Örtmästare Games and Stockholm Kartell. <br>

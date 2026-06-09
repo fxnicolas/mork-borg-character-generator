@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap"
         rel="stylesheet">
-    <title>MÖRK BORG - Générateur de Personnages</title>
+    <title>MÖRK BORG - Character Generator</title>
     <meta name="description" content="Mörk Borg Character Generator">
     <meta name="author" content="FX Nicolas">
     <meta name="keywords"
@@ -441,6 +441,7 @@
             <select id="language_picker">
                 <option value="en" default>English</option>
                 <option value="fr" default>Français</option>
+                <option value="pt" default>Português</option>
             </select>
             </select>
         </div>
@@ -563,7 +564,7 @@
                 edits.push(editElem[i].innerHTML);
             }
             localStorage.setItem(tag, edits.join('&666&'));
-            show_status(localize({en:"Saved", fr:"Sauvegardé"}));
+            show_status(localize({ en: "Saved", fr: "Sauvegardé", pt: "Salvo" }));
         }
         function load_edits(tag) {
             const edits = localStorage.getItem(tag).split('&666&');
@@ -572,11 +573,11 @@
             for (var i = 0; i < edits.length; i++) {
                 editElem[i].innerHTML = edits[i];
             }
-            show_status(localize({ en: "Restored", fr: "Restauré"}));
+            show_status(localize({ en: "Restored", fr: "Restauré", pt: "Restaurado" }));
         }
         function delete_edits(tag) {
             localStorage.removeItem(tag);
-            show_status(localize({ en: "Deleted", fr: "Supprimé" }));
+            show_status(localize({ en: "Deleted", fr: "Supprimé", pt: "Excluído" }));
 
             window.location.reload();
         }
@@ -678,7 +679,8 @@
 
         var classes = {
             en: ['Scvm', 'Fanged Deserter', 'Gutterborn Scum', 'Esoteric Hermit', 'Wretched Royalty', 'Heretical Priest', 'Occult Herbmaster', 'Forlorn Philospher', "Dead Gods' Prophet", 'Pale One', 'Cursed Skinwalker', 'Sacrilegious Songbird'],
-            fr: ['Racaille', 'Déserteur à Crocs', 'Rat des Égouts', 'Ermite Ésotérique', 'Noble Misérable', 'Prêtre Hérétique', 'Herboriste Occulte', 'Philosophe Désolé', "Prophète d'un Dieu Mort", 'Pâle', 'Métamorphe Maudit', 'Oiseau Chanteur Sacrilège']
+            fr: ['Racaille', 'Déserteur à Crocs', 'Rat des Égouts', 'Ermite Ésotérique', 'Noble Misérable', 'Prêtre Hérétique', 'Herboriste Occulte', 'Philosophe Désolé', "Prophète d'un Dieu Mort", 'Pâle', 'Métamorphe Maudit', 'Oiseau Chanteur Sacrilège'],
+            pt: ['Scvm', 'Desertor Mordente', 'Escória Nascida em Sarjeta', 'Ermitão Esotérico', 'Realeza Miserável', 'Sacerdote Herético', 'Ervateiro Oculto', 'Filósofo Abandonado', "Profeta de um Deus Morto", 'Pálido', 'Skinwalker Amaldiçoado', 'Pássaro Canoro Sacrílego']
         };
 
 
@@ -712,12 +714,27 @@
                 "Vous auriez dû mourir, mais quelque chose a saisi votre âme alors qu'elle s'écoulait dans le fleuve de la Mort et vous a scellé une fois de plus dans une chair mortelle. Seulement, cette fois, la cage n'est pas à vous seul — dans les courants de l'au-delà, votre âme s'est mêlée à celle d'une autre créature mourante, vous laissant divisé en deux. Maintenant, vous vivez une existence partagée, enfermé dans une lutte éternelle entre l'homme et le monstre. Vous auriez dû mourir.",
                 "Toujours porteur de sons indésirables, votre vocation de barde vous a laissé démuni et discrédité... jusqu'au jour funeste où un être de caractère impie vous a proposé l'affaire de votre vie. Votre âme a beau crier, votre gorge chante doucement, et votre bourse encore plus doucement. Un petit prix à payer."
             ]
-
+            ,
+            pt: [
+                "De origens desconhecidas.",
+                "Você tem cerca de trinta amigos que nunca o decepcionam: SEUS DENTES. Desleal, perturbado ou simplesmente incontrolável, qualquer grupo que não o expulsou, você abandonou de qualquer forma. Mas seu parlamento de dentes — enormes, protuberantes, grossos e afiados — sempre foram seus aliados.",
+                "Uma estrela maligna sorriu para o seu nascimento. Pobreza, crime e pais negligentes não ajudaram em nada. Em sua comunidade, um dia de trabalho honesto nunca foi uma opção. Não que você já tenha tentado, o que você é, algum tipo de trouxa? Uma lâmina de barbear e uma noite sem lua valem mais do que uma semana de trabalho de otário.",
+                "A pedra da sua caverna é uma só com as estrelas. Silêncio e perfeição. Agora, o caos de um mundo caído perturba seus rituais e o manto da noite torna-se mais negro do que a penumbra da sua caverna. Irritante!",
+                "Curvado apenas pelas memórias de sua própria glória perdida, você nunca poderia se submeter a ninguém. Não você, de sangue nobre! (Não que você espere que esses peões entendam as profundezas da sua dor.)",
+                "Caçado pelos basiliscos de duas cabeças da Fé Verdadeira, este herege pode ser encontrado delirando em ruínas, caminhando sem parar por estradas poeirentas e profanando catedrais durante a noite.",
+                "Nascido do cogumelo, criado na clareira, vigiado pelo olho da lua em uma poça prateada e negra.",
+                "A estrada, um labirinto irracional; cada templo encharcado de sangue, cada destino banhado em melancolia. Você já pensou que uma análise fria poderia domar o próprio Destino; agora, esse sonho de razão apodreceu em uma loucura mutável e apenas o frio permanece.",
+                "Vozes na sua cabeça dizem o que fazer — pelo menos você acha que dizem. Você é o profeta de um deus morto pela Basilisca ELA nos picos miseráveis de Bergen Chrypt. Agora ninguém quer ouvir as palavras do seu deus, mas você ainda pode. Dia e noite. Como fios quentes atravessando seu cérebro.",
+                "Você espreita nas margens dos assentamentos observando, talvez julgando, mas raramente interagindo. Você é fundamentalmente um 'outro' e não pertence a lugar nenhum. Você experimenta episódios de loucura incoerente e fúrias autodestrutivas, mas, na maior parte, você aguarda o inevitável em resignação solitária.",
+                "Você deveria ter morrido, mas algo agarrou sua alma enquanto ela se infiltrava no rio da Morte e a selou mais uma vez em carne mortal. Apenas, desta vez, a jaula não é sua sozinha — nas correntes da vida após a morte, sua alma se misturou à de outra criatura moribunda, deixando você dividido. Agora você vive uma existência compartilhada, preso em uma luta eterna entre homem e monstro. Você deveria ter morrido.",
+                "Sempre o portador de sons indesejados, sua vocação como bardo o deixou destituído e desacreditado... até o dia lamentável em que um ser de caráter ímpio lhe fez o negócio de uma vida. Sua alma pode estar gritando, mas sua garganta canta docemente, e sua bolsa, ainda mais docemente. Um pequeno preço a pagar."
+            ]
         };
 
         var base_skills = {
             en: [["Nimble", "3 best of 4d6 in Agility"], ["Witty", "3 best of 4d6 in Presence"], ["Well-fed", "3 best of 4d6 in Strength"], ["Indomptable", "3 best of 4d6 in Thoughness"]],
-            fr: [["Agile", "3 meilleurs de 4d6 en Agilité"], ["Spirituel", "3 meilleurs de 4d6 en Présence"], ["Bien nourri", "3 meilleurs de 4d6 en Force"], ["Indomptable", "3 meilleurs de 4d6 en Thoughness"]]
+            fr: [["Agile", "3 meilleurs de 4d6 en Agilité"], ["Spirituel", "3 meilleurs de 4d6 en Présence"], ["Bien nourri", "3 meilleurs de 4d6 en Force"], ["Indomptable", "3 meilleurs de 4d6 en Thoughness"]],
+            pt: [["Ágil", "3 melhores de 4d6 em Agilidade"], ["Espirituoso", "3 melhores de 4d6 em Presença"], ["Bem alimentado", "3 melhores de 4d6 em Força"], ["Indomável", "3 melhores de 4d6 em Thoughness"]]
         };
 
 
@@ -727,6 +744,8 @@
             en: ["a burnt-black building in Sarkash. Your home?", "a derelict rotting ship rolling endlessly across a grey sea.", "a brothel in Schleswig. Quite a friendly environment.", "sleeping with dogs in the corner of an inn, waiting for someone to return.", "following an army in eastern Wästland.", "suckling a wolf in the wild of Bergen Chrypt."]
             ,
             fr: ["un bâtiment noirci par le feu à Sarkash. Votre maison?", "un navire délabré et pourri roulant sans fin sur une mer grise.", "un bordel à Schleswig. Un environnement plutôt amical.", "dormir avec des chiens dans le coin d'une auberge, attendant que quelqu'un revienne.", "suivre une armée dans l'est du Wästland.", "téter une louve dans la nature de Bergen Chrypt."]
+            ,
+            pt: ["um prédio queimado em Sarkash. Sua casa?", "um navio abandonado e apodrecido rolando sem fim por um mar cinza.", "um bordel em Schleswig. Um ambiente bastante amigável.", "dormindo com cães no canto de uma estalagem, esperando alguém voltar.", "seguindo um exército no leste do Wästland.", "amamentando um lobo na natureza de Bergen Chrypt."]
         };
 
         var fanged_deserter_features = {
@@ -759,6 +778,21 @@
                 ["Chopine d'Esprit Rouillé", "Un tankard taché de crachat trouvé après une nuit de beuverie non rappelée. Buvez n'importe quel liquide et testez ENDURANCE DR12. Récupérez d6 PV en cas de succès ou subissez la même quantité de dégâts en cas d'échec."],
                 ["Tatouages de Guerre du Culte Berserker", "Uniquement gravés sur les maniaques les plus féroces et assoiffés de sang. Après avoir tué un ennemi, vous pouvez entrer dans une rage de sang et faire une attaque à DR14 contre un autre ennemi à portée. Tant que vous continuez à tuer à chaque attaque, vous pouvez continuer à attaquer, augmentant à chaque fois le DR de +2."]
             ]
+            ,
+            pt: [
+                ["Máscara de Monstro Amassada", "Inspira um medo primitivo em criaturas menores como goblins, gnoums e crianças. Enquanto usada, eles verificam o Moral a cada rodada."],
+                ["A Cimitarra Marrom de Galgenbeck", "Uma espada fedorenta que você puxou de uma vala de merda militar. d6 de dano DR10 Ataque e Defesa enquanto você a empunha. 1 em 6 chance de um inimigo ferido ser atingido por uma septicemia potente, morrendo em 10 minutos."],
+                ["Dentes de Bruxo", "Quatro dentes estranhos chacoalham dentro de uma bolsa enegrecida. Antes da batalha, role um d6 para cada um. Para cada 6, um de seus ataques causa dano máximo."],
+                ["Funda do Velho Sigûrd", "Sigûrd era o homem mais forte cuja garganta você já roeu. Tecida a partir de seus longos cabelos grisalhos, esta funda nunca falhou com você. 2d4 de dano, requer pedras do tamanho de punho que, talvez lamentavelmente, estão em toda parte."],
+                ["Cão de Sangue Antigo", "Asmático, delirante e em suas últimas pernas, esta criatura enrugada ainda tem um nariz excelente e pode farejar tesouros nos detritos mais nojentos. Ataque com DR10 (mordida d6 de dano). Defende com DR12, 10 HP. Fica frenético perto de goblins e berserkers."],
+                ["O Sapato do Cavalo da Morte", "Parece normal, mas desde que o encontrou em uma cripta obscura, você está convencido de que este sapato veio do cavalo da Morte. Em suas mãos, ele atinge com DR10, d4 de dano. 1 em 6 chance do sapato esmagar o crânio, matando instantaneamente criaturas de pequeno a médio porte. O sapato retorna para sua mão como um bumerangue."],
+                ["Lança Apóstata", "Com a lança que um dia se embebeu no sangue de <em>ʍɹouƃ ɾǝsns</em>, você realiza um crítico em um 19 natural além de um 20. d6 de dano e DR10 Ataque."],
+                ["Coroa de Matéria Cinzenta", "Este diadema sempre pegajoso viu muitos cérebros de reis-sábios espirrados por sua borda espinhosa. Usá-lo concede +1 PRESENÇA e permite a compreensão de pergaminhos."],
+                ["Escudo de Torre do Tamanho de um Homem", "Dizem que este targe de proporções maciças foi uma vez a bandeja de chá de um taberneiro meio gigante. Enquanto o empunha, a Defesa é DR10 e usa FORÇA em vez de AGILIDADE."],
+                ["Presas Patogênicas", "Seus dentes sórdidos contêm anos de sujeira e lama acumuladas. Em uma mordida bem-sucedida, o inimigo deve testar DR12 TOUGHNESS ou ter seu sistema imunológico QUEBRADO, sofrendo d10 de dano e deixando-o infectado."],
+                ["Caneca de Espírito Enferrujado", "Um caneco manchado de cuspe encontrado após uma noite de bebedeira não lembrada. Beba qualquer líquido dele e teste DR12 TOUGHNESS. Recupere d6 HP em um sucesso ou sofra a mesma quantidade de dano em uma falha."],
+                ["Tatuagens de Guerra do Culto Berserker", "Apenas gravados nos mais ferozes maníacos sedentos por sangue. Depois de matar um inimigo, você pode entrar em uma fúria sanguinária e fazer um ataque com DR14 contra outro inimigo dentro do alcance. Enquanto você continuar matando com cada ataque, você pode continuar atacando, aumentando o DR em +2 cada vez."]
+            ]
         };
 
         var fanged_deserter_abilites = {
@@ -775,6 +809,13 @@
                 ["Analphabète", "Vous êtes incapable de comprendre les parchemins. Si vous commencez avec un, relancez, mangez-le ou utilisez-le comme papier toilette."],
                 ["Morsure", "DR10 pour Attaquer, d6 dégâts. Vous devez être proche de votre cible. 1-2 sur d6 chance que l'ennemi obtienne une attaque gratuite."]
             ]
+            ,
+            pt: [
+                ["Construído como um Touro", "3d6+1 Força"],
+                ["Não é uma Faísca Brilhante", "Os testes normais de AGILIDADE são DR14 em vez de DR12, excluindo a Defesa."],
+                ["Analfabeto", "Você é incapaz de entender pergaminhos. Se você começar com um, então role novamente, coma-o ou use-o como papel higiênico."],
+                ["Ataque de Mordida", "DR10 para Atacar d6 de dano. Você deve estar perto do seu alvo. 1-2 em d6 chance do inimigo obter um ataque gratuito."]
+            ]
         }
             ;
 
@@ -784,6 +825,8 @@
             en: ["you were dumped onto a moving shit-cart still in your birth caul.", "your mother hanged from a tree outside of Galgenbeck, you fell from the corpse", "you were raised by rats in the gutters of Grift.", "you were kicked and beaten beneath a baker’s table in Schleswig.", "you escaped the Tvelandian orphanarium.", "you were educated by outlaws in a hovel south of Alliáns."]
             ,
             fr: ["vous avez été jeté sur une charrette à merde en mouvement toujours dans votre coiffe de naissance.", "votre mère pendait à un arbre à l'extérieur de Galgenbeck, vous êtes tombé du cadavre", "vous avez été élevé par des rats dans les gouttières de Grift.", "vous avez été botté et battu sous la table d'un boulanger à Schleswig.", "vous vous êtes échappé de l'orphelinat Tvelandien.", "vous avez été éduqué par des hors-la-loi dans une masure au sud d'Alliáns."]
+            ,
+            pt: ["você foi jogado sobre um carrinho de merda em movimento ainda na sua capa de nascimento.", "sua mãe foi enforcada em uma árvore fora de Galgenbeck, você caiu do cadáver", "você foi criado por ratos nas bueiras de Grift.", "você foi chutado e espancado sob a mesa de um padeiro em Schleswig.", "você escapou do orfanato Tvelandiano.", "você foi educado por bandidos em uma cabana ao sul de Alliáns."]
         };
 
 
@@ -798,6 +841,12 @@
                 ["Petit", "3d6-2 Force"],
                 ["Furtif", "Tous les tests de PRÉSENCE et d'AGILITÉ voient leur DR réduit de 2 (les tests normaux sont DR10 au lieu de DR12)."],
                 ["Wunderkind (Enfant Prodige)", "La première fois que la Racaille s'améliore, une autre spécialité est tirée. À partir de la deuxième fois que la Racaille s'améliore, il est possible de relancer ces deux spécialités ou seulement une."]
+            ]
+            ,
+            pt: [
+                ["Pequeno", "3d6-2 Força"],
+                ["Furtivo", "Todos os testes de PRESENÇA e AGILIDADE têm sua DR reduzida em 2 (os testes normais são DR10 em vez de DR12)."],
+                ["Wunderkind (Criança Prodigiosa)", "A primeira vez que a Racaille melhora, outra especialidade é rolada. A partir da segunda vez que a Racaille melhora, é possível rerrolar essas duas especialidades ou apenas uma."]
             ]
         };
 
@@ -819,13 +868,23 @@
                 ["Discrétion Excrémentielle", "Vous avez une capacité étonnante, presque surnaturelle, à vous cacher dans la boue, les débris et la crasse. Lorsqu'ils sont cachés dans ces conditions, un test de PRÉSENCE DR16 est requis pour vous remarquer."],
                 ["Esquiver la Mort", "Vous êtes si désagréable, insignifiant, dégoûtant et ignoble que même la Mort préfère vous éviter si elle le peut. À la Mort, s'il y a la moindre possibilité que vous ayez survécu, il y a 50% de chances que vous l'ayez fait. Si cela réussit, après 10 rounds, vous réapparaissez avec d4 PV et une explication improbable de votre évasion."]
             ]
+            ,
+            pt: [
+                ["Jab de Covarde", "Ao atacar de surpresa, teste AGILIDADE DR10. Em um sucesso, você acerta automaticamente uma vez com uma arma leve de uma mão, causando dano normal +3."],
+                ["Ladrão de Dedos Imundos", "Seus pequenos dedos de cobra entram em bolsos e arrombam fechaduras com um teste de AGILIDADE DR8. Você também começa com ferramentas de arrombamento!"],
+                ["Abominável Gob Lobber", "Seu catarro é viscoso, grumoso e vil e balisticamente preciso a curta distância. Você pode cuspir d2 vezes durante uma luta. Role um teste de PRESENÇA DR8 para precisão. Os alvos ficam cegos, engasgando e vomitando por d4 rodadas. Qualquer pessoa que testemunha isso - amigo e inimigo - deve fazer um teste de TOUGHNESS para não vomitar também. PCs testam DR10 e inimigos DR12."],
+                ["Furtividade de Fuga", "Toda vez que você usa um Presságio, há 50% de chance de que ele não seja gasto."],
+                ["Furtividade Excretal", "Você tem uma habilidade surpreendente, quase preternatural, de se esconder em lama, detritos e sujeira. Quando escondido nessas condições, é necessário um teste de PRESENÇA DR16 para notá-lo."],
+                ["Esquivando a Morte", "Você é tão desagradável, irrelevante, nojento e vil que até a Morte prefere evitá-lo se puder. Na Morte, se houver até a menor possibilidade de que você tenha sobrevivido, há 50% de chance de que você tenha feito isso. Se bem-sucedido, após 10 rodadas você reaparece com d4 HP e uma explicação improvável de sua fuga."]
+            ]
         };
 
         // Esoteric Hermit (VALIDATED)
 
         var esoteric_hermit_memory = {
             en: ["were awakening, adult, in a ritual circle underneath the northern bridge to Grift.", "wandered, memoryless, from the mouth of a cavern at the cliffs of Terion.", "were a single child survivor of an incident in the Valley of the Unfortunate Undead.", "were dying of plague in a Bergen Chrypt hovel, you touched something from outside.", "were an average individual until you encountered something in a dim glade in Sarkash.", "were raised on a lonely island in Lake Onda. No one else has ever heard of this island and you can't return."],
-            fr: ["vous êtes réveillé dans un cercle rituel sous le pont nord de Grift.", "erriez, sans mémoire, de l'embouchure d'une caverne aux falaises de Terion.", "étiez le seul enfant survivant d'un incident dans la Vallée des Morts-Vivants Malheureux.", "mourriez de la peste dans une masure de Bergen Chrypt, et avez touché quelque chose de l'extérieur.", "étiez un individu moyen jusqu'à ce que vous rencontriez quelque chose dans une clairière sombre à Sarkash.", "avez été élevé sur une île solitaire du lac Onda. Personne d'autre n'a jamais entendu parler de cette île et vous ne pouvez pas y retourner."]
+            fr: ["vous êtes réveillé dans un cercle rituel sous le pont nord de Grift.", "erriez, sans mémoire, de l'embouchure d'une caverne aux falaises de Terion.", "étiez le seul enfant survivant d'un incident dans la Vallée des Morts-Vivants Malheureux.", "mourriez de la peste dans une masure de Bergen Chrypt, et avez touché quelque chose de l'extérieur.", "étiez un individu moyen jusqu'à ce que vous rencontriez quelque chose dans une clairière sombre à Sarkash.", "avez été élevé sur une île solitaire du lac Onda. Personne d'autre n'a jamais entendu parler de cette île et vous ne pouvez pas y retourner."],
+            pt: ["acordou, adulto, em um círculo ritual sob a ponte norte de Grift.", "vagueou, sem memória, da boca de uma caverna nas falésias de Terion.", "foi o único sobrevivente infantil de um incidente no Vale dos Mortos-Vivos Desafortunados.", "estava morrendo de peste em uma cabana de Bergen Chrypt, você tocou algo de fora.", "era um indivíduo médio até encontrar algo em uma clareira escura em Sarkash.", "foi criado em uma ilha solitária no Lago Onda. Ninguém mais jamais ouviu falar dessa ilha e você não pode retornar."]
         };
 
         var esoteric_hermit_abilities =
@@ -837,6 +896,10 @@
             fr: [
                 ["Sage", "3d6+2 Présence."],
                 ["Fragile", "3d6-2 Force."]
+            ],
+            pt: [
+                ["Sábio", "3d6+2 Presença."],
+                ["Fraco", "3d6-2 Força."]
             ]
         };
 
@@ -857,6 +920,14 @@
                 ["Initié du Collège Invisible", "Une fois par jour, vous pouvez invoquer d2 parchemins, dont le Pouvoir ne peut être utilisé qu'une seule fois. Lancez un d4, sur un 1-2 les parchemins sont sacrés, sur un 3-4, impurs. Si les parchemins ne sont pas utilisés avant le lever du soleil, ils se transforment en cendres."],
                 ["Barde de l'Immortel", "Vous apprenez vos mélodies dans l'Autre-Monde. La musique de votre Harpe donne +d4 sur les jets de réaction."],
                 ["Faucon comme Arme", "Votre faucon astucieux presque intelligent n'est fidèle qu'à vous. Même sans langage partagé, vous comprenez ses cris alors qu'il surveille, explore et plonge pour attaquer les ennemis. (8 PV Attaques/Défense DR10 griffes/morsure d4 dégâts)"]
+            ],
+            pt: [
+                ["Mestre do Destino", "O que servem mapas quando a substância da causalidade em si mesma está aberta para você? Você sabe o caminho certo com um teste de PRESENÇA DR8."],
+                ["Livro do Sangue Fervente", "Você pode abrir e ler este livro uma vez por dia. Seu inimigo deve fazer um teste DR12 para impedir isso. Se falhar, d2 assassinos Berserker (página 59) aparecem das profundezas de uma dimensão esquecida de sangue. Rode um d6. Em um 1-4, estas criaturas lutam ao seu lado. Em um 5-6, elas se voltam contra você, tentando matá-lo e destruir o livro. Após a batalha, elas retornam à sua prisão."],
+                ["Portador da Verdade", "Duas vezes por dia, use sua sabedoria, conhecimento, conselhos e calma interior para trazer clareza a uma criatura de sua escolha. O DR do próximo teste que ela realizar é reduzido em 4."],
+                ["Iniciado do Colégio Invisible", "Uma vez por dia você pode invocar d2 pergaminhos, cujo Poder só pode ser usado uma vez. Rode um d4, em um 1-2 os pergaminhos são sagrados, em um 3-4, imundos. Se os pergaminhos não forem usados antes do nascer do sol, eles se transformam em cinzas."],
+                ["Bardo do Imortal", "Você aprende suas melodias no Outro-Mundo. A música de sua Harpa concede +d4 em rolagens de reação."],
+                ["Falcão como Arma", "Seu falcão astuto quase inteligente é fiel apenas a você. Mesmo sem linguagem compartilhada, você entende seus gritos enquanto ele vigia, explora e ataca os inimigos. (8 PV Ataques/Defesa DR10 garras/mordida d4 danos)"]
             ]
         }
             ;
@@ -867,6 +938,8 @@
             en: ["your Wästland palace was reduced to rubble.", "your caravan kingdom of Tveland fell into penury.", "King Fathmu IX’s brother Zigmund, your father, was murdered.", "the southern empire of Südglans sank into the sea.", "Anthelia demanded a gift of noble blood.", "two young princes were kidnapped west of Bergen Chrypt and disappeared into the black crevasse of the eastern slopes."]
             ,
             fr: ["votre palais du Wästland a été réduit en ruines.", "votre royaume caravane de Tveland est tombé dans la misère.", "le frère du roi Fathmu IX, Zigmund, votre père, a été assassiné.", "l'empire du sud de Südglans a sombré dans la mer.", "Anthelia a exigé un cadeau de sang noble.", "deux jeunes princes ont été enlevés à l'ouest de Bergen Chrypt et ont disparu dans la crevasse noire des pentes orientales."]
+            ,
+            pt: ["seu palácio Wästland foi reduzido a escombros.", "seu reino de caravana de Tveland caiu na penúria.", "o irmão do rei Fathmu IX, Zigmund, seu pai, foi assassinado.", "o império do sul de Südglans afundou no mar.", "Anthelia exigiu um presente de sangue nobre.", "dois jovens príncipes foram sequestrados a oeste de Bergen Chrypt e desapareceram na fenda negra das encostas orientais."]
         };
 
 
@@ -876,6 +949,9 @@
             ],
             fr: [
                 ["Douloureusement moyen", "Aucun ajustement d'attribut."]
+            ],
+            pt: [
+                ["Dolorosamente Médio", "Nenhum ajuste de atributo."]
             ]
         };
 
@@ -897,6 +973,15 @@
                 ["Le Cadeau de Peau de Serpent", "Une boîte en bois de santal coûteuse liée en peau de serpent. Elle contient un poignard apparemment ordinaire, enveloppé dans de la soie. Le poignard fait d4 dégâts mais sur un 1, la cible meurt immédiatement d'un poison mortel pleurant de la lame."],
                 ["Corne des Seigneurs de Schleswig!", "Une fois par jour, faites retentir cette vieille trompette bosselée et testez PRÉSENCE DR12. Une créature peut faire de son prochain test non-combat un succès automatique."]
             ]
+            ,
+            pt: [
+                ["A Lâmina de seus Ancestrais", "Esta magnífica e claramente mágica espada falante é afetada, pouco confiável e despreza você silenciosamente. Ele provoca suas falhas e, se continuamente decepcionado, desenvolve uma chance de 1 em 6 de 'acidentalmente' atacar você ou seus companheiros. Causa d6+1 de dano. Ataque/Defesa DR10."],
+                ["'Poltrão' o Bobo da Corte", "Embora praticamente inútil, pessoalmente irritante e um dreno emocional, as cabriolas de Poltrão fazem com que os inimigos percam o foco no combate. Durante as duas primeiras rodadas, você e seus aliados recebem +2 em Ataque/Defesa."],
+                ["Barbarister o Incrível Cavalo", "Barbarister é mágico, inteligente, arrogante e vaidoso. Ele também pode falar. Se você conseguir persuadi-lo a se importar, Barbarister ocasionalmente adiciona +2 aos testes de PRESENÇA envolvendo lógica e intelecto. O cavalo pode ser mais inteligente do que você e está bastante ciente disso."],
+                ["Hamfund o Escudeiro", "Este servo intensamente covarde atua apenas como guardião da bainha da espada amaldiçoada Eurekia. Uma vez por combate, se Ham puder ser encontrado, Eurekia pode ser desembainhada. A espada causa 2d6 de dano, e para cada golpe de Eurekia role um d6. Em um 1 o escudeiro é morto e Eurekia desaparece para sempre."],
+                ["O Presente da Pele de Cobra", "Uma caixa cara de sândalo amarrada em pele de cobra. Contém uma adaga aparentemente comum, embrulhada em seda. A adaga causa d4 de dano mas em um 1 o alvo morre imediatamente de veneno mortal chorando da lâmina."],
+                ["Corne dos Senhores de Schleswig!", "Uma vez por dia, libere um estrondo desta velha trombeta amassada e teste PRESENÇA DR12. Uma criatura pode fazer seu próximo teste não-combate um sucesso automático."]
+            ]
         };
         // Apparently not in the base ruleset and seems interesting.
         var wretched_royalty_features_2 = {
@@ -917,6 +1002,15 @@
                 ["Collier en Branchies de Verre", "Ce magnifique collier en argent emboîte six perles irisées. En avaler une vous permet de respirer sous l'eau jusqu'à ce que la perle passe. Réutilisable."],
                 ["Sceau d'Opulence", "Les dettes et les indettes de la noblesse ne sont pas vite oubliées. Montrez ce sceau de famille antique à un marchand, et il y a 50% de chances que leurs prix soient réduits de moitié pour vous et votre groupe. Sinon, les prix sont doublés."]
             ]
+            ,
+            pt: [
+                ["Escritura de Companheiro de Cama", "Com este pergaminho, você está sob imunidade aristocrática e não pode ser perseguido por qualquer crime contra aqueles abaixo de você. Apenas nobres e outros aristocratas respeitarão este decreto, a menos que você tenha sucesso em um teste de PRESENÇA DR14."],
+                ["SANGUE Azul", "Gerações de conspirações realizadas com veneno e lâminas de mendigos tornaram seu sangue particularmente resistente à infecção. Você não sofre perda diária de HP enquanto estiver infectado."],
+                ["Busto de um Louco", "A maioria dos seus parentes mortos estão sonhando no mausoléu da família, mas o espírito deste bisavô decidiu assombrar um busto de pedra antigo. Alimente-o com comida suficiente para um dia e seus olhos brilharão com uma luz azul pálida fantasmagórica por d4 horas, iluminando a área. A luz também revela coisas invisíveis."],
+                ["Jóia da Família", "Antes a coroa da coleção da sua família, esta pedra preciosa de safira faz de você um alvo atraente. Quando erguida, quaisquer criaturas inimigas com uma mente para riquezas atacarão você antes de todas as outras."],
+                ["Colar Branchias de Vidro", "Este lindo colar de prata encaixa seis pérolas iridescentes. Engolir uma permite que você respire debaixo d'água até que a pérola passe. Reutilizável."],
+                ["Símbolo da Opulência", "As dívidas e indébitos da nobreza não são esquecidos rapidamente. Mostre este selo antigo da família a um comerciante, e há 50% de chance de seus preços serem reduzidos pela metade para você e seu grupo. Se não, os preços são dobrados."]
+            ]
         };
 
         // Heretical Priest (VALIDATED)
@@ -925,6 +1019,8 @@
             en: ["Galgenbeck, near the cathedral of the Two-Headed Basilisks.", "a massacred Alliáns cult, sole survivor.", "the crypts of Grift.", "temple ruins in the Valley of the Unfortunate Undead.", "one of the many Graven-Tosk thief-tunnels.", "a secret Bergen Chrypt church."]
             ,
             fr: ["de Galgenbeck, près de la cathédrale des Basilics à Deux Têtes.", "d'un culte massacré d'Alliáns, seul survivant.", "des cryptes de Grift.", "des ruines de temple dans la Vallée des Morts-Vivants Malheureux.", "de l'un des nombreux tunnels de voleurs de Graven-Tosk.", "d'une église secrète de Bergen Chrypt."]
+            ,
+            pt: ["de Galgenbeck, perto da catedral dos Basiliscos de Duas Cabeças.", "de um culto massacrado de Alliáns, único sobrevivente.", "das criptas de Grift.", "ruínas de templos no Vale dos Mortos-Vivos Desafortunados.", "um dos muitos túneis de ladrões de Graven-Tosk.", "uma igreja secreta de Bergen Chrypt."]
         };
 
         var heretical_priest_abilities = {
@@ -937,6 +1033,12 @@
                 ["Perspicace", "3d6+2 Présence"],
                 ["Frêle", "3d6-2 Force"],
                 ["Prêtrise", "Peut utiliser des Pouvoirs en portant une armure moyenne"]
+            ]
+            ,
+            pt: [
+                ["Perspicaz", "3d6+2 Presença"],
+                ["Frágil", "3d6-2 Força"],
+                ["Sacerdócio", "Pode usar Poderes enquanto veste armadura média"]
             ]
         };
         var heretical_priest_features = {
@@ -957,13 +1059,23 @@
                 ["Pierres Prises au Temple Perdu des Thel-Emas", "Jetez les pierres au sol. Leur motif révèle si un danger se cache dans une pièce adjacente. Les pierres peuvent mentir. Le prêtre teste PRÉSENCE DR10 pour voir si elles sont vraies mais après avoir échoué, il ne peut plus tester avant le coucher du soleil."],
                 ["(ʍɹouƃ ɾǝsns) Crucifix", "Le crucifix peut être utilisé dans des rencontres avec les morts-vivants ainsi qu'avec des trolls et des gobelins moindres. Vérifiez le moral (ajoutez ou soustrayez le modificateur de PRÉSENCE du prêtre) pour voir si les créatures s'inclinent et s'éloignent gentiment."]
             ]
+            ,
+            pt: [
+                ["Cajado do Pastor Sagrado", "Sua cabeça é um gancho de osso humano inscrito com anti-orações sobrepostas. Este cajado se encaixa através de outros mundos. O cajado causa 2d4 de dano, exceto para humanos sem fé."],
+                ["Mitra Roubada", "Enquanto usa este chapéu sagrado, o corpo vil do sacerdote desaparece, tornando-se difícil de atingir em combate (Defesa DR10). Se puxado sobre as orelhas fora de batalha, o sacerdote torna-se quase invisível, testando furtividade contra DR8."],
+                ["Lista de Pecados", "Um documento longo e preciso cruzado com a realidade para descobrir os malfeitores invisíveis. PRESENÇA DR10 bem-sucedida: Uma luz estranha envolve as criaturas malignas. O proprietário da lista defende com +2 contra qualquer ser descoberto dessa maneira."],
+                ["A Bíblia Blasfema de Nechrubel", "Tão intensamente blasfema que mesmo os próprios Sacerdotes só podem folheá-la uma vez por dia. Quando lida, role um dado. Resultado par: Para o resto do dia, os PCs curam d4 HP após apenas cinco minutos de descanso. Resultado ímpar: O sacerdote é atormentado por alucinações demoníacas. O DM pode inventar d3 coisas que apenas o Sacerdote pode ver e descrevê-las ao jogador como se fossem verdadeiras. Este efeito termina com o nascer do sol."],
+                ["Pedras Retiradas do Templo Perdido dos Thel-Emas", "Jogue as pedras no chão. Seu padrão revela se o perigo espreita em uma sala adjacente. As pedras podem mentir. O sacerdote testa PRESENÇA DR10 para ver se elas são verdadeiras, mas depois de falhar, ele não pode testar novamente até que o sol se ponha."],
+                ["(ʍɹouƃ ɾǝsns) Crucifixo", "O crucifixo pode ser usado em encontros com mortos-vivos, bem como trolls e goblins menores. Verifique a moral (adicione ou subtraia o modificador de PRESENÇA do sacerdote) para ver se as criaturas se curvam e se afastam gentilmente."]
+            ]
         };
 
         // Occult Herbmaster (VALIDATED)
 
         var occult_herbmaster_memory = {
             en: ["calm isolation in the Sarkash dark.", "calm isolation in the Sarkash dark.", "calm isolation in the Sarkash dark.", "the illegal midnight markets of Schleswig", "the heretic isle of Crëlut, two nautical miles east of Grift.", "the old frozen ruins not far from Alliáns.", "a little witches cottage in Galgenbeck.", "the ruins of the Shadow King's manse, thick with memories of mushrooms and smoke."],
-            fr: ["l'isolement calme dans l'obscurité de Sarkash.", "l'isolement calme dans l'obscurité de Sarkash.", "l'isolement calme dans l'obscurité de Sarkash.", "les marchés nocturnes illégaux de Schleswig", "l'île hérétique de Crëlut, deux milles marins à l'est de Grift.", "les vieilles ruines gelées non loin d'Alliáns.", "une petite chaumière de sorcière à Galgenbeck.", "les ruines du manoir du Roi des Ombres, épaisses de souvenirs de champignons et de fumée."]
+            fr: ["l'isolement calme dans l'obscurité de Sarkash.", "l'isolement calme dans l'obscurité de Sarkash.", "l'isolement calme dans l'obscurité de Sarkash.", "les marchés nocturnes illégaux de Schleswig", "l'île hérétique de Crëlut, deux milles marins à l'est de Grift.", "les vieilles ruines gelées non loin d'Alliáns.", "une petite chaumière de sorcière à Galgenbeck.", "les ruines du manoir du Roi des Ombres, épaisses de souvenirs de champignons et de fumée."],
+            pt: ["isolamento calmo na escuridão de Sarkash.", "isolamento calmo na escuridão de Sarkash.", "isolamento calmo na escuridão de Sarkash.", "os mercados ilegais da meia-noite de Schleswig", "a ilha herética de Crëlut, a duas milhas náuticas a leste de Grift.", "as antigas ruínas congeladas não muito longe de Alliáns.", "uma pequena cabana de bruxa em Galgenbeck.", "as ruínas da mansão do Rei das Sombras, cheias de memórias de cogumelos e fumaça."]
         };
 
         var occult_herbmaster_abilities = {
@@ -980,6 +1092,13 @@
                 ["Laboratoire Portable", "Vous transportez un laboratoire portable et recherchez continuellement des ingrédients fréquemment dépensés. Quotidiennement, vous avez le matériel pour créer deux décoctions déterminées au hasard et pouvez brasser un total de d4 doses. Si elles ne sont pas utilisées, elles perdent de leur vitalité après 24 heures."],
                 ["Liste des Décoctions", "<ol><li><b>Poison Rouge</b> ENDURANCE DR12 ou -d10 PV.</li><li><b>Vapeur d'Ezumiel</b> Réussissez un test DR14 ou des hallucinations sévères pendant d4 heures.</li><li><b>Ragoût de Grenouille du Sud</b> Vomissements pendant d4 heures, réussissez un test DR14 ou vous ne pouvez rien faire d'autre.</li><li><b>Élixir Vitalis</b> Soigne d6 PV et arrête l'infection. Peut créer une accoutumance.</li><li><b>Soupe de Chouette-Araignée</b> Voir dans l'obscurité, grimper sur les murs pendant 30 minutes.</li><li><b>Philtre de Fernor</b> Huile translucide, doit être tamponnée directement dans l'œil. Soigne l'infection et donne +2 aux tests de PRÉSENCE pendant d4 heures.</li><li><b>Tabac à Priser Énervant d'Hyphos</b> Berserk! Deux attaques par round mais défendez avec DR14. Dure un combat. Doit être sniffé, provoque des éternuements.</li><li><b>Poison Noir</b> ENDURANCE DR14 ou -d6 PV et aveuglé pendant une heure.</li></ol>"]
             ]
+            ,
+            pt: [
+                ["Duro como Madeira", "3d6+2 Endurance."],
+                ["Baixo em Proteína", "3d6-2 Força"],
+                ["Laboratório Portátil", "Você carrega um laboratório portátil e procura continuamente por ingredientes frequentemente gastos. Diariamente, você tem os materiais para criar duas decocções determinadas aleatoriamente e pode preparar um total de d4 doses. Se não forem usadas, elas perdem a vitalidade após 24 horas."],
+                ["Lista de Decocções", "<ol><li><b>Veneno Vermelho</b> ENDURANCE DR12 ou -d10 HP.</li><li><b>Vapor de Ezumiel</b> Passe um teste DR14 ou alucinações severas por d4 horas.</li><li><b>Ensopado de Sapo do Sul</b> Vômito por d4 horas, passe um teste DR14 ou você não pode fazer mais nada.</li><li><b>Elixir Vitalis</b> Cura d6 HP e para a infecção. Pode criar dependência.</li><li><b>Sopa de Coruja-Aranha</b> Veja no escuro, suba em paredes por 30 minutos.</li><li><b>Filtro de Fernor</b> Óleo translúcido, deve ser aplicado diretamente no olho. Cura a infecção e dá +2 em testes de PRESENÇA por d4 horas.</li><li><b>  Enervante de Hyphos</b> Berserk! Dois ataques por rodada, mas defenda com DR14. Dura um combate. Deve ser cheirado, causa espirros.</li><li><b>Veneno Negro</b> ENDURANCE DR14 ou -d6 HP e cego por uma hora.</li></ol>"]
+            ]
         };
 
         // Pale One (VALIDATED)
@@ -988,24 +1107,32 @@
             en: ["Abhorred", "Beneath", "Clad", "Errant", "Familiar", "Giant", "Hidden", "Lyrical", "Maniacal", "Nameless", "Obscene", "Painful", "Reposed", "Skeletal", "Strong", "Sudden", "Unaware", "Unknowing", "Vitriolic", "Westward"]
             ,
             fr: ["Abhorré", "Sous", "Revêtu", "Errant", "Familier", "Géant", "Caché", "Lyrique", "Maniaque", "Sans Nom", "Obscène", "Douloureux", "Reposé", "Squelettique", "Fort", "Soudain", "Inconscient", "Ignorant", "Vitriolique", "Vers l'Ouest"]
+            ,
+            pt: ["Abominável", "Sob o", "Vestido", "Errante", "Familiar", "Gigante", "Oculto", "Lírico", "Maníaco", "Sem Nome", "Obsceno", "Doloroso", "Reposado", "Esquelético", "Forte", "Repentino", "Inconsciente", "Ignorante", "Vitriolico", "Para o Oeste"]
         };
 
         var pale_one_name_2 = {
             en: ["Attacks", "Attracts", "Awaits", "Blackens", "Chimes", "Covers", "Dances", "Denies", "Descends", "Drowns", "Echoes", "Proffers", "Quivers", "Rains", "Reflects", "Returns", "Seals", "Submits", "Weaves", "Wilts"]
             ,
             fr: ["Attaque", "Attire", "Attend", "Noircit", "Carillonne", "Couvre", "Danse", "Nie", "Descend", "Noyade", "Écho", "Offre", "Tremble", "Ploie", "Reflète", "Revient", "Scelle", "Se Soumet", "Tisse", "Se Flétrit"]
+            ,
+            pt: ["Ataca", "Atrai", "Espera", "Enegrece", "Toca", "Cobre", "Dança", "Nega", "Desce", "Afoga", "Ecoa", "Oferece", "Treme", "Chove", "Reflete", "Retorna", "Sela", "Se Submete", "Tece", "Murcha"]
         }
 
         var pale_one_name_3 = {
             en: ["the Æther", "the Damned", "the Decay", "the Dust", "the Eye", "the Face", "the Flesh", "the Flies", "the Flower", "the Knives", "the Moon", "the Mountain", "the Plague", "the Prayer", "the Rats", "the Saint", "the Sea", "the Stranger", "the Truth", "the Void"]
             ,
             fr: ["l'Éther", "le Damné", "la Décomposition", "la Poussière", "l'Œil", "le Visage", "la Chair", "les Mouches", "la Fleur", "les Couteaux", "la Lune", "la Montagne", "la Peste", "la Prière", "les Rats", "le Saint", "la Mer", "l'Étranger", "la Vérité", "le Vide"]
+            ,
+            pt: ["o Éter", "o Maldito", "a Decomposição", "o Pó", "o Olho", "o Rosto", "a Carne", "as Moscas", "a Flor", "os Facões", "a Lua", "a Montanha", "a Peste", "a Oração", "os Ratos", "o Santo", "o Mar", "o Estranho", "a Verdade", "o Vazio"]
         };
 
         var pale_one_memory = {
             en: ["were caught by fishermen on the Endless sea.", "were accidentally summoned by cultists in Graven-Tosk.", "were vomited by a foul beast in Bergen Chrypt.", "fell from the Sky near Alliáns.", "were hatched from a Bog-Witch egg laid in a Wästland swamp.", "crawled from a crack in the ground near Grift."]
             ,
             fr: ["avez été attrapé par des pêcheurs sur la mer Sans Fin.", "avez été accidentellement invoqué par des cultistes à Graven-Tosk.", "avez été vomi par une bête répugnante à Bergen Chrypt.", "êtes tombé du Ciel près d'Alliáns.", "avez éclos d'un œuf de Sorcière des Marais pondu dans un marais du Wästland.", "avez rampé hors d'une fissure dans le sol près de Grift."]
+            ,
+            pt: ["foi pego por pescadores na Mar Sem Fim.", "foi invocado acidentalmente por cultistas em Graven-Tosk.", "foi vomito por uma besta repugnante em Bergen Chrypt.", "caiu do Céu perto de Alliáns.", "eclosou de um ovo de Bruxa das Pântanos posto em um pântano do Wästland.", "rastejou de uma rachadura no chão perto de Grift."]
         };
 
         var pale_one_abilities = {
@@ -1018,6 +1145,11 @@
                 ['Alien', '3d6+1 Agilité et Présence'],
                 ['Os Creux et Fragiles', '3d6-2 Endurance.'],
                 ['Philologue', "Vous êtes lettré, mais seulement dans les langues mortes et ne pouvez pas utiliser de parchemins. Cependant, vous pouvez utiliser intuitivement un Pouvoir tiré au hasard (d6) quotidiennement, à l'aube ou au crépuscule.<ol><li><b>Les Étoiles Avaient Raison</b>: Lancez d4+2 pour les présages. Dites quelque chose de cryptique lorsque vous en utilisez un.</li><li><b>Ailes Membraneuses</b>: Vous pouvez voler sur de courtes distances mais ne pouvez pas porter d'armure. Les oiseaux vous détestent.</li><li><b>Argile Peu Commune</b>: Vous pouvez tirer votre nourriture du sol mais la nourriture normale vous rend malade. Vous sentez les champignons.</li><li><b>Mana de Quelque Part</b>: Dépensez une utilisation de vos Pouvoirs pour créer de la nourriture étrangement délicieuse (mais déconcertante) pour d6 personnes.</li><li><b>Membres Digitigrades</b>: Vous échappez à toute entrave et vous vous faufilez dans de petits espaces. -4 DR aux tests impliquant la flexibilité.</li><li><b>Trop d'Yeux</b>: Juste beaucoup trop. Vous ne pouvez pas être attaqué par surprise. Vous pouvez dépenser une utilisation de vos Pouvoirs pour laisser un œil derrière vous et espionner à distance (vous subissez d2 dégâts si l'œil est écrasé)</li></ol>"]
+            ],
+            pt: [
+                ['Alien', '3d6+1 Agilidade e Presença'],
+                ['Oco e Frágil', '3d6-2 Endurance.'],
+                ['Filólogo', "Você é alfabetizado, mas apenas em línguas mortas e não pode usar pergaminhos. No entanto, você pode usar intuitivamente um Poder determinado aleatoriamente diariamente ao amanhecer ou ao anoitecer (escolha um). <ol><li><b>As Estrelas Estavam Certas</b>: Role d4+2 para presságios. Diga algo críptico quando usar um.</li><li><b>Asas Membranosas</b>: Você pode voar curtas distâncias, mas não pode usar armadura. Os pássaros não gostam de você.</li><li><b>Argila Incomum</b>: Você pode tirar alimento do solo, mas comida normal o deixa doente. Você cheira a cogumelos.</li><li><b>Mana de Algum Lugar</b>: Gaste uma utilização de seus Poderes para criar comida estranhamente deliciosa (mas perturbadora) para d6 pessoas.</li><li><b>Membros Digitígrados</b>: Você escapa de quaisquer amarras e se encaixa em espaços minúsculos. -4 DR para testes envolvendo flexibilidade.</li><li><b>Olhos Demais</b>: Simplesmente muitos olhos demais. Você não pode ser atacado de surpresa. Você pode gastar uma utilização de seus Poderes para deixar um olho para trás e espionar remotamente (você sofre d2 de dano se o olho for esmagado).</li></ol>"]
             ]
         };
 
@@ -1027,6 +1159,8 @@
             en: ["in an outhouse just outside Grift.", "hiding from guards in Galgenbeck.", "in a Wästland noble’s bedchamber.", "dreaming in a disremembered ditch.", "in a Schleswig prison cell.", "minutes from freezing to death on the way to Alliáns."]
             ,
             fr: ["dans des latrines juste à l'extérieur de Grift.", "en se cachant des gardes à Galgenbeck.", "dans la chambre d'un noble de Wästland.", "en rêvant dans un fossé oublié.", "dans une cellule de prison de Schleswig.", "à quelques minutes de mourir de froid en route vers Alliáns."]
+            ,
+            pt: ["em um banheiro rural logo fora de Grift.", "se escondendo de guardas em Galgenbeck.", "na câmara de um nobre do Wästland.", "sonhando em um fosso esquecido.", "em uma cela de prisão de Schleswig.", "minutos antes de congelar até a morte no caminho para Alliáns."]
         };
 
         var songbird_abilities = {
@@ -1040,6 +1174,12 @@
                 ['Personnalité Amplifiée', '3d6+2 Présence.'],
                 ['Vie Dure', '3d6-2 Endurance.'],
                 ['Personne à Personne', 'Vous portez une aura de charme surnaturel partout où vous allez, capable de déstabiliser les ennemis et de calmer les amis, dépensez une utilisation de vos Pouvoirs quotidiens pour ajouter ou soustraire d6 à tout test de Moral.']
+            ]
+            ,
+            pt: [
+                ['Personalidade Ampliada', '3d6+2 Presença.'],
+                ['Vida Dura', '3d6-2 Resistência.'],
+                ['Pessoa de Pessoas', 'Você carrega uma aura de encanto unnatural em todos os lugares que vai, capaz de inquietar inimigos e acalmar amigos, gaste uma utilização de seus Poderes diários para adicionar ou subtrair d6 a qualquer teste de Moral.']
             ]
         };
 
@@ -1061,6 +1201,15 @@
                 ["Orgue Bouche-à-Bouche", "Jouez de cet harmonica en os pour qu'un auditeur brisé récupère instantanément d4 PV. Il ne peut pas parler tant que ses PV ne sont pas entièrement récupérés."],
                 ["Luth du Brute Aiguë", "Lorsque l'on gratte cet instrument en forme de hache (d8 dégâts), le son fait que le score de FORCE et de PRÉSENCE de quiconque l'entend échange les scores pour les d6 prochains jours. Une écoute répétée n'a aucun effet."]
             ]
+            ,
+            pt: [
+                ["Tubos Intestinais do Destino", "Esta amalgamação de sacos intestinais pelosos e costurados apresenta tubos de osso extrudidos para você soprar. Ao fazê-lo, ouvintes à sua escolha são preenchidos com fome sobrenatural, como se não tivessem comido por uma semana."],
+                ["Viola Ferida", "Girar esta coisa de cordas feita de madeira e carne em putrefação emite um som zumbindo que machuca os ouvidos das criaturas que falham em um teste de PRESENÇA contra DR12. No primeiro round tocado, ela causa d2 danos, aumentando para d4 e além em rounds subsequentes."],
+                ["Casca Espinal", "Ao bater neste tambor feito a partir da carapaça de uma criatura infernal, role 2d6:<br>6+ Todos exceto você testam AGILIDADE contra DR14 ou caem prostrate.<br>11 Escolha d4 criaturas que conseguem ouvir seu toque. Suas vértebras se quebram como galhos. Você não pode usar o tambor novamente hoje.<br>12 Seus ouvidos não param de sofrer; você é surdo pelas próximas 24 horas. Também serve como um escudo."],
+                ["O Aquifério do Diabo", "A corna de uma criatura beelzébubônica das profundezas do Mar Infinito. Ao soprá-la, os pulmões dos seus inimigos se enchem de água do mar, caso falhem um teste de RESISTÊNCIA contra DR14; um round deve ser gasto expulsando-a antes de fazer qualquer outra coisa."],
+                ["Orgão Boca-a-Boca", "Tocar este harpa óssea faz com que um ouvinte ferido recupere instantaneamente d4 PV. Ele não pode falar até que seus PV sejam totalmente recuperados."],
+                ["Lute do Bruto Afiado", "Quando tocado, o som deste instrumento em forma de machete (d8 danos) faz com que os pontos de FORÇA e PRESENÇA de qualquer pessoa que o ouça troquem os pontos pelos próximos d6 dias. Ouvido repetidamente não tem efeito."]
+            ]
         };
 
 
@@ -1070,6 +1219,8 @@
             en: ["clutching a lover’s body.", "by an arrow in the brain.", "minutes after birth.", "by a friend’s hand.", "murdered in your bed.", "on the back of a plague-cart."]
             ,
             fr: ["serrant le corps d'un amant.", "par une flèche dans le cerveau.", "quelques minutes après la naissance.", "par la main d'un ami.", "assassiné dans votre lit.", "à l'arrière d'une charrette de peste."]
+            ,
+            pt: ["segurando o corpo de um amante.", "por uma flecha no cérebro.", "minutos após o nascimento.", "pela mão de um amigo.", "assassinado em sua cama.", "na parte de trás de uma carroça de praga."]
         };
 
         var cursed_skinwalker_abilities = {
@@ -1083,6 +1234,12 @@
                 ['Esprit Affaibli', '3d6-2 Présence.'],
                 ['Instincts Bestiaux', '3d6+1 Force et Endurance.'],
                 ['Métamorphe', "Vous pouvez céder aux avances de votre autre antagoniste en remodelant votre anatomie à son image. Déplacer vos os nécessite un seul round douloureux. L'armure et les armes sont probablement inutilisables sous votre nouvelle forme."]
+            ]
+            ,
+            pt: [
+                ['Mente Enfraquecida', '3d6-2 Presença.'],
+                ['Instintos Bestiais', '3d6+1 Força e Resistência.'],
+                ['Mudança de Pele', "Você pode ceder às avances de seu outro antagonista, remodelando sua anatomia à sua semelhança. Mover seus ossos requer um único round doloroso. Armaduras e armas provavelmente não serão utilizáveis em sua nova forma."]
             ]
         };
 
@@ -1104,6 +1261,15 @@
                 ["Lézard de Vie-et-Mort", "<ul><li>Régénère d4 PV par round.</li><li>Morsure (d6) ou crache de l'acide (d4, 1 chance sur 4 que l'armure baisse d'un niveau).</li><li>Peau écailleuse, -d2 dégâts entrants.</li></ul>"],
                 ["Singe Prophète du Malheur", "<ul><li>Dextre: Les tests d'AGILITÉ, y compris la Défense, sont DR10.</li><li>Les armures légères et les armes restent utilisables.</li><li>Votre troisième œil vous permet de lire des parchemins impurs à DR10</li></ul>"]
             ]
+            ,
+            pt: [
+                ["Rato Enlouquecido pelo Assassinato", "<ul><li>Minúsculo: Testes de AGILIDADE, incluindo Defesa, são DR8.</li><li>Sua mordida (d4) carrega doença—Teste de PRESENÇA DR14 ou eles atacarão seu aliado mais próximo até que um deles morra.</li></ul>"],
+                ["Lobo Descascado e Escorregadio", "<ul><li>Feroz, Ataques são DR10.</li><li>Seus caninos adicionam crítico em um 19 natural, desencadeando um teste de Moral.</li><li>Escorregadio por sangue, -d2 danos recebidos.</li></ul>"],
+                ["Corvo com Crânio de Osso", "<ul><li>Rápido e voador, Defesa é DR10. Faça duas ataques de garras (d4) por rodada.</li><li>Sua cabeça ossuda atua como uma arma e escudo: -1 dano e você pode escolher ignorar todos os danos de um ataque. O crânio se cura em d6 dias.</li></ul>"],
+                ["Urso de Bergen Chrypt", "<ul><li>Imponente e massivo: testes para FORÇA, RESISTÊNCIA e Ataques são DR10. Defesa é DR14.</li><li>Pele espessa: -d4 danos recebidos.</li><li>Suas garras e mordidas causam d8 danos.</li></ul>"],
+                ["Lagarto da Vida-e-Morte", "<ul><li>Regenera d4 PV por rodada.</li><li>Mordida (d6) ou cuspe de ácido (d4, 1 em 4 chance de armadura reduzir um nível).</li><li>Pele escamosa, -d2 danos recebidos.</li></ul>"],
+                ["Macaco Profeta da Desgraça", "<ul><li>Destro: Testes de AGILIDADE, incluindo Defesa, são DR10.</li><li>Armaduras leves e armas permanecem utilizáveis.</li><li>Seu terceiro olho permite que você leia pergaminhos imundos a DR10</li></ul>"]
+            ]
         };
 
         // Dead Gods Prophet (VALIDATED)
@@ -1112,16 +1278,22 @@
             en: ["Acrophoe", "Elioch", "Ekk", "Ghzat", "Gnost", "Kvera", "Malais", "Varkka", "Ääel", "Öde"]
             ,
             fr: ["Acrophoe", "Elioch", "Ekk", "Ghzat", "Gnost", "Kvera", "Malais", "Varkka", "Ääel", "Öde"]
+            ,
+            pt: ["Acrophoe", "Elioch", "Ekk", "Ghzat", "Gnost", "Kvera", "Malais", "Varkka", "Ääel", "Öde"]
         };
         var dead_gods_prophet_memory_2 = {
             en: ["Beacon", "Bearer", "Bride", "Child", "Herald", "King", "Lady", "Prince", "Queen", "Song"]
             ,
             fr: ["Phare", "Porteur", "Épouse", "Enfant", "Héraut", "Roi", "Dame", "Prince", "Reine", "Chant"]
+            ,
+            pt: ["Farol", "Portador", "Noiva", "Criança", "Heraldo", "Rei", "Dama", "Príncipe", "Rainha", "Canção"]
         };
 
         var dead_gods_prophet_memory_3 = {
             en: ["of Blood", "of Death", "of Decay", "of Flies", "of Impotence of Panic", "of Rot", "of Rust", "of Unease", "of the Flesh"],
             fr: ["de Sang", "de la Mort", "de la Décomposition", "des Mouches", "de l'Impuissance", "de la Panique", "de la Pourriture", "de la Rouille", "du Malaise", "de la Chair"]
+            ,
+            pt: ["do Sangue", "da Morte", "da Decomposição", "das Moscas", "da Impotência da Pânico", "da Putrefação", "da Oxidação", "da Inquietação", "da Carne"]
         };
 
         var dead_gods_prophet_abilities = {
@@ -1135,6 +1307,12 @@
                 ['Obsédé', '3D6+2 Présence.'],
                 ['Faible par Négligence', '3d6-2 Endurance.'],
                 ['Fondamentaliste', "Vous êtes lettré et pouvez utiliser des parchemins mais devez réussir un test de PRÉSENCE DR12 ou tenter immédiatement de détruire les mots des faux dieux."]
+            ]
+            ,
+            pt: [
+                ['Obsessionado', '3D6+2 Presença.'],
+                ['Fraco por Descaso', '3d6-2 Resistência.'],
+                ['Fundamentalista', "Você é alfabetizado e pode usar pergaminhos mas deve passar um teste de PRESENÇA DR12 ou tentar imediatamente destruir as palavras dos falsos deuses."]
             ]
         };
 
@@ -1160,6 +1338,17 @@
                 ["Dans la Mort Je Vis", "Lorsque vous mourez, faites un test de PRÉSENCE DR14. Si vous réussissez, votre dieu refuse votre passage dans l'au-delà et vous récupérez avec 1PV. Sinon, votre corps est consumé par des flammes sacrées."],
                 ["Yeux de Feu Sacré", "Vos pupilles brûlent de l'âme de votre seigneur. Une fois par combat, vous pouvez attaquer (DR10) en jaillissant du feu de vos yeux (d6 dégâts); vous aveuglant pour la durée du combat."]
             ]
+            ,
+            pt: [
+                ["O Sangue Fala", "Flagellant, você se bate regularmente para acordar seu deus perdido. Se você se machuca com d3 pontos de vida antes do combate, ganha +2 em testes iguais aos PV perdidos."],
+                ["Senhor do Nada", "Você carrega um arranjo bizarro de roupas e trapos como uma paródia de rei ou rainha. No entanto, você ganha +2 em testes para impressionar aqueles que são facilmente enganados."],
+                ["Cheiro de Decomposição", "Não apenas seu deus está morto, mas seu cheiro de decomposição o impregna. Bônus de +2 no teste de Defesa devido à fumaça nauseabunda."],
+                ["Baboseio Sofisticado Incoerente", "Concentre-se para babar uma lâmina desconcertante cujos ouvintes devem passar um teste de PRESENÇA DR10 ou perder sua próxima ação."],
+                ["Ichor da Putrefação", "Os fluidos nauseabundos do seu deus em putrefação escorrem das suas mãos—um estigma negro. Como Ataque DR12, você pode limpar suas mãos na pele nua de um agressor, que deve passar um teste de RESISTÊNCIA DR12 ou cair em espasmos borbulhantes por duas rodadas."],
+                ["Meu Corpo, Um Vaso", "Seu deus pode estar morto, mas o que é a morte para um deus? Uma vez por dia, você pode permitir que o fantasma do seu deus entre no seu corpo e revele uma verdade—uma pergunta sim/não ao GM que deve ser respondida honestamente. O deus parte deixando você enfraquecido e frágil."],
+                ["Na Morte Eu Vivo", "Quando você morre, faça um teste de PRESENÇA DR14. Se você passar, seu deus se recusa a permitir sua passagem para além e você recupera com 1PV. Caso contrário, seu corpo é consumido por chamas sagradas."],
+                ["Olhos do Fogo Sagrado", "Suas pupilas queimam com a alma do seu senhor. Uma vez por combate, você pode atacar (DR10) jorrando fogo dos seus olhos (d6 danos); cegando-se pela duração do combate."]
+            ]
         };
 
         // Forlorn Philosopher (VALIDATED)
@@ -1168,12 +1357,16 @@
             en: ["Your mother alternated praise and humiliation leading to grandiose self-image and burning self-hatred.", "You wanted to be a warrior or great leader but you can’t! Stop! THINKING! STOP THE THOUGHTS!!", "Ambient stupidity and bright lights cause your hypersensitive mental tissues to INFLAME.", "You could save this doomed world! If only the unwashed masses would understand your GENIUS!", "You fell victim to the mental virus of “love,” then the object of your affection went to live in a hole.", "You encoded your omnivalent philosophy in a single tome for safekeeping and saw it burn as you fled. All is lost.", "Udok cultists captured your family and forced you to debate with them while they devoured your parents alive.", "You were Südglans’ most revered philosopher—which sank into the sea and now everyone ruthlessly mocks you."]
             ,
             fr: ["Votre mère alternait louanges et humiliation menant à une image de soi grandiose et à une haine de soi brûlante.", "Vous vouliez être un guerrier ou un grand chef mais vous ne pouvez pas! Arrêtez! DE PENSER! ARRÊTEZ LES PENSÉES!!", "La stupidité ambiante et les lumières vives provoquent l'INFLAMMATION de vos tissus mentaux hypersensibles.", "Vous pourriez sauver ce monde condamné! Si seulement les masses non lavées comprenaient votre GÉNIE!", "Vous avez été victime du virus mental de «l'amour», puis l'objet de votre affection est parti vivre dans un trou.", "Vous avez encodé votre philosophie omnivalente dans un seul tome pour la conserver en lieu sûr et l'avez vu brûler en fuyant. Tout est perdu.", "Les cultistes Udok ont capturé votre famille et vous ont forcé à débattre avec eux pendant qu'ils dévoraient vos parents vivants.", "Vous étiez le philosophe le plus vénéré de Südglans—qui a sombré dans la mer et maintenant tout le monde se moque de vous sans pitié."]
+            ,
+            pt: ["Sua mãe alternava elogios e humilhação levando a uma autoimagem grandiosa e um ódio de si mesmo ardente.", "Você queria ser um guerreiro ou grande líder mas não pode! Pare! PENSAR! PARE OS PENSAMENTOS!!", "A estupidez ambiente e as luzes brilhantes causam a INFLAMAÇÃO de seus tecidos mentais hipersensíveis.", "Você poderia salvar este mundo condenado! Se apenas as massas não lavadas entendessem seu GÊNIO!", "Você foi vítima do vírus mental do “amor”, então o objeto de sua afeição foi viver em um buraco.", "Você codificou sua filosofia omnivalente em um único tomo para mantê-la segura e viu ela queimar enquanto fugia. Tudo está perdido.", "Cultistas Udok capturaram sua família e forçaram você a debater com eles enquanto devoravam seus pais  vivos.", "Você era o filósofo mais reverenciado de Südglans—que afundou no mar e agora todos zombam de você impiedosamente."]
         };
 
         var forlorn_philosopher_memory_2 = {
             en: ["Raised by fanatical Theists in a temple beneath Grift’s bridges.", "Born to a nameless mother in a Galgenbeck sanatorium.", "Brought up by illiterate, pig-ignorant churls in a peaceful Wästland forest.", "Raised by life-shaming cultists of the frozen Kergüs waste who think no one should be born into this dying world.", "Abandoned in Bergen Chrypt’s catacombs.", "Educated by the damned amongst the Valley of the Unfortunate Undead’s mud pits."]
             ,
             fr: ["Élevé par des Théistes fanatiques dans un temple sous les ponts de Grift.", "Né d'une mère sans nom dans un sanatorium de Galgenbeck.", "Élevé par des rustres ignorants et analphabètes dans une forêt paisible du Wästland.", "Élevé par des cultistes honteux de la vie du désert gelé de Kergüs qui pensent que personne ne devrait naître dans ce monde mourant.", "Abandonné dans les catacombes de Bergen Chrypt.", "Éduqué par les damnés au milieu des fosses de boue de la Vallée des Morts-Vivants Malheureux."]
+            ,
+            pt: ["Criado por Teístas fanáticos em um templo sob as pontes de Grift.", "Nascido de uma mãe sem nome em um sanatório de Galgenbeck.", "Criado por plebeus analfabetos e ignorantes em uma floresta pacífica do Wästland.", "Criado por cultistas que se envergonham da vida no deserto congelado de Kergüs, que pensam que ninguém deveria nascer neste mundo moribundo.", "Abandonado nas catacumbas de Bergen Chrypt.", "Educação pelos condenados entre os fossores de lama da Valey dos Mortos-Viventes Infelizes."]
         };
 
         var forlorn_philosopher_abilities = {
@@ -1187,6 +1380,12 @@
                 ['Concentration Mentale', '3d6+2 Présence.'],
                 ['Trop de Lecture!', '3d6-2 Force'],
                 ['Inquisition Impitoyable', "Testez PRÉSENCE DR14 pour déchiffrer les mensonges et les illusions des autres. Assez de ces MENSONGES!"]
+            ]
+            ,
+            pt: [
+                ['Foco Mental', '3d6+2 Presença.'],
+                ['Muita Leitura!', '3d6-2 Força'],
+                ['Inquisição Implacável', "Teste PRESENÇA DR14 para rasgar através das ilusões e mentiras dos outros. Basta dessas FALSIDADES!"]
             ]
         };
 
@@ -1207,6 +1406,15 @@
                 ['Flûte de Tosk', "Une fois par combat, lorsqu'une créature meurt, vous pouvez jouer la Fugue Écho de cette flûte en os. Cela inflige un «écho» des dégâts mortels à un ennemi aléatoire dans les environs."],
                 ['Écharpe du Stylite', "L'ESPRIT contrôle le corps! Rien n'est bon ou mauvais, mais penser le rend tel, y compris les calories et les protéines. Porter cette ceinture signifie que vous ne ressentez pas la faim et n'avez besoin que de boire de l'eau pour récupérer des PV au repos. La porter pendant plus de d4 jours vous fait vous effondrer. Il faut une journée pour retrouver son pouvoir."],
                 ['Marqué par l\'Obscurité', "Une Tablette d'Ocre Obscurité en constante évolution est tatouée sur votre chair. Lancez chaque matin quelle tablette elle est. La tablette ne peut être utilisée qu'une fois par jour mais réussit automatiquement."]
+            ]
+            ,
+            pt: [
+                ['Espinhos da Compreensão', "Quando usados, espinhos perfuram sua carne (d2 de dano) e você Percebe Tudo (-4DR no seu próximo teste e ignore as próximas duas ataques para acertar enquanto você se esquiva). Para recuperar o efeito, você deve se coroar novamente. O dano aumenta um passo a cada vez (d2 para d4 para d6 etc), até depois de uma noite de descanso"],
+                ['Coruja Hegeliana', 'Esta besta filosófica é um assistente amargo, relutante e hipersensível—persuadido com um teste de PRESENÇA DR12. Após dois atos de ajuda, ele o considera com um desprezo mudo. Ele pode buscar pequenos itens, atacar inimigos e encontrar armadilhas. À noite, a coruja entrega nos sonhos a compreensão do que você deveria ter feito hoje.<br>(Muito rápido para acertar. Garras/mordida d4. Os ataques são DR8).'],
+                ['Prisma da Ambiguidade', 'Uma fonte de luz externa e um teste de PRESENÇA DR10 são necessários para ativar o prisma. Sua luz pode brilhar em até duas criaturas curando d6 PV. Pela próxima hora, uma delas reduz todos os DR dos testes em -2. Se o teste falhar, ela sofre d4 de dano e sua armadura ou uma arma é destruída. Você pode usar o prisma duas vezes por dia.'],
+                ['Flauta de Tosk', "Uma vez por combate, quando uma criatura morre, você pode tocar a Fuga Eco desta flauta óssea. Isso causa um 'eco' dos danos fatais a um inimigo aleatório nas proximidades."],
+                ['Faixa do Estilita', "A MENTE controla o corpo! Nada é bom ou ruim, mas pensar torna assim, incluindo calorias e proteínas. Usar este cinto significa que você não sente fome e só precisa beber água para recuperar PV ao descansar. Usá-lo por mais de d4 dias faz você desmaiar. Leva um dia para recuperar seu poder."],
+                ['Marcado pela Obscuridade', "Uma Tableta de Ocre Obscuridade em constante evolução é tatuada em sua carne. Role cada manhã qual tablet é. A tablet só pode ser usada uma vez por dia mas tem sucesso automático."]
             ]
         };
 
@@ -1236,6 +1444,19 @@
                 ["Méta-Alchimie (tablette ocre)", "L'utilisateur peut transformer un récipient de liquide de l'une des manières suivantes:<ol><li>Le transmuter en deux doses de Poison Rouge ou Noir.</li><li>Créer la Répugnance de Vulark. Le buveur lance un test de ENDURANCE DC16 ou saute de grandes hauteurs.</li><li>Transformer le poison en eau ou en vin.</li></ol>"],
                 ["Palpitation Cognitive Mémétique (tablette ocre)", "Des changements corporels presque imperceptibles transmettent une simple peste mentale qui fait danser follement une créature pendant d4 rounds. Elle ne peut ni attaquer ni se défendre pendant cette choréomanie."]
             ]
+            ,
+            pt: [
+                ["Teoria do Sonho (tablet de ocre)", "O alvo começa a duvidar que é real. Atacar e defender contra ele é -2 DR (+2 DR para PCs afetados)."],
+                ["Compreensão Total da Matéria (tablet de ocre)", "Conserta ou quebra um item de tamanho normal, mundano ou não, incluindo armaduras (aumenta/diminui um nível) e armas."],
+                ["Ping o Subconsciente Compartilhado (tablet de ocre)", "Você sente a presença de criaturas vivas dentro de 70 pés mesmo em salas adjacentes."],
+                ["Prognosticação Lógica (tablet de ocre)", "Usando Lógica Pura, você pode deduzir a natureza de quaisquer armadilhas ou mecanismos dentro de 30 pés ou de quaisquer Poderes usados dentro de 60 pés."],
+                ["Espeleofagia Carno-Orgânica (tablet de ocre)", "Transmuta uma rocha do tamanho de uma criança em carne queimada e mastigável. Alimenta d4 pessoas famintas."],
+                ["Pneumotoxina Trancada no Tempo (Lua Congelante) (tablet de ocre)", "Este tablet rachado pode ser esmagado em um pó grosso. Se espalhado sobre uma criatura, ela sofre d6 de dano—em um 6, ela se engasga e morre. O tablet reaparece todas as manhãs na posse de seu dono. O teste de PRESENÇA deste Poder é inofensivo para o portador, determinando se o pó encontra o alvo ou não."],
+                ["Irrelevância Induzida (tablet de ocre)", "O código deste tablet literalmente remove o significado essencial de uma criatura por d4 rodadas. Durante as quais os inimigos não a atacarão, mesmo que ela os ataque primeiro."],
+                ["Crio-Condensação Estrutural (Lua Congelante) (tablet de ocre)", "A água congela do ar formando uma ponte de 15 pés de comprimento ou toda a água dentro de 150 pés (infelizmente excluindo aquela dentro de criaturas vivas) congela."],
+                ["Meta-Alquimia (tablet de ocre)", "O usuário pode transformar um recipiente de líquido de uma das seguintes maneiras:<ol><li>Transmutá-lo em duas doses de Veneno Vermelho ou Preto.</li><li>Criar O Nojo de Vulark. O bebedor rola um teste de RESISTÊNCIA DC16 ou pula de grandes alturas.</li><li>Transformar veneno em água ou vinho.</li></ol>"],
+                ["Palpitação Cognitiva Memética (tablet de ocre)", "Mudanças corporais quase imperceptíveis transmitem uma simples praga mental que faz uma criatura dançar loucamente por d4 rodadas. Eles não podem atacar nem se defender durante essa coreomania."]
+            ]
         };
 
         // Names
@@ -1248,18 +1469,24 @@
             en: ["Endlessly aggravated", "Inferiority complex", "Problems with authority", "Loud mouth", "Cruel", "Egocentric", "Nihilistic", "Prone to substance abuse", "Conflicted", "Shrewd", "Vindictive", "Cowardly", "Lazy", "Suspicious", "Ruthless", "Worried", "Bitter", "Deceitful", "Wasteful", "Arrogant", "Abrasive", "Mannerless", "Self-assured", "Fanatical", "Hypocritical", "Eccentric", "Morbid", "One-sided", "Enigmatic", "Hesitant", "Scared of commitment", "Aggressive", "Shortsighted", "Stubborn", "Mischievous", "Grim", "Ritualistic", "Brutal", "Unpredictable", "Prejudiced", "Vulgar", "Sloppy", "Impulsive", "Calculating", "Pedantic", "Gullible", "Demanding", "Whiny", "Ungrateful", "Hedonistic", "Shallow", "Fearless", "Scheming", "Nagging", "Fatalistic", "Defensive", "Hateful", "Argumentative", "Tormenting", "Self-conscious", "Irresponsible", "Melancholic", "Arbitrary", "Inconsistent", "Imitative", "Sarcastic", "Rude", "Vain", "Petty", "Resentful", "Disloyal", "Strict", "Anarchistic", "Dependent", "Snobbish", "Untrusting", "Assertive", "Charmless", "Pompous", "Greedy", "Tactless", "Unhelpful", "Anxious", "Gloomy", "Undisciplined", "Careless", "Nosy", "Domineering", "Dull", "Rebellious"]
             ,
             fr: ["Sans fin aggravé", "Complexe d'infériorité", "Problèmes avec l'autorité", "Grande gueule", "Cruel", "Égocentrique", "Nihiliste", "Enclin à l'abus de substances", "Conflit", "Ruse", "Vindicatif", "Lâche", "Paresseux", "Suspicieux", "Impitoyable", "Inquiet", "Amer", "Trompeur", "Gaspilleur", "Arrogant", "Abrasif", "Sans manières", "Sûr de lui", "Fanatique", "Hypocrite", "Excentrique", "Morbide", "Unilatéral", "Énigmatique", "Hésitant", "Peur de l'engagement", "Agressif", "Moyope", "Têtu", "Malicieux", "Sinistre", "Ritualiste", "Brutal", "Imprévisible", "Préjudiciable", "Vulgaire", "Négligent", "Impulsif", "Calculateur", "Pédant", "Crédule", "Exigeant", "Plaintif", "Ingrat", "Hédoniste", "Superficiel", "Intrépide", "Intrigant", "Harcèlement", "Fataliste", "Défensif", "Haineux", "Argumentatif", "Tourmenteur", "Gêné", "Irresponsable", "Mélancolique", "Arbitraire", "Inconstant", "Imitatif", "Sarcastique", "Impoli", "Vain", "Mesquin", "Rancunier", "Déloyal", "Strict", "Anarchiste", "Dépendant", "Snob", "Méfiance", "Assertif", "Sans charme", "Pompier", "Avare", "Sans tact", "Inutile", "Anxieux", "Morose", "Indiscipliné", "Négligent", "Curieux", "Autoritaire", "Ennuyeux", "Rebelle"]
+            ,
+            pt: ["Infinitamente irritado", "Complexo de inferioridade", "Problemas com a autoridade", "Boca grande", "Cruel", "Egocêntrico", "Nihilista", "Propenso ao abuso de substâncias", "Conflituoso", "Astuto", "Vingativo", "Covarde", "Preguiçoso", "Suspeito", "Implacável", "Preocupado", "Amargo", "Enganador", "Desperdiçador", "Arrogante", "Abrasivo", "Sem maneiras", "Confiante", "Fanático", "Hipócrita", "Excêntrico", "Mórbido", "Unilateral", "Enigmático", "Hesitante", "Medo de compromisso", "Agressivo", "Míope", "Teimoso", "Travesso", "Sombrio", "Ritualista", "Brutal", "Imprevisível", "Prejudicial", "Vulgar", "Desleixado", "Impulsivo", "Calculista", "Pedante", "Ingênuo", "Exigente", "Chorão", "Ingrato", "Hedonista ", "Superficial", "Destemido", "Intrigante", "Harcèlement", "Fatalista", "Defensivo", "Hateful", "Argumentativo", "Tormentador", "Consciente de si mesmo", "Irresponsável", "Melancólico", "Arbitrário", "Inconsistente", "Imitativo", "Sarcástico", "Rude", "Vaidoso", "Mesquinho", "Rancoroso", "Desleal", "Estrito", "Anarquista", "Dependente", "Snob", "Desconfiado", "Assertivo", "Sem charme", "Pompous", "Ganancioso", "Sem tato", "Inútil", "Ansioso", "Sombrio", "Indisciplinado", "Descuidado", "Curioso", "Domineering", "Chato", "Rebelde"]
         };
 
         var bodies = {
             en: ["Staring manic gaze.", "Covered in (for some) blasphemous tattoos.", "Rotting face. Wears a mask.", "Lost three toes, limps.", "Starved: taunt and pale.", "One hand replaced with rusting hook (d6 damage).", "Decaying teeth.", "Hauntingly beautiful, unnervingly clean.", "Hands caked with sores.", "Cataracts slowly but surly spreading in both eyes.", "Long tangled hair, at least one cockroach in residence.", "Broken, crushed ears.", "Juddering and stuttering from nerve damage or stress.", "Corpulent, ravenous, drooling.", "One hand lacks thumb and index finger, grips like a lobster.", "Red, swollen alcoholic’s nose.", "Resting maniac face, making friends is hard.", "Chronic athlete’s foot. Stinks.", "Recently slashed and stinking eye covered with a patch.", "Nails cracked and black, maybe about to drop off.", "Always-dripping nose.", "Lacking a navel.", "Bulbous growth on the neck. It moves when nobody sees.", "Chapped and cracked lips.", "Painfully average.", "Face covered in pustules.", "Short of stature.", "Bones that crack with every movement.", "Taller than most.", "Eyebrows lost to fire and memory.", "Broken nose, crooked forever.", "Gut telling tales of too many ales.", "Completely and utterly hairless.", "Forked tongue. A sign?", "Eyelids marked with charcoal, always.", "Nasty scar where a lung used to sit.", "Born with six fingers on each hand.", "Small eyes, making anyone suspicious.", "Hair coarse like bristles.", "Bad back and worse posture."]
             ,
             fr: ["Regard maniaque fixe.", "Couvert de tatouages (pour certains) blasphématoires.", "Visage en putréfaction. Porte un masque.", "A perdu trois orteils, boite.", "Affamé: maigre et pâle.", "Une main remplacée par un crochet rouillé (d6 dégâts).", "Dents en décomposition.", "Étrangement beau, étrangement propre.", "Mains croûtées de plaies.", "Cataractes se propageant lentement mais sûrement dans les deux yeux.", "Cheveux longs et emmêlés, au moins un cafard en résidence.", "Oreilles cassées, écrasées.", "Tremblant et bégayant à cause de lésions nerveuses ou de stress.", "Corpulent, vorace, bavant.", "Une main manque de pouce et d'index, agrippe comme un homard.", "Nez rouge, enflé d'alcoolique.", "Visage maniaco-reposant, se faire des amis est difficile.", "Pied d'athlète chronique. Pique.", "Œil récemment tailladé et puant couvert d'un cache-œil.", "Ongles fissurés et noirs, peut-être sur le point de tomber.", "Nez qui coule constamment.", "Manque de nombril.", "Excroissance bulbeuse sur le cou. Elle bouge quand personne ne regarde.", "Lèvres gercées et fendillées.", "Douloureusment Moyen.", "Visage couvert de pustules.", "De petite taille.", "Os qui craquent à chaque mouvement.", "Plus grand que la plupart.", "Sourcils perdus par le feu et la mémoire.", "Nez cassé, tordu pour toujours.", "Ventre racontant des histoires de trop de bières.", "Complètement et absolument chauve.", "Langue fourchue. Un signe?", "Paupières marquées au fusain, toujours.", "Méga cicatrice où un poumon se trouvait autrefois.", "Né avec six doigts à chaque main.", "Petits yeux, rendant n'importe qui suspect.", "Cheveux rêches comme des soies de cochon.", "Mauvais dos et pire posture."]
+            ,
+            pt: ["Olhar maníaco fixo.", "Coberto de tatuagens (para alguns) blasfemas.", "Rosto apodrecendo. Usa uma máscara.", "Perdeu três dedos dos pés, manca.", "Faminto: magro e pálido.", "Uma mão substituída por um gancho enferrujado (d6 de dano).", "Dentes em decomposição.", "Assustadoramente bonito, assustadoramente limpo.", "Mãos cobertas de feridas.", "Cataratas se espalhando lenta mas seguramente em ambos os olhos.", "Cabelos longos e emaranhados, pelo menos uma barata em residência.", "Orelhas quebradas, esmagadas.", "Tremendo e gaguejando por danos nervosos ou estresse.", "Corpulento, voraz, babando.", "Uma mão sem polegar e dedo indicador, agarra como uma lagosta.", "Nariz vermelho e inchado de alcoólatra.", "Rosto maníaco em repouso, fazer amigos é difícil.", "Pé de atleta crônico. Cheira mal.", "Olho recentemente cortado e fedorento coberto com um tapa-olho.", "Unhas rachadas e pretas, talvez prestes a cair.", "Nariz sempre escorrendo.", "Faltando um umbigo.", "Crescimento bulboso no pescoço. Ele se move quando ninguém vê.", "Lábios rachados e rachados.", "Dolorosamente médio.", "Rosto coberto de pústulas.", "Baixo de estatura.", "Ossos que estalam a cada movimento.", "Mais alto que a maioria.", "Sobrancelhas perdidas para o fogo e a memória.", "Nariz quebrado, torto para sempre.", "Barriga contando histórias de muitas cervejas.", "Completamente e absolutamente sem pelos.", "Língua bifurcada. Um sinal?", "Pálpebras marcadas com carvão, sempre.", "Cicatriz desagradável onde um pulmão costumava estar.", "Nascido com seis dedos em cada mão.", "Olhos pequenos, tornando qualquer um suspeito.", "Cabelos ásperos como cerdas de porco.", "Mau costas e pior postura."]
         };
 
         var bad_habits = {
             en: ["Obsessively collect small sharp stones.", "Won’t use a blade without testing it on your own flesh. Arms knitted with scars.", "Can’t stop drinking once you start.", "Gambling addict. Must bet every day. If you lose, raise and bet again.", "Cannot tolerate criticism of any kind. Results in rage and weeping.", "Unable to get to the point. Have never actually finished a story.", "Best friend is a skull. Carry it with you, tell it everything, you trust no one more.", "You pick your nose so deep it bleeds.", "Laugh hysterically at your own jokes which you then explain in detail.", "A nihilist. You insist on telling everyone you are a nihilist and explaining why.", "Inveterate bug eater.", "Stress response is aesthetic display. The worse things get the fancier you need to be.", "Permanent phlegm deposit in throat. Continuously cough, snort, spit and swallow.", "Pyromaniac.", "Consistently lose important items and forget vital facts.", "Insecure shit-stirrer. Will talk about whoever just left the room.", "You stutter when lying.", "You giggle insanely at the worst possible times.", "You whistle while trying to hide. You will deny this. Whistle when 5, 7, 9, 11 or 13 is rolled on a d20.", "You make jewelry from the teeth of the dead.", "Cannot remember a name to save your life. Great at faces, though.", "Compelled to lick things clean.", "Yawns constantly.", "Snores like a dreaming troll. Others must test TOUGHNESS to sleep.", "Only eats things with given names.", "Obsessively steals from those that have less. Fears those that have more.", "Never learned to share.", "Feels the need to point out any and all mistakes others make. In detail.", "You bite your nails and save them for later.", "Terrified of being alone.", "Never trusts anything with 4 legs.", "You walk in your sleep, 1 in 12 times waking somewhere very unfortunate.", "Convinced you are a talented singer. This is not the case.", "A terrible winner and even worse loser. Everything’s a competition.", "Convinced you cannot die.", "A mythomaniac, you like to create your own truths.", "Dumb labor is beneath you.", "Compulsively swallows silver coins, to keep them safe for the afterlife. Jingle-jangle when you run.", "Can speak to horses. Or so you think.", "You are a philosopher. But are you really a philosopher?"]
             ,
             fr: ["Collectionne obsessionnellement les petites pierres pointues.", "N'utilisera pas de lame sans la tester sur votre propre chair. Bras tricotés de cicatrices.", "Ne peut pas s'arrêter de boire une fois commencé.", "Accro au jeu. Doit parier tous les jours. Si vous perdez, augmentez et pariez à nouveau.", "Ne peut tolérer aucune critique. Entraîne rage et pleurs.", "Incapable d'aller droit au but. N'a jamais vraiment terminé une histoire.", "Le meilleur ami est un crâne. Portez-le avec vous, dites-lui tout, vous ne faites confiance à personne de plus.", "Vous vous curez le nez si profondément qu'il saigne.", "Riez hystériquement à vos propres blagues que vous expliquez ensuite en détail.", "Nihiliste. Vous insistez pour dire à tout le monde que vous êtes nihiliste et expliquer pourquoi.", "Mangeur d'insectes invétéré.", "La réponse au stress est l'affichage esthétique. Plus les choses empirent, plus vous devez être chic.", "Dépôt permanent de flegme dans la gorge. Tousse, renifle, crache et avale continuellement.", "Pyromane.", "Perd constamment des objets importants et oublie des faits vitaux.", "Agitateur de merde insecure. Parlera de quiconque vient de quitter la pièce.", "Vous bégayez en mentant.", "Vous gloussez follement aux pires moments possibles.", "Vous sifflez en essayant de vous cacher. Vous le nierez. Sifflez lorsque 5, 7, 9, 11 ou 13 est lancé sur un d20.", "Vous fabriquez des bijoux à partir des dents des morts.", "Impossible de se souvenir d'un nom pour sauver votre vie. Très bon pour les visages, cependant.", "Compulsé à lécher les choses propres.", "Bâille constamment.", "Ronfle comme un troll rêveur. Les autres doivent tester ENDURANCE pour dormir.", "Ne mange que des choses avec des noms propres.", "Vole obsessionnellement ceux qui ont moins. Craint ceux qui ont plus.", "N'a jamais appris à partager.", "Ressent le besoin de signaler toutes les erreurs des autres. En détail.", "Vous vous rongez les ongles et les gardez pour plus tard.", "Terrifié d'être seul.", "Ne fait jamais confiance à rien avec 4 jambes.", "Vous marchez dans votre sommeil, 1 fois sur 12 vous vous réveillez quelque part de très malheureux.", "Convaincu d'être un chanteur talentueux. Ce n'est pas le cas.", "Un terrible gagnant et un perdant encore pire. Tout est une compétition.", "Convaincu que vous ne pouvez pas mourir.", "Mythomane, vous aimez créer vos propres vérités.", "Le travail stupide est en dessous de vous.", "Avalle compulsivement des pièces d'argent, pour les garder en sécurité pour l'au-delà. Jingle-jangle quand vous courez.", "Peut parler aux chevaux. Ou du moins le pensez-vous.", "Vous êtes un philosophe. Mais êtes-vous vraiment un philosophe?"]
+            ,
+            pt: ["Coleciona obsessivamente pequenas pedras afiadas.", "Não usará uma lâmina sem testá-la em sua própria carne. Braços tricotados com cicatrizes.", "Não consegue parar de beber uma vez que começa.", "Viciado em jogos de azar. Deve apostar todos os dias. Se perder, aumente e aposte novamente.", "Não pode tolerar críticas de qualquer tipo. Resulta em raiva e choro.", "Incapaz de chegar ao ponto. Nunca terminou uma história.", "Melhor amigo é um crânio. Carregue-o com você, conte tudo a ele, você não confia em ninguém mais.", "Você cutuca o nariz tão profundamente que sangra.", "Ria histericamente de suas próprias piadas que você então explica em detalhes.", "Um niilista. Você insiste em dizer a todos que é um niilista e explicar por quê.", "Comedor inveterado de insetos.", "Resposta ao estresse é exibição estética. Quanto pior as coisas ficam, mais chique você precisa ser.", "Depósito permanente de fleuma na garganta. Tosse continuamente, fungar, cuspir e engolir.", "Piromaníaco.", "Consistentemente perde itens importantes e esquece fatos vitais.", "Agitador de merda inseguro. Vai falar sobre quem acabou de sair da sala.", "Você gagueja quando mente.", "Você risca insanamente nos piores momentos possíveis.", "Você assobia enquanto tenta se esconder. Você negará isso. Assobie quando 5, 7, 9, 11 ou 13 for rolado em um d20.", "Você faz joias com os dentes dos mortos.", "Não consegue lembrar de um nome para salvar sua vida. Ótimo para rostos, no entanto.", "Compelido a lamber as coisas limpas.", "Boceja constantemente.", "Ronca como um troll sonhador. Os outros devem testar ENDURANCE para dormir.", "Só come coisas com nomes dados.", "Rouba obsessivamente daqueles que têm menos. Tem medo daqueles que têm mais.", "Nunca aprendeu a compartilhar.", "Sente a necessidade de apontar todos os erros que os outros cometem. Em detalhes.", "Você morde as unhas e as guarda para mais tarde.", "Aterrorizado de ficar sozinho.", "Nunca confia em nada com 4 pernas.", "Você anda sonâmbulo, 1 em 12 vezes acordando em algum lugar muito infeliz.", "Convencido de que é um cantor talentoso. Este não é o caso.", "Um péssimo vencedor e um perdedor ainda pior. Tudo é uma competição.", "Convencido de que não pode morrer.", "Um mitômano, você gosta de criar suas próprias verdades.", "Trabalho burro está abaixo de você.", "Engole compulsivamente moedas de prata, para mantê-las seguras para a vida após a morte. Jingle-jangle quando você corre.", "Pode falar com cavalos. Ou assim você pensa.", "Você é um filósofo. Mas você é realmente um filósofo?"]
         };
 
         // Tales
@@ -1268,6 +1495,8 @@
             en: ["Pursued for manslaughter. There is a bounty.", "In massive debt. The debt is being traded to successively more ruthless groups.", "Have a rare, sought after item.", "Have a cursed never healing wound.", "Had an illegal, immoral and secret affair with a member of the royal family. Has proof.", "Escaped cult member. Terrified and paranoid. Other cultists are everywhere.", "An identity thief who recently killed and replaced this person.", "Banished and disowned for unspecified deeds. Can never go home.", "Deserted military after witnessing a massacre, bounty on head. Hunted by former friends.", "Very recently murdered a close relative. Very recently.", "A puzzle cube has been calibrated incorrectly (or has it?), awakening a slumbering abomination.", "Evil creatures love the scent of your spoor and are drawn to it, bringing disaster in your wake.", "A battle wound left a shard of metal slowly inching closer to your heart. Every day there is a 2% chance it reaches it.", "Violence forced you into the wilderness. You think waving trees are whispering. You talk to, scream at, attack trees.", "Cursed to share the nightmares of others, you sleep far, far away.", "At permanent war with all corvids. No contact without some violence. You carry a sling.", "After dreaming of an underground temple to a forgotten god you understand the songs of insects and worms.", "Being tracked and observed by a golem after an agreement which you know has been wiped form your mind.", "\'Burn or be burned\' is the fate you accept.", "Your flesh heals twice as fast, but your companions twice as slow. You see a many-eye \'guardian angel\'."]
             ,
             fr: ["Poursuivi pour homicide involontaire. Il y a une prime.", "Endetté massivement. La dette est échangée à des groupes successivement plus impitoyables.", "Possède un objet rare et recherché.", "A une blessure maudite qui ne guérit jamais.", "A eu une liaison illégale, immorale et secrète avec un membre de la famille royale. A des preuves.", "Ancien membre de culte échappé. Terrifié et paranoïaque. D'autres cultistes sont partout.", "Un voleur d'identité qui a récemment tué et remplacé cette personne.", "Banni et désavoué pour des actes non spécifiés. Ne peut jamais rentrer à la maison.", "A déserté l'armée après avoir été témoin d'un massacre, prime sur la tête. Chassé par d'anciens amis.", "A très récemment assassiné un proche parent. Très récemment.", "Un cube de puzzle a été mal calibré (ou l'a-t-il été?), réveillant une abomination endormie.", "Les créatures maléfiques aiment l'odeur de votre trace et y sont attirées, apportant le désastre dans votre sillage.", "Une blessure de bataille a laissé un éclat de métal se rapprochant lentement de votre cœur. Chaque jour, il y a 2% de chances qu'il l'atteigne.", "La violence vous a forcé à vous réfugier dans la nature. Vous pensez que les arbres qui bougent chuchotent. Vous parlez à, criez sur, attaquez les arbres.", "Maudit de partager les cauchemars des autres, vous dormez très, très loin.", "En guerre permanente avec tous les corvidés. Aucun contact sans violence. Vous portez une fronde.", "Après avoir rêvé d'un temple souterrain à un dieu oublié, vous comprenez les chants des insectes et des vers.", "Être suivi et observé par un golem après un accord que vous savez avoir été effacé de votre esprit.", "\'Brûler ou être brûlé\' est le destin que vous acceptez.", "Votre chair guérit deux fois plus vite, mais vos compagnons deux fois plus lentement. Vous voyez un \'ange gardien\' à plusieurs yeux."]
+            ,
+            pt: ["Perseguido por homicídio culposo. Há uma recompensa.", "Em dívida massiva. A dívida está sendo negociada para grupos sucessivamente mais implacáveis.", "Tem um item raro e procurado.", "Tem uma ferida amaldiçoada que nunca cicatriza.", "Teve um caso ilegal, imoral e secreto com um membro da família real. Tem provas.", "Membro de culto fugitivo. Aterrorizado e paranoico. Outros cultistas estão por toda parte.", "Um ladrão de identidade que recentemente matou e substituiu esta pessoa.", "Banido e deserdado por feitos não especificados. Nunca pode voltar para casa.", "Desertou do exército após testemunhar um massacre, recompensa na cabeça. Caçado por antigos amigos.", "Recentemente assassinou um parente próximo. Muito recentemente.", "Um cubo de quebra-cabeça foi calibrado incorretamente (ou foi?), despertando uma abominação adormecida.", "Criaturas malignas adoram o cheiro de sua trilha e são atraídas por ela, trazendo desastre em seu rastro.", "Uma ferida de batalha deixou um fragmento de metal se aproximando lentamente do seu coração. Todos os dias há uma chance de 2% de que ele o alcance.", "A violência forçou você a se refugiar na natureza. Você acha que as árvores que balançam estão sussurrando. Você fala com, grita com, ataca árvores.", "Amaldiçoado para compartilhar os pesadelos dos outros, você dorme muito, muito longe.", "Em guerra permanente com todos os corvídeos. Nenhum contato sem alguma violência. Você carrega uma funda.", "Depois de sonhar com um templo subterrâneo para um deus esquecido, você entende as canções dos insetos e vermes.", "Sendo rastreado e observado por um golem após um acordo que você sabe ter sido apagado da sua mente.", "\'Queimar ou ser queimado\' é o destino que você aceita.", "Sua carne cicatriza duas vezes mais rápido, mas seus companheiros duas vezes mais devagar. Você vê um \'anjo da guarda\' de muitos olhos."]
         };
 
         // Scrolls
@@ -1296,6 +1525,18 @@
                 ["Paupière Aveugle l'Esprit (impur)", "d4 créatures s'endorment pendant une heure sauf si elles réussissent un test DR14"],
                 ["Mort (impur)", "Toutes les Créatures à moins de 30 pieds perdent un total de 4d10 PV"]
             ]
+            ,
+            pt: [
+                ["Palmas Abrem o Portão do Sul (pergaminho impuro)", "Uma bola de fogo atinge d2 criaturas causando d8 de dano por criatura"],
+                ["Língua de Eris (pergaminho impuro)", "Uma criatura de sua escolha fica confusa por 10 minutos"],
+                ["Te-Le-Kin-Esis (pergaminho impuro)", "Mova um objeto até d10*10 pés por d6 minutos"],
+                ["Levitacao de Lucy-Fires (pergaminho impuro)", "Flutue por PRESENÇA+d10 rounds"],
+                ["Demônio dos Capilares (pergaminho impuro)", "Uma criatura sufoca por d6 rounds, perdendo d4 HP por round"],
+                ["Metzhuotl Cega Seu Olho (pergaminho impuro)", "Uma criatura se torna invisível por d6 rounds ou até ser danificada, atacando/defendendo com DR6"],
+                ["Psicopompo Fedorento (pergaminho impuro)", "Invoca (d6): 1-3 d4 esqueletos, 4-6 d4 zumbis"],
+                ["Pálpebra Cega a Mente (pergaminho impuro)", "d4 criaturas adormecem por uma hora, a menos que tenham sucesso em um teste DR14"],
+                ["Morte (pergaminho impuro)", "Todas as Criaturas a menos de 30 pés perdem um total de 4d10 HP"]
+            ]
         };
 
         var sacred_scrolls = {
@@ -1323,6 +1564,19 @@
                 ["Pas Hermétique (sacré)", "Vous trouvez tous les pièges sur votre chemin de 2d10 minutes"],
                 ["Regard Consumant de Roskoe (sacré)", "d4 créatures perdent d8 chacune"],
                 ["Syntaxe Énochienne (sacré)", "Une créature obéit aveuglément à un seul commandement"]
+            ]
+            ,
+            pt: [
+                ["Graça de um Santo Morto (pergaminho sagrado)", "d2 criaturas recuperam d10 HP cada"],
+                ["Graça para um Pecador (pergaminho sagrado)", "Uma criatura de sua escolha recebe +d6 em um rolamento (dano, testes, etc.)"],
+                ["Sussurros Passam o Portão (pergaminho sagrado)", "Faça três perguntas a uma criatura falecida"],
+                ["Égide da Tristeza (pergaminho sagrado)", "Uma criatura de sua escolha ganha 2d6 HP extras por 10 rounds"],
+                ["Destino Não Cumprido (pergaminho sagrado)", "Uma criatura, morta há no máximo uma semana, é despertada com memórias terríveis"],
+                ["Fala Bestial (pergaminho sagrado)", "Você pode falar com animais por d20 minutos"],
+                ["Falsa Aurora/Carro de Noite (pergaminho sagrado)", "Luz ou escuridão total por 3d10 minutos"],
+                ["Passo Hermético (pergaminho sagrado)", "Você encontra todas as armadilhas em seu caminho por 2d10 minutos"],
+                ["Olhar Consumidor de Roskoe (pergaminho sagrado)", "d4 criaturas perdem d8 cada"],
+                ["Sintaxe Enochiana (pergaminho sagrado)", "Uma criatura obedece cegamente a um único comando"]
             ]
         };
 
@@ -1405,6 +1659,45 @@
                 ["Brise-Bouclier", "Vous savez que le moment où un adversaire est le plus vulnérable est juste après qu'il ait attaqué.", "Chaque fois que vous utilisez votre bouclier pour bloquer tous les dégâts entrants, vous pouvez tenter une contre-attaque avec +3 dégâts."],
                 ["Écorcheur", "Votre peau rampe et démange constamment. Toujours en train de former des croûtes et ignoble. La peau des autres vous apporte un réconfort momentané.", "Vous pouvez porter la peau d'une créature que vous avez récemment tuée pour vous déguiser. Vous ressemblez, sonnez et sentez même comme eux.<br>La peau se décompose après d4 heures et vous revenez à votre forme normale et misérable."],
                 ["Sang Vil", "Quelque chose ne va pas avec votre sang. Il ressemble plus à l'ichor putride d'un cadavre.", "Chaque fois qu'une créature vous attaque avec une morsure et vous blesse, elle est empoisonnée. Elle subit d4 dégâts pendant d6 rounds. De plus, si vous souffrez d'une infection, lancez un d2. Sur un 2, vous n'avez pas d'infection."]
+            ]
+            ,
+            pt: [
+                ["Golpe de Misericórdia do Assassino", "Uma pegada firme. Uma faca afiada. É tudo o que é preciso para alguém desaparecer nos becos de Galgenbeck. Você se tornou um especialista nisso ao longo dos anos.", "Passar em um teste de FORÇA DR12 permite que você agarre um inimigo desprevenido e cause um crítico automaticamente com uma arma de lâmina de uma mão."],
+                ["Orador da Morte Temperado em Batalha", "Você foi chamado para a batalha, não por sua proeza com lâmina e escudo. Não por sua velocidade e força. Mas porque as palavras que você proferia traziam a morte aos seus inimigos.", "Você pode conjurar Poderes enquanto veste armadura média. Você pode escolher este talento uma segunda vez para incluir também armadura pesada."],
+                ["Erudito Bestial", "Você estuda as bestas da terra. Eviscerando-as e espalhando as vísceras para descobrir os segredos do mundo.", "Você pode adivinhar e ver o futuro com as entranhas de um animal. Ganhe um presságio para cada 10PV que a besta tinha, mas nunca mais do que seus presságios máximos. Utilizável uma vez por tipo de animal. As entranhas das bestas também podem fornecer informações esclarecedoras."],
+                ["Nudilhos Ensanguentados", "Anos de luta com as mãos nuas transformaram seus punhos em porretes mortais. Eles estão pesados com cicatrizes dos culpados e inocentes.", "Seus ataques desarmados causam dano d6 e ignoram armadura leve. Você pode escolher este talento uma segunda vez para aumentar para dano d8 e armadura média. Você pode escolher este talento uma terceira vez para aumentar para dano d10 e fazer com que ignorem todas as armaduras. Falhar em um ataque desarmado significa que você quebra a mão, causando o dano a si mesmo. Você deve procurar ajuda especializada para colocar seus ossos no lugar."],
+                ["Pacto de Sangue", "É um mundo cruel para se estar sozinho. Mas você encontrou uma maneira de evitar esse destino.", "Forme um pacto de sangue com um participante disposto. Vocês podem se comunicar por pensamento, não importa a distância, isso nunca acaba. O que um experiencia, o outro também sente. Isso inclui ferimentos e morte."],
+                ["Fúria Sanguinária", "A adrenalina do combate é viciante. Você está sempre atrás desse barato. É matar ou morrer. Você não pode parar para fazer perguntas.", "Ao desferir um ataque que mata uma criatura, você deve se mover e atacar outra (isso pode incluir aliados), adicionando d6 de dano para cada criatura abatida. Seu ataque termina quando você falha em matar e você cai no chão exausto, perdendo seu próximo turno."],
+                ["Artífice de Ossos", "Você não acredita em deixar as coisas serem desperdiçadas. Incluindo os cadáveres dos caídos.", "Você pode criar equipamentos de qualidade estranhamente alta usando vários cadáveres humanoides.Uma arma d6, 1 cadáver de ossos.Um escudo, 5 cadáveres de ossos.Armadura leve, 10 cadáveres de ossos."],
+                ["Açougueiro", "Você já cortou gado e aves em pequenos pedaços antes. Você sabe como eles funcionam e como são feitos. Humanos não são tão diferentes.", "Em um teste de AGILIDADE DR12, qualquer aliado que morrer perto de você torna-se apenas ferido enquanto você tenta uma cirurgia de salvamento de vida rápida. Caso a pessoa ainda morra, você pode fazer d4 rações a partir do cadáver."],
+                ["Assassino Calmo", "A faca ou flecha que é mais cuidadosa é a mais mortal. Você tem um olho clínico para aberturas e falhas nas armaduras.", "Uma vez por turno, ao fazer um ataque à distância ou corpo a corpo, você pode rolar novamente o dano causado e manter o resultado mais alto."],
+                ["Olhos de Gato", "Você olhou para os pássaros em busca de um sinal. Ossos espalhados, entranhas derramadas. Por nada. Mas um dia você viu seu destino nos olhos de um gato espreitando nas sombras.", "Visão perfeita na escuridão, mas a luz do sol queima seus olhos. -2DR em PRESENÇA quando na escuridão, +2DR à luz do dia. Encarar os olhos de uma besta selvagem permite que você sinta o que quer que ela esteja sentindo."],
+                ["Empunhadura Dupla", "Você não é um soldado treinado. Mas você acha que duas armas devem ajudá-lo a matar duas vezes mais rápido. Isso não te falhou ainda.", "Você não sofre penalidade ao atacar com duas armas, você rola ambos os dados de dano e combina os resultados."],
+                ["Visões Fatais", "Os destinos conduzem sua jornada pelo mundo moribundo. Só se pode esperar que eles o guiem para a redenção e não para a destruição.", "Consuma um presságio e gaste alguns momentos em meditação silenciosa. Faça ao Mestre de Jogo uma pergunta referente à situação atual. Você receberá uma visão bizarra que fornece informações esclarecedoras. O MJ rola um d4 em segredo; em 1, a visão é enganosa."],
+                ["Estômago de Ferro", "Quando as colheitas falham e o gado dá à luz abominações intragáveis, aprende-se a não ser exigente quando se trata de comida.", "Você pode consumir carne podre e pútrida com um teste de VIGOR DR6. Outros que testemunharem isso podem achar nojento. Párias rolam moral."],
+                ["Primeiro Ataque", "Você acredita que os Campos Cintilantes são para aqueles que saltam para a batalha, aqueles que são os primeiros a colher a glória.", "Seja o seu lado passando ou falhando no teste de iniciativa, você sempre pode agir primeiro se sua ação envolver infligir dano."],
+                ["Golpe Corajoso", "Você já viu um homem decapitar um cavalo com uma espada gigante. Era menos uma espada e mais uma grande placa de ferro. Você não consegue evitar pensar nos olhos vazios da besta sempre que balança sua própria espada.", "Ao empunhar armas de duas mãos (zweihander), você pode atacar com +2 no seu DR. Se o ataque acertar, você adiciona d6 ao seu dano. Errar permite que seu oponente revide com um ataque que você pode defender com +2DR"],
+                ["Arauto da Miséria", "Você sente uma bênção sombria percorrer suas veias. Você se dedicou ao disco negro que bloqueará o sol.", "Ganhe 4 presságios máximos em vez de 2. Enquanto você viver, o MJ rola dois dados de miséria todos os dias."],
+                ["Curandeiro Herbalista", "Você passou o que pareceu uma eternidade sob a tutela cheia de névoa de um mestre herbalista. Você saiu com uma nova perspectiva de vida e algumas habilidades extras.", "Uma vez por dia, você pode procurar ervas e flora necessárias para criar um elixir de cura de infecção que também cura d4 PV. PRESENÇA DR12 para tentar este tratamento; falhar cria uma toxina que causa d4 de dano."],
+                ["Crescimento Horrível", "Talvez tenha sido algo que você comeu, ou um Poder tornou-se malévolo. O que quer que seja, você não consegue se livrar disso.", "Você desenvolve violentamente um braço e uma mão extras. Funciona exatamente como seus outros braços e pode agarrar coisas perfeitamente. Outras pessoas veem isso como um sinal de maldade."],
+                ["Hiperalerta", "Você é paranoico. Vendo perigo em cada sombra. Tudo quer matá-lo. Você está agitado com movimentos de pássaro.", "Você nunca pode ser vítima de um ataque surpresa. Além disso, seu lado assume a iniciativa em 3+."],
+                ["Memória Imortal", "Você é assombrado pelas memórias daqueles que caíram. Mesmo que seus espíritos tenham partido e os corpos sejam pó, suas memórias permanecem por toda a eternidade.", "Sempre que encontrar um lugar de grande sofrimento, você pode reviver a tragédia através de uma memória que permanece. Há uma chance de 1 em 20 de que as coisas se tornem reais demais. Você sofre o mesmo destino na realidade. Isso pode fazer com que criaturas e Poderes reapareçam."],
+                ["Contador de Histórias Inspirado", "Seus contos trazem alegria e sorrisos a todos ao seu redor, mesmo nos tempos mais sombrios. Tudo mentira, é claro, mas quem se importa?", "Teste de PRESENÇA DR9 sempre que descansar para tecer um conto envolvente. Aumente o DR+1 para cada membro adicional da audiência. O sucesso permite que todos ganhem um presságio. Você não pode exceder seu número máximo de presságios."],
+                ["Sanguessuga", "Um gosto adquirido. Ou talvez uma doença. Talvez uma maldição. Uma sede eterna.", "O sangue cura e sustenta você. Uma caneca de sangue cura d4 PV. Você ainda pode comer comida normal, mas sofre os efeitos da inanição após um dia."],
+                ["Simpático", "Há algo no seu sorriso. A maneira como você se comporta. A maneira como você fala. Você é melhor descrito como acessível. É estranho.", "Sempre que uma rolagem de reação for feita, role 3d6 e mantenha os dois dados mais altos."],
+                ["Armadura Viva", "Você sobreviveu à guerra. Você sobreviveu por causa do aço frio que foi marcado para que você pudesse viver. Tornou-se parte de você e você aprendeu a carregar seu fardo.", "Remova a penalidade de AGILIDADE da armadura que você está usando atualmente. Isso não afeta seus testes de Defesa. Você não pode remover sua armadura sem morrer dolorosamente. Isso também acontece se ela quebrar. Consertá-la é possível, mas muito doloroso."],
+                ["Sortudo", "Destino? Soa sinistro. Você prefere sorte. Coisas boas sempre parecem acontecer com você. Isso o levou a uma falsa sensação de segurança. Quanto tempo isso vai durar?", "Você não tem nenhum presságio. E nenhum presságio pode ser gasto para influenciar sua rolagem. Em vez disso, você sempre rola 2d20 para seus testes e escolhe o resultado mais alto. No entanto, você ainda falha miseravelmente se qualquer um deles resultar em 1. Sua sorte tem que acabar eventualmente."],
+                ["Saque Mortal", "Sua lâmina tem fome. O sangue é a única coisa que pode saciá-la. Uma vez desembainhada, ela exige, e irá puni-lo se você falhar.", "Seu primeiro ataque em combate sempre causa dano máximo, assumindo que o ataque acerte. Se você errar, seu oponente pode atacá-lo. Isso pode ser defendido com +2DR"],
+                ["Negociador", "Você abomina o conflito. Um pacifista por natureza, às vezes é melhor tentar desescalar a situação. Alguns chamam você de covarde.", "Role um teste de PRESENÇA, DR6 + maior moral dos oponentes. Sucesso significa que a luta para. Por enquanto."],
+                ["Sobrevivencialista do Interior", "O tempo passado na natureza selvagem ensinou você a prosperar. Pequenos confortos podem ser criados mesmo neste mundo sombrio.", "Teste de PRESENÇA DR9 para criar um acampamento confortável. DR+1 para cada pessoa adicional que ele abrigar. Ao descansar neste acampamento, todos recuperam 2d6 PV em vez de d6"],
+                ["Chef de Grupo", "Você dominou a arte de cozinhar gororoba. Capaz de tornar a comida mais horrível um tanto palatável.", "PRESENÇA DR9 para cozinhar uma refeição ao descansar. DR+1 para quaisquer porções adicionais. Com sucesso, você pode esticar uma única ração para alimentar todo o grupo; falhar significa que a ração está estragada."],
+                ["Tocador de Flauta", "Você pode falar com ratos, assobiar permite atrair d4 deles. Eles podem não ter informações confiáveis, mas estão sempre felizes em conversar com você.", undefined],
+                ["Palavra de Poder", "Os poderes existentes sussurram segredos sombrios em seus ouvidos onde quer que você ande. O chilrear incessante deles nunca lhe dá paz.", "Você conhece inatamente um Poder sagrado ou impuro aleatório. Além disso, uma vez que você tenha lido um pergaminho, você pode esculpir seus glifos esotéricos em sua própria carne e não precisa mais do pergaminho para conjurá-lo. Toda noite há 1 em 20 de chance de você conjurar acidentalmente um Poder durante o sono. Este Poder também tem 1 em 6 de chance de falhar criticamente."],
+                ["Sentido Predatório", "Em algum lugar da sua linhagem, a maldade foi introduzida. Sua influência é fraca em seu sangue, mas sempre presente.", "Você tem um olfato apurado quando se trata de humanos. Você pode farejar indivíduos a um cômodo de distância, identificar alguém e até rastreá-los facilmente com um teste de PRESENÇA DR12."],
+                ["Atacante Imprudente", "Exagerado, constantemente tomando decisões ruins, um senso de julgamento extremamente pobre. Mas você viveu até agora, então deve estar fazendo algo certo.", "Você pode atacar o mesmo alvo duas vezes no seu turno. Errar o segundo ataque permite que seu oponente desfira um ataque que você pode defender com +2DR."],
+                ["Quebrador de Escudo", "Você sabe que o momento em que um oponente está mais vulnerável é logo após ele ter atacado.", "Sempre que você usa seu escudo para bloquear todo o dano recebido, você pode tentar um contra-ataque com +3 de dano."],
+                ["Esfolador", "Sua pele coça e pinica constantemente. Frequentemente com crostas e suja. A pele dos outros traz consolo momentâneo.", "Você pode usar a pele de uma criatura que matou recentemente para se disfarçar. Você parece, soa e até cheira como ela. A pele apodrece após d4 horas e você volta à sua forma miserável normal."],
+                ["Sangue Vil", "Algo em seu sangue está errado. É mais parecido com o icor pútrido de um cadáver.", "Sempre que uma criatura te ataca com uma mordida e te fere, ela é envenenada. Ela sofre d4 de dano por d6 rodadas. Além disso, caso você sofra uma infecção, role um d2. Em 2, você não contraiu a infecção."]
             ]
         };
 
@@ -1635,12 +1928,32 @@
                 pa_endurance: "Endurance",
                 pa_endurance_details: "Résister au poison/froid/chaud, aux chutes",
                 saved_souls_label: "Personnages Sauvegardés"
+            },
+            pt: {
+                class_picker_label: "Classe",
+                generate: "🤞 Gerar",
+                edit: "✏️ Modo Edição",
+                stop: "🤞 Modo Geração",
+                save_edits: "💾 Salvar",
+                restore: "📦 Restaurar",
+                share: "👍 Compartilhar",
+                delete: "🗑️ Deletar",
+                preferred_atributes: "Atributos Preferidos (2 Max):",
+                pa_agility: "Agilidade",
+                pa_agility_details: "Defender, equilibrar, nadar, fugir",
+                pa_presence: "Presença",
+                pa_presence_details: "Perceber, mirar, encantar, manejar poderes",
+                pa_strength: "Força",
+                pa_strength_details: "Esmagar, levantar, golpear, agarrar",
+                pa_endurance: "Resistência",
+                pa_endurance_details: "Resistir a veneno/frio/calor, sobreviver a quedas",
+                saved_souls_label: "Personagens Salvos"
             }
         };
 
         document.getElementById("language_picker").addEventListener('change', function (e) {
             language = document.getElementById("language_picker").value;
-            document.getElementById("random").textContent = localize({ en: '<Random>', fr: "<Aléatoire>" });
+            document.getElementById("random").textContent = localize({ en: '<Random>', fr: "<Aléatoire>", pt: "<Aleatório>" });
             localize(classes).forEach((x, i) => {
                 document.getElementById(`class_${i}`).innerHTML = x;
             });
@@ -1705,36 +2018,48 @@
                     en: `Your earliest memories are of ${frandom_item_from(fanged_deserter_memory)}`
                     ,
                     fr: `Vos premiers souvenirs: ${frandom_item_from(fanged_deserter_memory)}`
+                    ,
+                    pt: `Suas primeiras memórias são de ${frandom_item_from(fanged_deserter_memory)}`
                 });
             } else if (selected_class == 2) {
                 memory = localize({
                     en: `As a child, ${frandom_item_from(gutterborn_memory)}`
                     ,
                     fr: `Enfant, ${frandom_item_from(gutterborn_memory)}`
+                    ,
+                    pt: `Quando criança, ${frandom_item_from(gutterborn_memory)}`
                 });
             } else if (selected_class == 3) {
                 memory = localize({
                     en: `You ${frandom_item_from(esoteric_hermit_memory)}`
                     ,
                     fr: `Vous ${frandom_item_from(esoteric_hermit_memory)}`
+                    ,
+                    pt: `Você ${frandom_item_from(esoteric_hermit_memory)}`
                 });
             } else if (selected_class == 4) {
                 memory = localize({
                     en: `Things were going so well, until ${frandom_item_from(wretched_royalty_memory)}`
                     ,
                     fr: `Les choses allaient bien, puis ${frandom_item_from(wretched_royalty_memory)}`
+                    ,
+                    pt: `As coisas estavam indo tão bem, até que ${frandom_item_from(wretched_royalty_memory)}`
                 });
             } else if (selected_class == 5) {
                 memory = localize({
                     en: `You come from ${frandom_item_from(heretical_priest_memory)}`
                     ,
                     fr: `Vous venez ${frandom_item_from(heretical_priest_memory)}`
+                    ,
+                    pt: `Você vem de ${frandom_item_from(heretical_priest_memory)}`
                 });
             } else if (selected_class == 6) {
                 memory = localize({
                     en: `From ${frandom_item_from(occult_herbmaster_memory)}`
                     ,
                     fr: `Vous avez connu ${frandom_item_from(occult_herbmaster_memory)}`
+                    ,
+                    pt: `De ${frandom_item_from(occult_herbmaster_memory)}`
                 });
             } else if (selected_class == 7) {
                 if (fd(2) == 1) {
@@ -1742,12 +2067,16 @@
                         en: `The Roots of your Dejection: ${frandom_item_from(forlorn_philosopher_memory_1)}`
                         ,
                         fr: `Racines de votre abattement: ${frandom_item_from(forlorn_philosopher_memory_1)}`
+                        ,
+                        pt: `As raízes da sua decepção: ${frandom_item_from(forlorn_philosopher_memory_1)}`
                     });
                 } else {
                     memory = localize({
                         en: `The Dejection of your Roots: ${frandom_item_from(forlorn_philosopher_memory_2)}`
                         ,
                         fr: `Abattement de vos racines: ${frandom_item_from(forlorn_philosopher_memory_2)}`
+                        ,
+                        pt: `Decepção de suas raízes: ${frandom_item_from(forlorn_philosopher_memory_2)}`
                     });
                 }
             } else if (selected_class == 8) {
@@ -1755,23 +2084,30 @@
                     en: `<b>All Hail ${frandom_item_from(dead_gods_prophet_memory_1)}, ${frandom_item_from(dead_gods_prophet_memory_2)} ${frandom_item_from(dead_gods_prophet_memory_3)}!</b>`
                     ,
                     fr: `<b>Gloire à ${frandom_item_from(dead_gods_prophet_memory_1)}, ${frandom_item_from(dead_gods_prophet_memory_2)} ${frandom_item_from(dead_gods_prophet_memory_3)}!</b>`
+                    ,
+                    pt: `<b>Veneração a ${frandom_item_from(dead_gods_prophet_memory_1)}, ${frandom_item_from(dead_gods_prophet_memory_2)} ${frandom_item_from(dead_gods_prophet_memory_3)}!</b>`
                 });
             } else if (selected_class == 9) {
                 memory = localize({
                     en: `You ${frandom_item_from(pale_one_memory)}`
                     ,
                     fr: `Vous ${frandom_item_from(pale_one_memory)}`
+                    ,
+                    pt: `Você ${frandom_item_from(pale_one_memory)}`
                 });
             } else if (selected_class == 10) {
                 memory = localize({
                     en: `You first died ${frandom_item_from(cursed_skinwalker_memory)}`
                     ,
                     fr: `Votre première mort: ${frandom_item_from(cursed_skinwalker_memory)}`
+                    ,
+                    pt: `Você morreu pela primeira vez ${frandom_item_from(cursed_skinwalker_memory)}`
                 });
             } else if (selected_class == 11) {
                 memory = localize({
                     en: `A deal was struck ${frandom_item_from(songbird_memory)}`,
-                    fr: `Vous avez signé votre contrat ${frandom_item_from(songbird_memory)}`
+                    fr: `Vous avez signé votre contrat ${frandom_item_from(songbird_memory)}`,
+                    pt: `Um acordo foi feito ${frandom_item_from(songbird_memory)}`
                 });
             }
             var trait1 = frandom_item_from(traits);
@@ -1788,6 +2124,8 @@
                     en: `<p><b>Terrible Trait</b>: ${trait1} et ${trait2.toLowerCase()}<br><b>Broken Body</b>: ${frandom_item_from(bodies)} <br><b>Bad Habit</b>: ${localize(bad_habits)[habit - 1]}</p>`
                     ,
                     fr: `<p><b>Trait Terrible</b>: ${trait1} et ${trait2.toLowerCase()}<br><b>Corps Brisé</b>: ${frandom_item_from(bodies)} <br><b>Mauvaise habitude</b>: ${localize(bad_habits)[habit - 1]}</p>`
+                    ,
+                    pt: `<p><b>Traço Terrível</b>: ${trait1} e ${trait2.toLowerCase()}<br><b>Corpo Quebrado</b>: ${frandom_item_from(bodies)} <br><b>Hábito Ruim</b>: ${localize(bad_habits)[habit - 1]}</p>`
                 });
 
 
@@ -1923,6 +2261,8 @@
                 en: ["Waterskin", ` and ${fd(4)} days' worth of food`]
                 ,
                 fr: ["Outre d'eau", ` et ${fd(4)} jour(s) de nourriture`]
+                ,
+                pt: ["Cantil", ` e ${fd(4)} dia(s) de comida`]
             }
             var silver;
             if (selected_class == 0 || selected_class == 1 || selected_class == 6 || selected_class == 10) {
@@ -1941,18 +2281,24 @@
                 en: ['Staff', 'Wooden stake', 'Shortsword', 'Knife', 'Sickle', 'Cudgel']
                 ,
                 fr: ['Bâton', 'Pieu en bois', 'Épée courte', 'Couteau', 'Faucille', 'Gourdin']
+                ,
+                pt: ['Cajado', 'Estaca de madeira', 'Espada curta', 'Faca', 'Foice', 'Clava']
             };
 
             var w_med = {
                 en: ['Warhammer', 'Sword', 'Club', 'Handaxe', 'Mace', 'Spear', 'Scythe']
                 ,
                 fr: ['Marteau de guerre', 'Épée', 'Massue', 'Hachette', 'Masse', 'Lance', 'Faux']
+                ,
+                pt: ['Martelo de guerra', 'Espada', 'Clava', 'Machadinha', 'Maça', 'Lança', 'Foice']
             };
 
             var w_heavy = {
                 en: ['Flail', 'Battleaxe', 'Goendendag']
                 ,
                 fr: ['Fléau', 'Hache de bataille', 'Godendard']
+                ,
+                pt: ['Mangual', 'Machado de batalha', 'Godendard']
             };
 
             var weapons = {
@@ -1981,24 +2327,43 @@
                     ["Arbalète", `d8 dégats, avec ${presence() + 10} carreaux`],
                     ["Zweihänder", "d10 dégats"]
                 ]
+                ,
+                pt: [
+                    ["Fêmur", "d4 dano"],
+                    [frandom_item_from(w_light), "d4 dano"],
+                    [frandom_item_from(w_light), "d4 dano"],
+                    [frandom_item_from(w_light), "d4 dano"],
+                    [frandom_item_from(w_med), "d6 dano"],
+                    [frandom_item_from(w_med), "d6 dano"],
+                    ["Arco", `d6 dano, com ${presence() + 10} setas`],
+                    [frandom_item_from(w_heavy), "d8 dano"],
+                    ["Besta", `d8 dano, com ${presence() + 10} balas`],
+                    ["Zweihänder", "d10 dano"]
+                ]
             };
 
             var light = {
                 en: ["Fur", "Padded cloth", "Leather"]
                 ,
                 fr: ["de fourrure", "capitonnée", "de cuir"]
+                ,
+                pt: ["de pele", "acolchoada", "de couro"]
             };
 
             var medium = {
                 en: ["Scale", "Mail"]
                 ,
                 fr: ["d'écailles", "de maille"]
+                ,
+                pt: ["de escamas", "de malha"]
             };
 
             var heavy = {
                 en: ["Splint", "Plate"]
                 ,
                 fr: ["de lamelles", "de plaques"]
+                ,
+                pt: ["de lamelas", "de placas"]
             };
 
             var armor = {
@@ -2014,6 +2379,13 @@
                     [`Armure ${frandom_item_from(light)}`, "-d2, tiers 1"],
                     [`Armure ${frandom_item_from(medium)}`, "-d4, tiers 2, DR+2 pour les tests d'AGILITÉ incluant la Défense"],
                     [`Armure ${frandom_item_from(heavy)}`, "-d6, tiers 3, DR+4 pour les tests d'AGILITÉ, Défense à DR+2"],
+                ]
+                ,
+                pt: [
+                    ["", ""],
+                    [`Armadura ${frandom_item_from(light)}`, "-d2 de dano, nível 1"],
+                    [`Armadura ${frandom_item_from(medium)}`, "-d4 de dano, nível 2, DR+2 em testes de AGILIDADE incluindo Defesa"],
+                    [`Armadura ${frandom_item_from(heavy)}`, "-d6 de dano, nível 3, DR+4 em testes de AGILIDADE, Defesa é DR+2"],
                 ]
             };
 
@@ -2034,6 +2406,15 @@
                     ["Sac", "pour 10 objets de taille normale"],
                     ["Petite charrette", ""],
                     ["Âne", ""]
+                ]
+                ,
+                pt: [
+                    ["", ""],
+                    ["", ""],
+                    ["Mochila", "para 7 itens de tamanho normal"],
+                    ["Saco", "para 10 itens de tamanho normal"],
+                    ["Carrinho pequeno", ""],
+                    ["Burro", ""]
                 ]
             };
 
@@ -2083,6 +2464,29 @@
                     ["Menottes", ""],
                     ["Une bouteille de poison noir", `${fd(4)} doses (ENDURANCE DR14 ou d6 dégâts + aveugle pendant une heure)`],
                 ]
+                ,
+                pt: [
+                    ["Corda", "30 pés"],
+                    [`${presence() + 4} tochas`, ""],
+                    ["Lanterna", `com óleo para ${presence() + 6} horas`],
+                    ["Tira de magnésio", ""],
+                    frandom_item_from(unclean_scrolls),
+                    ["Agulha afiada", ""],
+                    ["Kit de primeiros socorros", `${presence() + 4} usos (para parar sangramento/infecção e curar d6 HP)`],
+                    ["Lima de metal e gazuas", ""],
+                    ["Armadilha de urso", "PRESENÇA DR14 para notar, d8 dano"],
+                    ["Bomba", "(garrafa selada, d10 dano)"],
+                    ["Uma garrafa de veneno vermelho", `${fd(4)} doses (RESISTÊNCIA DR12 ou d10 dano)`],
+                    ["Crucifixo de prata", ""],
+                    ["Cobertor", ""],
+                    ["Pederneira", ""],
+                    ["Tabaco de mascar", `${fd(6)} usos`],
+                    ["Uma garrafa de sal", ""],
+                    ["Crucifixo de madeira", ""],
+                    [`${fd(6)} pedaços de giz`, ""],
+                    ["Algemas", ""],
+                    ["Uma garrafa de veneno negro", `${fd(4)} doses (RESISTÊNCIA DR14 ou d6 dano + cegueira por uma hora)`],
+                ]
             };
 
             var equip3 = {
@@ -2130,6 +2534,28 @@
                     ["Marteau", "d4 dégâts"],
                     ["Pieu en bois", "d6 dégâts"],
                     ["Lacs", ""]
+                ],
+                pt: [
+                    ["Elixir de vida", `${fd(4)} doses (cura d6 HP e remove infecção)`],
+                    frandom_item_from(sacred_scrolls),
+                    ["Cachorro pequeno mas feroz", `(${fd(6) + 2} HP, mordida d4, obedece apenas a você)`],
+                    [`${fd(4)} macaco(s) que te ignoram mas te amam`, `(${fd(4) + 2} HP, soco/mordida d4)`],
+                    ["Perfume requintado", "vale 25s"],
+                    ["Caixa de ferramentas", "10 pregos, pinças, martelo, serrote pequeno, furadeira"],
+                    ["Corrente pesada", "15 pés"],
+                    ["Gancho de escalada", ""],
+                    ["Escudo", "(-1 dano HP ou o escudo quebra para ignorar o ataque)"],
+                    ["Pé de cabra", "d4 dano"],
+                    ["Banha", "(pode funcionar como 5 refeições em um aperto)"],
+                    ["Barraca", ""],
+                    [`${fd(6)} rato(s) moderadamente domesticado(s)`, "(1 HP, mordida d2, obedece apenas a você)"],
+                    ["Espelho", "vale 15s"],
+                    ["Tesoura", ""],
+                    ["Cutelo de carne", "d4 dano"],
+                    ["Tralha", "d4 dano + infecção em 1-em-6"],
+                    ["Martelo", "d4 dano"],
+                    ["Estaca de madeira", "d6 dano"],
+                    ["Laço", ""]
                 ]
             };
 
@@ -2142,7 +2568,7 @@
             e3 = localize(equip3)[er3 - 1];
             var starting_weapon;
             if (story == 16) {
-                starting_weapon = localize({ en: ["Sling", "d4 damage with an unlimited amount of stones"], fr: ["Fronde", "d4 dégats avec une quantité illimitée de pierres"] });
+                starting_weapon = localize({ en: ["Sling", "d4 damage with an unlimited amount of stones"], fr: ["Fronde", "d4 dégats avec une quantité illimitée de pierres"], pt: ["Besta", "d4 dano com uma quantidade ilimitada de pedras"] });
             } else {
                 if (selected_class == 3 || selected_class == 8) {
                     starting_weapon = frandom_item_from(localize(weapons).slice(0, 4));
@@ -2172,28 +2598,32 @@
                 special_item = localize(
                     {
                         en: ["Sackcloth bag", `and ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} small sharp stones`],
-                        fr: ["Sac en toile", `et ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} petites pierres coupantes`]
+                        fr: ["Sac en toile", `et ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} petites pierres coupantes`],
+                        pt: ["Saco de pano", `e ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} pedras pequenas e afiadas`]
                     }
                 )
             } else if (habit == 7) {
                 special_item = localize(
                     {
                         en: ["Skull", "a trusted friend"],
-                        fr: ["Crâne", "Un ami de confiance."]
+                        fr: ["Crâne", "Un ami de confiance."],
+                        pt: ["Caveira", "um amigo de confiança"]
                     }
                 )
             } else if (habit == 20) {
                 special_item = localize(
                     {
                         en: ["String Necklace", `with ${fd(10) + fd(10) + fd(10) + fd(10) + fd(10)} mismatched teeth`],
-                        fr: ["Collier de cuir", `avec ${fd(10) + fd(10) + fd(10) + fd(10) + fd(10)} dent disparates`]
+                        fr: ["Collier de cuir", `avec ${fd(10) + fd(10) + fd(10) + fd(10) + fd(10)} dent disparates`],
+                        pt: ["Colar de corda", `com ${fd(10) + fd(10) + fd(10) + fd(10) + fd(10)} dentes tortos`]
                     }
                 )
             } else if (habit == 29) {
                 special_item = localize(
                     {
                         en: ["Sackcloth bag", `and ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} chewed fingernails`],
-                        fr: ["Sac en toile", `et ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} ongles rongés`]
+                        fr: ["Sac en toile", `et ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} ongles rongés`],
+                        pt: ["Bolsa de lona", `e ${fd(20) + fd(20) + fd(20) + fd(20) + fd(20)} unhas roídas`]
                     }
                 )
             }
